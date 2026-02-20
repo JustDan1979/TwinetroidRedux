@@ -20,6 +20,7 @@ Twinetroid
 :root {
   --room-bg: #111;
   --ui-bar-width: 16rem;
+  --ui-bar-stowed-width: 2.6rem;
 }
 
 body {
@@ -110,11 +111,32 @@ body[data-room-theme="Tourian"]::after {
   left: 0;
   height: 100vh;
   flex: 0 0 var(--ui-bar-width);
+  min-width: var(--ui-bar-width);
   margin: 0 !important;
+  transition: width 0.18s ease, flex-basis 0.18s ease;
 }
 
 #ui-bar.stowed {
   left: 0 !important;
+  width: var(--ui-bar-stowed-width);
+  flex: 0 0 var(--ui-bar-stowed-width);
+  min-width: var(--ui-bar-stowed-width);
+}
+
+#ui-bar.stowed #ui-bar-body {
+  display: none;
+}
+
+#ui-bar-toggle {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 2;
+}
+
+.ui-bar-stowed #story,
+.ui-bar-hidden #story {
+  margin-left: 0 !important;
 }
 
 #ui-bar-body {
@@ -136,6 +158,33 @@ body[data-room-theme="Tourian"]::after {
 
 #hud .hud-section + .hud-section {
   margin-top: 0.55rem;
+}
+
+.title-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 18rem;
+}
+
+.title-ornament {
+  font-size: 0.9rem;
+  letter-spacing: 0.2rem;
+  opacity: 0.75;
+}
+
+.title-series {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.title-links {
+  font-size: 1.4rem;
+  line-height: 1.65;
+}
+
+.title-links a {
+  display: inline-block;
 }
 
 #hud .hud-label {
@@ -3982,7 +4031,7 @@ However, I successfully avoid the Rio�s attack. I escape!
   <</if>>
 <</linkreplace>>}
  <<linkreplace "Load Game ">>
-          <<loadgame "Slot A ">>
+          <<load "Slot A">>
     <</linkreplace>>
 Continue
 	<<linkreplace "Continue ">>
@@ -4119,15 +4168,17 @@ I need at least 2 Missiles to fight Kraid  <<linkreplace "I need at least 2 Miss
 
 
 :: Title Screen {"position":"100,2350","size":"100,100"}
-=><=
-#Twinetroid
-
-<font size = "6 ">[[Start->PROLOGUE]] 
-<<linkreplace "Load Game ">><<loadgame "Slot A ">><</linkreplace>>
-[[Instructions]]
-[[About]]
-[[Credits]]
-</font ><==
+<div class="title-card">
+  <div class="title-ornament">=><=</div>
+  <div class="title-series">1. Twinetroid</div>
+  <div class="title-links">
+    [[Start->PROLOGUE]]<br>
+    <<linkreplace "Load Game">><<load "Slot A">><</linkreplace>><br>
+    [[Instructions]]<br>
+    [[About]]<br>
+    [[Credits]]
+  </div>
+</div>
 <<set $displayStats = 0; $displayMap = 0>>
 
 
@@ -6000,7 +6051,7 @@ Dangerously Low <<linkreplace "Dangerously Low ">><<set $energy = 1>><</linkrepl
 
 :: Time Bomb Set {"position":"725,5225","size":"100,100"}
 ==><==
-	<i ><span style="color:yellow ">GAME SAVED</span></i ><<savegame "Slot A ">>
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 	<<set $displayStats = 0>>
 	<<set $startRoom = "Time Bomb Set ">>
 	<<set $random = 1>>
@@ -6049,7 +6100,7 @@ I begin to move at once. I barely manage to reach to my tiny spaceship I had hid
 
 Ten seconds after liftoff, Zebes is engulfed in an enormous explosion. I escaped by just a hair�s breadth. Even at this distance, I feel the considerable force of the explosion. If I had delayed even a moment, it would have taken my life.
 ==><==
-	<i ><span style="color:yellow ">GAME SAVED</span></i ><<savegame "Slot A ">>
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 <<set $startRoom = "An Unpleasant Discovery ">>
 <==
 [[Now, the remaining question is what to do with the Metroid capsule...->An Unpleasant Discovery]]
@@ -6301,7 +6352,7 @@ Considering the sector of space I 'm in, could these be the band of Pirates who 
 
 :: A Prisoner of the Pirates {"position":"350,5600","size":"100,100"}
 ==><==
-	<i ><span style="color:yellow ">GAME SAVED</span></i ><<savegame "Slot A ">>
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 <<set $startRoom = "A Prisoner of the Pirates ">>
 
 <==

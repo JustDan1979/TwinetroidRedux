@@ -1,0 +1,27 @@
+Twinetroid Redux Attributions
+============================
+
+Original Work
+- “Twinetroid” is a Twine adaptation of the Metroid novelization.
+- Publisher: Futabasha
+- Writer: Noboyuki Shioda
+- Illustrator: Arisaka Sumi
+
+Project Origin
+- This repository is a quality-of-life (QOL) build of the Twinetroid story hosted at:
+  https://metroiddatabase.com/a-merry-twinetroid-christmas
+
+Image Sources
+- Base Twinetroid artwork and maps downloaded from Metroid Database:
+  https://metroiddatabase.com/wp-content/uploads/Metroid/Twinetroid/ (retrieved 2026-02-20)
+- Zeb image: https://metroid.fandom.com/wiki/Zeb (retrieved 2026-02-20)
+- Sidehopper image: https://metroid.fandom.com/wiki/Sidehopper (retrieved 2026-02-20)
+- Rinka image: https://metroid.fandom.com/wiki/Rinka (retrieved 2026-02-20)
+- Multiviola image: https://metroid.fandom.com/wiki/Multiviola (retrieved 2026-02-20)
+
+Notes
+- All images are converted to .webp for consistency.
+- Zeb/Sidehopper/Rinka/Multiviola are displayed in grayscale in-game to match the rest of the artwork.
+
+Audio
+- Procedural audio generated in-game; no external audio files are used.

@@ -24,13 +24,17 @@ Twinetroid
 }
 
 body {
-  background: var(--room-bg);
+  background: url("assets/images/TwineTroid.png") center/cover no-repeat fixed;
   background-attachment: fixed;
   background-size: cover;
   position: relative;
   overflow-x: hidden;
   display: flex;
   align-items: flex-start;
+}
+
+body[data-room-theme] {
+  background: var(--room-bg);
 }
 
 #ui-bar,
@@ -60,6 +64,11 @@ body::after {
   opacity: 0.45;
   animation: room-pulse 18s ease-in-out infinite;
   mix-blend-mode: screen;
+}
+
+body:not([data-room-theme])::before,
+body:not([data-room-theme])::after {
+  display: none;
 }
 
 body[data-room-theme="Norfair"]::before {
@@ -769,6 +778,20 @@ Config.ui.stowBarInitially = false;
 
 setup.assetPath = "assets/images/";
 
+setup.getPassageTitle = function () {
+  var passage = State.passage;
+  if (typeof passage === "string") {
+    return passage;
+  }
+  if (passage && typeof passage.title === "string") {
+    return passage.title;
+  }
+  if (passage && typeof passage.name === "string") {
+    return passage.name;
+  }
+  return "";
+};
+
 setup.enemyDefs = [
   { key: "Zebetite", name: "Zebetite", image: "Zebetite.webp" },
   { key: "Mother Brain", name: "Mother Brain", image: "MotherBrain.webp" },
@@ -902,7 +925,7 @@ setup.getEnemy = function () {
     return null;
   }
 
-  var title = State.passage.title || "";
+  var title = setup.getPassageTitle();
   if (title) {
     for (var i = 0; i < setup.enemyDefs.length; i++) {
       var def = setup.enemyDefs[i];
@@ -931,7 +954,7 @@ setup.hasVisited = function (title) {
   if (!title) {
     return false;
   }
-  if (State.passage && State.passage.title === title) {
+  if (setup.getPassageTitle() === title) {
     return true;
   }
   return State.history.some(function (moment) {
@@ -942,7 +965,7 @@ window.hasVisited = setup.hasVisited;
 
 setup.previous = function () {
   if (State.history.length < 2) {
-    return State.passage.title;
+    return setup.getPassageTitle();
   }
   return State.history[State.history.length - 2].title;
 };
@@ -1321,8 +1344,11 @@ setup.getCurrentRoomId = function () {
   if (v && v.lastRoom) {
     id = setup.normalizeRoomId(v.lastRoom);
   }
-  if (!id && State.passage && State.passage.title) {
-    id = setup.normalizeRoomId(State.passage.title);
+  if (!id) {
+    var title = setup.getPassageTitle();
+    if (title) {
+      id = setup.normalizeRoomId(title);
+    }
   }
   return /^\d+$/.test(id) ? id : "";
 };
@@ -1588,7 +1614,18 @@ setup.startProceduralMusic = function (themeKey) {
 };
 
 setup.updateBackground = function () {
-  var title = State.passage && State.passage.title ? String(State.passage.title) : "";
+  var title = setup.getPassageTitle();
+  if (/^Title Screen$/i.test(title.trim())) {
+    document.documentElement.setAttribute("data-screen", "title");
+    document.body.setAttribute("data-screen", "title");
+    document.body.removeAttribute("data-room-theme");
+    return;
+  }
+  document.documentElement.removeAttribute("data-screen");
+  document.body.removeAttribute("data-screen");
+  if (document.body.style.background) {
+    document.body.style.background = "";
+  }
   var loc = State.variables.location ? String(State.variables.location) : "";
   var seedSource = (loc ? loc + "|" : "") + title;
   if (!seedSource) {
@@ -2028,8 +2065,11 @@ setup.renderMap = function (mapInfo) {
   if (v.lastRoom) {
     currentId = setup.normalizeRoomId(v.lastRoom);
   }
-  if (!currentId && State.passage && State.passage.title) {
-    currentId = setup.normalizeRoomId(State.passage.title);
+  if (!currentId) {
+    var currentTitle = setup.getPassageTitle();
+    if (currentTitle) {
+      currentId = setup.normalizeRoomId(currentTitle);
+    }
   }
   addVisited(currentId);
 
@@ -2452,7 +2492,7 @@ setup.handleCombatState = function () {
     return;
   }
 
-  var currentTitle = State.passage && State.passage.title ? String(State.passage.title).trim() : "";
+  var currentTitle = String(setup.getPassageTitle() || "").trim();
   if (/^\d+$/.test(currentTitle) || /^Debug Room/i.test(currentTitle) || /Combat Test$/i.test(currentTitle)) {
     State.variables.lastRoom = currentTitle;
     if (setup.trackRoomVisit) {
@@ -2540,7 +2580,7 @@ setup.updateHud = function () {
 
   setup.ensureInit();
 
-  var currentTitle = State.passage && State.passage.title ? String(State.passage.title).trim() : "";
+  var currentTitle = String(setup.getPassageTitle() || "").trim();
   if (/^\d+$/.test(currentTitle) || /^Debug Room/i.test(currentTitle) || /Combat Test$/i.test(currentTitle)) {
     State.variables.lastRoom = currentTitle;
     if (setup.trackRoomVisit) {

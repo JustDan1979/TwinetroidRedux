@@ -455,11 +455,17 @@ body[data-room-theme="Tourian"]::after {
   border-color: #5a5a5a;
 }
 
-#music-toggle {
+#music-ui {
   position: fixed;
   top: 0.75rem;
   right: 0.75rem;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#music-toggle {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
@@ -471,6 +477,27 @@ body[data-room-theme="Tourian"]::after {
   text-align: center;
   text-decoration: none;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+#music-toast {
+  max-width: 16rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+#music-toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #music-toggle:hover {
@@ -844,7 +871,7 @@ setup.itemDefs = [
   { key: "Varia ", label: "Varia" }
 ];
 
-setup.musicMode = "procedural";
+setup.musicMode = "tracks";
 setup.musicThemes = {
   Brinstar: {
     label: "Brinstar",
@@ -914,6 +941,13 @@ setup.musicThemes = {
     tempo: 66,
     pulseGain: 0.06
   }
+};
+
+setup.musicTracks = {
+  Default: { title: "Green Life", file: "assets/audio/ogg LOOPING/01 - Green Life.ogg" },
+  Brinstar: { title: "Green Life", file: "assets/audio/ogg LOOPING/01 - Green Life.ogg" },
+  Norfair: { title: "Magma Vein", file: "assets/audio/ogg LOOPING/06 - Magma Vein.ogg" },
+  Tourian: { title: "Drowned Garden", file: "assets/audio/ogg LOOPING/03 - Drowned Garden.ogg" }
 };
 
 setup.findEnemyInText = function (text) {
@@ -1400,6 +1434,30 @@ setup.ensureMusic = function () {
     document.body.appendChild(audio);
   }
   return audio;
+};
+
+setup.getTrackForKey = function (key) {
+  var trackMap = setup.musicTracks || {};
+  return trackMap[key] || trackMap.Default || null;
+};
+
+setup.showMusicToast = function (label) {
+  var $toast = jQuery("#music-toast");
+  if ($toast.length === 0) {
+    return;
+  }
+  if (!label) {
+    $toast.removeClass("show");
+    return;
+  }
+  $toast.text(label);
+  $toast.addClass("show");
+  if (setup._musicToastTimer) {
+    clearTimeout(setup._musicToastTimer);
+  }
+  setup._musicToastTimer = setTimeout(function () {
+    $toast.removeClass("show");
+  }, 3200);
 };
 
 setup.ensureAudioContext = function () {
@@ -1999,6 +2057,36 @@ setup.updateMusic = function () {
     }
   } else {
     setup.stopProceduralMusic();
+    var track = setup.getTrackForKey(key);
+    var audio = setup.ensureMusic();
+    if (track && track.file) {
+      var encodedSrc = encodeURI(track.file);
+      var currentSrc = audio.getAttribute("data-track");
+      if (currentSrc !== encodedSrc) {
+        audio.setAttribute("data-track", encodedSrc);
+        audio.src = encodedSrc;
+        audio.load();
+        setup.showMusicToast(track.title || "Soundtrack");
+      }
+      audio.loop = true;
+      audio.volume = Math.min(1, Math.max(0, Number(v.musicVolume) || 0.4));
+    }
+    if (Number(v.musicEnabled) === 1) {
+      var playPromise = audio.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function () {
+          if (!setup._musicNeedsGesture) {
+            setup._musicNeedsGesture = true;
+            jQuery(document).one("click", function () {
+              setup._musicNeedsGesture = false;
+              setup.updateMusic();
+            });
+          }
+        });
+      }
+    } else {
+      audio.pause();
+    }
   }
 
   var $status = jQuery("#music-status");
@@ -2008,14 +2096,22 @@ setup.updateMusic = function () {
     $status.text(Number(v.musicEnabled) === 1 ? "On" : "Off");
   }
   if ($track.length) {
-    var label = setup.musicThemes[key] ? setup.musicThemes[key].label : "Music";
-    $track.text(label);
+    var trackLabel = "";
+    var currentTrack = setup.getTrackForKey(key);
+    if (currentTrack && currentTrack.title) {
+      trackLabel = currentTrack.title;
+    }
+    $track.text(trackLabel);
   }
   if ($toggle.length) {
-    $toggle.text(Number(v.musicEnabled) === 1 ? "?" : "?X");
+    $toggle.text(Number(v.musicEnabled) === 1 ? "♪" : "♪×");
     $toggle.toggleClass("off", Number(v.musicEnabled) !== 1);
-    var label = (setup.musicThemes[key] ? setup.musicThemes[key].label : "Music");
-    $toggle.attr("title", label + (Number(v.musicEnabled) === 1 ? " (On)" : " (Off)"));
+    var titleLabel = "Soundtrack";
+    var toggleTrack = setup.getTrackForKey(key);
+    if (toggleTrack && toggleTrack.title) {
+      titleLabel = toggleTrack.title;
+    }
+    $toggle.attr("title", titleLabel + (Number(v.musicEnabled) === 1 ? " (On)" : " (Off)"));
   }
 };
 
@@ -7220,7 +7316,10 @@ Attack successful! The enemy's movements are quick, and although it gives you so
     <div class="hud-row" id="map-marker-list"></div>
   </div>
 </div>
-<a href="#" id="music-toggle" title="Music">?</a>
+<div id="music-ui">
+  <a href="#" id="music-toggle" title="Soundtrack">♪</a>
+  <div id="music-toast" aria-live="polite"></div>
+</div>
 
 
 

@@ -278,9 +278,9 @@ body[data-screen="title"]::after {
 #hud {
   margin-top: 0.4rem;
   font-size: 0.82em;
-  --map-cell-size: 11px;
-  --map-gap: 2px;
-  --map-font-size: 8.5px;
+  --map-cell-size: 16.5px;
+  --map-gap: 3px;
+  --map-font-size: 12.75px;
 }
 
 #hud .hud-section + .hud-section {
@@ -681,6 +681,7 @@ body[data-screen="title"]::after {
   margin-top: 0.4rem;
   display: inline-block;
   min-width: max-content;
+  cursor: pointer;
 }
 
 .map-frame {
@@ -870,7 +871,7 @@ body[data-screen="title"]::after {
   justify-content: center;
   background: rgba(0, 0, 0, 0.75);
   z-index: 1200;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
 }
 
@@ -882,9 +883,9 @@ body[data-screen="title"]::after {
   background: #0f0f0f;
   border: 1px solid #2a2a2a;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  padding: 1rem 1.2rem 1.25rem;
-  max-width: min(95vw, 900px);
-  max-height: 90vh;
+  padding: 0.85rem 1rem 1rem;
+  max-width: 96vw;
+  max-height: 96vh;
   overflow: auto;
   box-sizing: border-box;
 }
@@ -894,6 +895,11 @@ body[data-screen="title"]::after {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.75rem;
+}
+
+#map-modal .map-modal-body {
+  display: flex;
+  justify-content: center;
 }
 
 #map-modal .map-modal-title {
@@ -917,12 +923,14 @@ body[data-screen="title"]::after {
 #map-modal .map-frame {
   padding: 0;
   box-sizing: border-box;
-  --map-width: 380px;
-  --map-height: 605px;
-  --map-gap: 4px;
+  --map-max-width: 92vw;
+  --map-max-height: 88vh;
+  --map-width: min(var(--map-max-width), calc(var(--map-max-height) / 1.5921));
+  --map-height: calc(var(--map-width) * 1.5921);
+  --map-gap: 6px;
   --map-cell-width: calc((var(--map-width) - (var(--map-cols) - 1) * var(--map-gap)) / var(--map-cols));
   --map-cell-height: calc((var(--map-height) - (var(--map-rows) - 1) * var(--map-gap)) / var(--map-rows));
-  --map-font-size: calc(var(--map-cell-height) * 0.45);
+  --map-font-size: calc(var(--map-cell-height) * 0.5);
   width: var(--map-width);
   height: var(--map-height);
 }
@@ -1476,7 +1484,9 @@ setup.grantEnergyPack = function (id) {
     return false;
   }
   v.energyPacks.push(token);
-  setup.refillEnergy();
+  v.maxEnergy = Number(v.maxEnergy) || 0;
+  v.maxEnergy += 30;
+  v.energy = v.maxEnergy;
   return true;
 };
 
@@ -2159,6 +2169,16 @@ setup.bindMapModalControls = function () {
     return;
   }
   jQuery(document).on("click", "#map-view-toggle", function (event) {
+    event.preventDefault();
+    setup.showMapModal();
+  });
+  jQuery(document).on("click", "#samus-map", function (event) {
+    if (jQuery(event.target).closest(".map-marker-remove, #map-marker-toggle, #map-marker-list").length) {
+      return;
+    }
+    if (!jQuery(this).find(".map-frame").length) {
+      return;
+    }
     event.preventDefault();
     setup.showMapModal();
   });
@@ -5478,7 +5498,6 @@ Run  &lt;&lt;linkreplace &quot;Run  &quot;&gt;&gt;Run&lt;hr &gt;{
     &lt;div id=&quot;samus-map&quot;&gt;Map data unavailable.&lt;/div&gt;
     &lt;div class=&quot;hud-row&quot;&gt;
       &lt;a href=&quot;#&quot; id=&quot;map-marker-toggle&quot;&gt;Mark Room&lt;/a&gt;
-      &lt;a href=&quot;#&quot; id=&quot;map-view-toggle&quot;&gt;View Map&lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&quot;hud-row&quot; id=&quot;map-marker-list&quot;&gt;&lt;/div&gt;
   &lt;/div&gt;

@@ -390,6 +390,26 @@ body[data-screen="title"]::after {
   visibility: hidden;
 }
 
+.reveals,
+.revealsText {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.reveals:hover,
+.revealsText:hover {
+  opacity: 1;
+}
+
+.reveals a,
+.revealsText a {
+  color: inherit;
+}
+
+.hides {
+  opacity: 0.45;
+}
+
 .passage .room-panel {
   background: #111;
   border: 1px solid #2a2a2a;
@@ -1306,7 +1326,8 @@ setup.normalizeItems = function (value) {
       if (!item) {
         return;
       }
-      var key = String(item).trim();
+      var raw = String(item);
+      var key = raw.trim();
       if (!key) {
         return;
       }
@@ -1322,8 +1343,25 @@ setup.normalizeItems = function (value) {
         }
         return;
       }
-      if (!normalized.includes(item)) {
-        normalized.push(item);
+      var canonical = null;
+      setup.itemDefs.some(function (def) {
+        var defKey = String(def.key || "").trim();
+        if (!defKey) {
+          return false;
+        }
+        if (defKey.toLowerCase() === key.toLowerCase()) {
+          canonical = def.key;
+          return true;
+        }
+        if (def.label && String(def.label).trim().toLowerCase() === key.toLowerCase()) {
+          canonical = def.key;
+          return true;
+        }
+        return false;
+      });
+      var finalKey = canonical || raw;
+      if (!normalized.includes(finalKey)) {
+        normalized.push(finalKey);
       }
     });
     return normalized.length ? normalized : ["Normal Beam "];
@@ -1381,6 +1419,65 @@ setup.grantMapItem = function (key) {
   if (!v.items.includes(key)) {
     v.items.push(key);
   }
+};
+
+setup.grantItem = function (key) {
+  var v = State.variables;
+  var token = String(key || "").trim();
+  if (!token) {
+    return false;
+  }
+  var canonical = null;
+  setup.itemDefs.some(function (def) {
+    var defKey = String(def.key || "").trim();
+    if (!defKey) {
+      return false;
+    }
+    if (defKey.toLowerCase() === token.toLowerCase()) {
+      canonical = def.key;
+      return true;
+    }
+    if (def.label && String(def.label).trim().toLowerCase() === token.toLowerCase()) {
+      canonical = def.key;
+      return true;
+    }
+    return false;
+  });
+  var finalKey = canonical || (token.endsWith(" ") ? token : token + " ");
+
+  v.items = setup.normalizeItems(v.items);
+  if (!Array.isArray(v.items)) {
+    v.items = [];
+  }
+
+  if (finalKey === "Normal Beam " || finalKey === "Ice Beam " || finalKey === "Wave Beam ") {
+    var beams = ["Normal Beam ", "Ice Beam ", "Wave Beam "];
+    beams.forEach(function (beamKey) {
+      if (beamKey !== finalKey) {
+        v.items = v.items.filter(function (item) { return item !== beamKey; });
+      }
+    });
+    if (!v.items.includes(finalKey)) {
+      v.items.push(finalKey);
+    }
+    v.Beam = finalKey;
+  } else {
+    if (!v.items.includes(finalKey)) {
+      v.items.push(finalKey);
+    }
+    if (finalKey === "Bombs ") {
+      v.Bombs = "Bombs ";
+    } else if (finalKey === "Varia ") {
+      v.Varia = "Varia ";
+    } else if (finalKey === "Screw Attack ") {
+      v.ScrewAttack = "Screw Attack ";
+    }
+  }
+
+  if (setup.updateHud) {
+    setup.updateHud();
+  }
+  return true;
 };
 
 setup.refillEnergy = function () {
@@ -2622,6 +2719,11 @@ setup.enhanceCombat = function () {
   });
 
   if (v._combatExitOnOver && hasBattleOver) {
+    v._combatLog = [];
+    v._combatLogSamus = [];
+    v._combatLogEnemy = [];
+    v._combatLogCounts = {};
+    $root.find(".combat-scene").remove();
     var autoExitLink = $source.find("a").filter(function () {
       return /battle is over|game over/i.test(jQuery(this).text());
     }).first();
@@ -3436,7 +3538,14 @@ I need at least 2 Missiles to open the Red Door. [[Go back <b >to Room A-18 </b 
 
 The room looks like some kind of laboratory. Although the floor's overall makeup'a sort of rocky cavern'hasn't changed, an organic computer made of crystals has been installed here. There is a pedestal in the center on which some kind of tiny machine has been placed, and the ambiance is noticeably different from that of the other room. The machine placed on the pedestal is an electromagnetic barrier generator that blunts enemy attacks. I add it to my equipment.
 
-(<span style="color:orange">Varia</span> acquired. Damage is reduced by 50%.)<<set $items = $items + [ "Varia "]>>
+<<if $items.includes("Varia ")>>
+(<span style="color:orange">Varia</span> already acquired.)
+<<else>>
+<<linkreplace "Take Varia">>
+  <<run setup.grantItem("Varia ")>>
+  (<span style="color:orange">Varia</span> acquired. Damage is reduced by 50%.)
+<</linkreplace>>
+<</if>>
 
 There is nothing else in this room.
 
@@ -3485,7 +3594,13 @@ This room has only a Blue Door to the South.
 !!! Room A-27
 There is a strange stone statue in this room with a metal plate at its feet. On the plate is written the means of defeating the Metroids. It reads, 'Placing the Metroids in a frozen state will put them in suspended animation. You can destroy them at that time. However, much Energy is required to do this.'
 
-<<if $items.includes("Bombs ")>>The statue holds the cracked shell of an egg. There is nothing else of importance in this room.<<else>>The statue is also cradling a large egg of some kind. I crack it open and find Bombs inside. (<span style="color:blue ">Bombs</span> acquired.<<set $items = $items + [ "Bombs "]>><<set $Bombs = "Bombs ">> I can now destroy weak walls to open up secret passages.)<</if>>
+<<if $items.includes("Bombs ")>>The statue holds the cracked shell of an egg. There is nothing else of importance in this room.<<else>>The statue is also cradling a large egg of some kind. I crack it open and find Bombs inside.
+
+<<linkreplace "Take Bombs">>
+  <<run setup.grantItem("Bombs ")>>
+  (<span style="color:blue">Bombs</span> acquired. I can now destroy weak walls to open up secret passages.)
+<</linkreplace>>
+<</if>>
 
 [[Go West->26]]
 
@@ -3726,9 +3841,16 @@ Double-click this passage to edit it.
 
 :: 34 [Item-Room] {"position":"1225,850","size":"100,100"}
 !!! Room A-34
-<<if hasVisited("34")>><<else>>The Missile fires, pulling a tail of white smoke behind it. The smoke hangs thickly. I fire one more shot after it and feel the wall shudder as it is struck. Simultaneously, cracks spider down the door with a squeal, and a large hole bursts open. <span style="color:red">(-2 Missiles.)</span><<set $missiles = $missiles - 2>><br ><br ><</if>>A strange statue stands on a pedestal in the center of the adjoining room. The statue holds up a weapon as if in offering. I add it to my equipment.<<set $items = $items + ["Ice Beam"]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>>
+<<if hasVisited("34")>><<else>>The Missile fires, pulling a tail of white smoke behind it. The smoke hangs thickly. I fire one more shot after it and feel the wall shudder as it is struck. Simultaneously, cracks spider down the door with a squeal, and a large hole bursts open. <span style="color:red">(-2 Missiles.)</span><<set $missiles = $missiles - 2>><br ><br ><</if>>A strange statue stands on a pedestal in the center of the adjoining room. The statue holds up a weapon as if in offering.
 
-(<span style="color:blue">Ice Beam</span> acquired. My current beam is replaced. If I replace the Ice Beam somewhere else, I can come back to this room when I need it later.)
+<<if $items.includes("Ice Beam ")>>
+I already have the Ice Beam.
+<<else>>
+<<linkreplace "Take Ice Beam">>
+  <<run setup.grantItem("Ice Beam ")>>
+  (<span style="color:blue">Ice Beam</span> acquired. My current beam is replaced. If I replace the Ice Beam somewhere else, I can come back to this room when I need it later.)
+<</linkreplace>>
+<</if>>
 
 It looks like there's nothing else in the room. What's more, there aren't any hidden rooms. 
 
@@ -4813,7 +4935,15 @@ Boom<<linkreplace "Boom ">>, boom!<<linkreplace "boom!">>
 
 With a heavy thud, the Missiles slam into the Red Door. When the smoke from the explosion clears, the door has opened to reveal a fine entrance. <<set $missiles = $missiles - 2>>
 
-Upon entering the chamber, I behold the statue of a grotesque life-form placed in the center of the room, reverently offering some kind of machine in its stone arms (if that is indeed what they are). <span style="color:green">(Screw Attack collected)</span><<set $items = $items + [ "Screw Attack "]>>
+Upon entering the chamber, I behold the statue of a grotesque life-form placed in the center of the room, reverently offering some kind of machine in its stone arms (if that is indeed what they are).
+<<if $items.includes("Screw Attack ")>>
+<span style="color:green">(Screw Attack already acquired)</span>
+<<else>>
+<<linkreplace "Take Screw Attack">>
+  <<run setup.grantItem("Screw Attack ")>>
+  <span style="color:green">(Screw Attack collected)</span>
+<</linkreplace>>
+<</if>>
 
 After collecting it, there is nothing else in this room. [[I go back to the previous chamber.->71]]<</linkreplace>><</linkreplace>>
 
@@ -4905,7 +5035,14 @@ In this room, there is a hidden tunnel that continues West and a Red Door facing
 
 I head through the other side of the portal. In adjoining chamber, <b >Room B-77 </b >, a stone statue modeled after a uniquely ghastly creature has been placed in the center of the desolate room. To my astonishment, this stone statue reverently holds a powerful beam weapon in its arms.
  
-(<span style="color:purple">Wave Beam collected.</span> <<set $items = $items + [ "Wave Beam "]>><<set $items = $items - [ "Normal Beam ", "Ice Beam "]>> My other beam vanishes.)
+<<if $items.includes("Wave Beam ")>>
+(<span style="color:purple">Wave Beam</span> already acquired.)
+<<else>>
+<<linkreplace "Take Wave Beam">>
+  <<run setup.grantItem("Wave Beam ")>>
+  (<span style="color:purple">Wave Beam</span> collected. My other beam vanishes.)
+<</linkreplace>>
+<</if>>
 
 Now that I've collected the weapon, there is nothing else in this room.
 
@@ -4987,7 +5124,7 @@ From this chamber, I can go to <b >Room B-55 </b >, but the long passageway to <
 !!! Room B-53
 The statue of a strange monster has been placed in the center of the room; it seems to be offering the beam weapon placed in its stone arms. It's the Ice Beam.
 
-<<if $items.includes("Ice Beam ")>>I currently have the Ice Beam. Therefore, it is pointless to take it now. Eventually there might be a time when I will need it, but for now, I leave it placed in the room as it is.<<else>><span style="color:blue">Ice Beam collected.</span> <<set $items = $items + [ "Ice Beam "]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>><</if>>
+<<if $items.includes("Ice Beam ")>>I currently have the Ice Beam. Therefore, it is pointless to take it now. Eventually there might be a time when I will need it, but for now, I leave it placed in the room as it is.<<else>><<linkreplace "Take Ice Beam">><<run setup.grantItem("Ice Beam ")>><span style="color:blue">Ice Beam collected.</span><</linkreplace>><</if>>
 
 Ice Beam collected, I consider which other room to go to from here. However, the tunnel from the North I just used is a one-way passage, and I can't go through it. [[I go through the other passageway leading South to Room B-50.->50]]
 

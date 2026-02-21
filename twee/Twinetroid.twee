@@ -172,8 +172,12 @@ body[data-room-theme="Tourian"]::after {
 .title-card {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  max-width: 18rem;
+  gap: 0.35rem;
+  max-width: 16rem;
+  padding: 0.65rem 0.9rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .title-ornament {
@@ -188,8 +192,8 @@ body[data-room-theme="Tourian"]::after {
 }
 
 .title-links {
-  font-size: 1.4rem;
-  line-height: 1.65;
+  font-size: 1.8rem;
+  line-height: 1.4;
 }
 
 .title-links a {
@@ -412,6 +416,26 @@ body[data-room-theme="Tourian"]::after {
     -1px -1px 0 rgba(0, 0, 0, 0.9),
     1px -1px 0 rgba(0, 0, 0, 0.9),
     -1px 1px 0 rgba(0, 0, 0, 0.9);
+}
+
+.passage h1,
+.passage h2,
+.passage h3 {
+  margin: 0 0 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.passage h1 {
+  font-size: 2.4rem;
+}
+
+.passage h2 {
+  font-size: 2rem;
+}
+
+.passage h3 {
+  font-size: 1.6rem;
 }
 
 .passage a {
@@ -2794,8 +2818,7 @@ postdisplay.hud = function () {
 
 
 :: PROLOGUE [Prologue] {"position":"225,100","size":"100,100"}
-=><=
-##PROLOGUE
+!! PROLOGUE
 <img src="assets/images/TitleScreen.webp">
 Welcome to the future.
 
@@ -2825,7 +2848,7 @@ The bio-capsule is a container growing the cell cultures of the Metroid. If the 
 
 
 :: Metroids [Prologue] {"position":"600,100","size":"100,100"}
-##Metroids
+!! Metroids
 
 At first glance, Metroids are just another species of aerial life-form. However, they have the ability to latch onto other creatures and absorb their life energy. Therefore, the Federation Bureau�s Special Investigation Corps established a Metroid research team, which began studying them. 
 
@@ -2853,7 +2876,7 @@ However, this bounty will only be issued on the condition these orders are actua
 
 
 :: The Galaxy's Greatest Warrior, Samus Aran [Prologue] {"position":"975,100","size":"100,100"}
-##The Galaxy's Greatest Warrior, Samus Aran
+!! The Galaxy's Greatest Warrior, Samus Aran
 <img src="assets/images/IntroSamus.webp">Infused with cyborg implants throughout the entire body, Samus is a hero with superhuman abilities.
 
 The space suit Samus uses has the ability to absorb an enemy�s power - however, more detailed information is not readily available. Nevertheless, so far, Samus has on numerous occasions completed missions that were said to be impossible. This Hunter has been called a modern-day hero, and while no one knows Samus 's true identity, there are those who claim he is a man from Earth...
@@ -2862,7 +2885,7 @@ The space suit Samus uses has the ability to absorb an enemy�s power - however
 
 
 :: 01 [Brinstar] {"position":"1100,100","size":"100,100"}
-###Room A-1
+!!! Room A-1
 <<if $combat == 1>>I have successfully infiltrated the asteroid Zebes. Zebes consists of three levels. This is Area A, Brinstar, with cavern walls of limestone and a floor of bare rock.
 
 The capsule is thought to be located in Area C, the heart of the asteroid. There at the center of the Space Pirate organization is the giant computer called Mother Brain. My first step to accomplishing this mission is to get there as quickly as possible.
@@ -2873,7 +2896,7 @@ Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $
 
 
 :: 02 [Brinstar Hidden-Passage] {"position":"1225,100","size":"100,100"}
-###Room A-2
+!!! Room A-2
 At first glance, it seems I can only go North from this room. However, according to my Radar, there is also a room to the East, but its entrance is hidden.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>Now that the enemy has been defeated, I can take a closer look at the rock wall. There is a huge rockslide covering what apparently used to be a doorway. <<if $items.includes("Bombs ")>>Perhaps if I used my Bombs... <<linkreplace "Bombs...">>The bombs blast apart the rock pile, opening up the passageway. [[I go East through the tunnel.->20]]<</linkreplace>> Curiously, more rubble fills the tunnel after I pass through.<<else>>However, I can 't do anything about it at the moment. I will have to come back later if I can locate some appropriate equipment.<</if>>
@@ -2882,7 +2905,7 @@ At first glance, it seems I can only go North from this room. However, according
 
 
 :: 03 [Brinstar] {"position":"100,225","size":"100,100"}
-###Room A-3
+!!! Room A-3
 This room is different from <b >Room A-2 </b >in that it doesn 't lead anywhere but North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->04]]
@@ -2890,7 +2913,7 @@ This room is different from <b >Room A-2 </b >in that it doesn 't lead anywhere 
 
 
 :: 04 [Brinstar] {"position":"225,225","size":"100,100"}
-###Room A-4
+!!! Room A-4
 From this point, the room continues a long way to the West. Apart from that, there is only a Blue Door leading South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->05]]
@@ -2898,7 +2921,7 @@ From this point, the room continues a long way to the West. Apart from that, the
 
 
 :: 05 [Brinstar] {"position":"350,225","size":"100,100"}
-###Room A-5
+!!! Room A-5
 This room is part of the same chamber as <b >Room A-4 </b >, and is a corridor stretching from East to West. In addition, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->06]]
@@ -2907,7 +2930,7 @@ This room is part of the same chamber as <b >Room A-4 </b >, and is a corridor s
 
 
 :: 06 [Brinstar] {"position":"475,225","size":"100,100"}
-###Room A-6
+!!! Room A-6
 This room is just a passageway connecting the corridors to the South and North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -2921,7 +2944,7 @@ The battle is over.
 
 
 :: 12 [Brinstar] {"position":"600,225","size":"100,100"}
-###Room A-12
+!!! Room A-12
 This corridor keeps going to the East and West, and there are Blue Doors to the North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->25]]
@@ -2931,7 +2954,7 @@ This corridor keeps going to the East and West, and there are Blue Doors to the 
 
 
 :: 25 [Brinstar] {"position":"725,225","size":"100,100"}
-###Room A-25
+!!! Room A-25
 This corridor continues a long way to the North, and there is a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->29]]
@@ -2939,7 +2962,7 @@ This corridor continues a long way to the North, and there is a Blue Door to the
 
 
 :: 29 [Brinstar Energy-Pack] {"position":"850,225","size":"100,100"}
-###Room A-29
+!!! Room A-29
 This room just runs North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>The corridor extends to the North and South from this chamber.
@@ -2954,7 +2977,7 @@ This room just runs North and South.
 
 
 :: 30 [Brinstar] {"position":"975,225","size":"100,100"}
-###Room A-30
+!!! Room A-30
 In this room, there is a Blue Door to the North and a corridor to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->31]]
@@ -2962,7 +2985,7 @@ In this room, there is a Blue Door to the North and a corridor to the South.
 
 
 :: 07 [Brinstar] {"position":"1100,225","size":"100,100"}
-###Room A-7
+!!! Room A-7
 This is just a corridor stretching East and West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->05]]
@@ -2970,7 +2993,7 @@ This is just a corridor stretching East and West.
 
 
 :: 31 [Brinstar] {"position":"1225,225","size":"100,100"}
-###Room A-31
+!!! Room A-31
 From this room, there are Blue Doors leading to the South and West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->36]]
@@ -2978,7 +3001,7 @@ From this room, there are Blue Doors leading to the South and West.
 
 
 :: 36 {"position":"100,350","size":"100,100"}
-###Room A-36
+!!! Room A-36
 There are Blue Doors to the South and East. Aside from that, there is a corridor to the West, but I can�t go that way due to the strong magnetic field.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->31]]
@@ -2986,7 +3009,7 @@ There are Blue Doors to the South and East. Aside from that, there is a corridor
 
 
 :: 37 [Brinstar Red-Door] {"position":"225,350","size":"100,100"}
-###Room A-37
+!!! Room A-37
 This room just runs North to South. <<if hasVisited("38")>>There is an open Red Door to the South.<<else>>However, since there is a Red Door to the South, I can 't go further unless I destroy it.<</if>>
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("38")>>The Red Door has been opened, so I have already been into the next room.
@@ -2996,7 +3019,7 @@ This room just runs North to South. <<if hasVisited("38")>>There is an open Red 
 
 
 :: 20 [Secret-Room Brinstar] {"position":"350,350","size":"100,100"}
-###Room A-20
+!!! Room A-20
 To the West is the secret passage leading to <b >Room A-2 </b >. This room continues to the East. Apart from that, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>><<if $kraidDefeated == 0>>[[Go North->22]]<<else>>Kraid is defeated, and the Blue Door has turned gray.<</if>>
@@ -3005,7 +3028,7 @@ To the West is the secret passage leading to <b >Room A-2 </b >. This room conti
 
 
 :: 13 [Brinstar] {"position":"475,350","size":"100,100"}
-###Room A-13
+!!! Room A-13
 This corridor continues to the West and East, and there is a Blue Door facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->16]]
@@ -3014,14 +3037,14 @@ This corridor continues to the West and East, and there is a Blue Door facing No
 
 
 :: 15 [Brinstar Dead-End] {"position":"600,350","size":"100,100"}
-###Room A-15
+!!! Room A-15
 This is a dead end. The room only leads West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>>[[Head back West->13]]<</if>>
 
 
 :: 16 [Brinstar] {"position":"725,350","size":"100,100"}
-###Room A-16
+!!! Room A-16
 This room is a corridor leading North, and there is also a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->17]]
@@ -3029,7 +3052,7 @@ This room is a corridor leading North, and there is also a Blue Door to the Sout
 
 
 :: 17 [Brinstar Missiles] {"position":"850,350","size":"100,100"}
-###Room A-17
+!!! Room A-17
 There is a pool of some sort of caustic liquid in this room with a pedestal in the center. However, there is enough room to safely maneuver around the pool.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("1 ")>>[[Go North->18]]<br >[[Go South->16]]<<else>>A Missile Pod lies on the pedestal, but it is easy to reach.<<linkreplace "Missile Pod ">>
@@ -3043,7 +3066,7 @@ This corridor leads North and South.
 
 
 :: 18 [Brinstar Secret-Passage] {"position":"975,350","size":"100,100"}
-###Room A-18
+!!! Room A-18
 In addition to the corridor running all the way to the South, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>Head South to <b >Room A-17 </b >or North to <b >Room A-19 </b >. In addition, my Radar reveals a passage    to a hidden room. It faces East. It is <b >Room A-39 </b >. However, I can 't seem to locate the entrance... <<linkreplace "">>However, a closer inspection reveals loose rocks near the ceiling on the East wall. I fire my Beam, and the blockage crumbles to the floor with a loud rumble. [[I climb through the passageway into Room A-39, and more rocks fill the hole behind me.->39]]<</linkreplace>>
@@ -3053,7 +3076,7 @@ In addition to the corridor running all the way to the South, there is a Blue Do
 
 
 :: 19 [Elevator] {"position":"1100,350","size":"100,100"}
-###Room A-19: Brinstar Elevator Room 
+!!! Room A-19: Brinstar Elevator Room 
 {<<linkreplace "Save game?">>
   <<if Save.save("Slot A ")>>
     Game saved!
@@ -3070,7 +3093,7 @@ I can descend to Area B, Norfair. If I don�t want to go down, I can only head 
 
 
 :: 41 [Elevator] {"position":"1225,350","size":"100,100"}
-###Room B-41: Norfair Elevator Room
+!!! Room B-41: Norfair Elevator Room
 {<<linkreplace "Save game?">>
   <<if Save.save("Slot A ")>>
     Game saved!
@@ -3089,7 +3112,7 @@ I can go up to Area A, Brinstar. If I don�t want to go up or just came down, t
 
 
 :: 22 [Brinstar] {"position":"100,475","size":"100,100"}
-###Room A-22: Kraid 's Room
+!!! Room A-22: Kraid 's Room
 �Warning!�
 
 A shrill alarm sounds as an alert blares from my Command Computer.
@@ -3103,7 +3126,7 @@ This room contains a series of chambers three rooms deep, each divided by a shut
 
 
 :: 21 [Brinstar Dead-End] {"position":"225,475","size":"100,100"}
-###Room A-21
+!!! Room A-21
 This is a dead end. There are no passages to hidden rooms, either, and the room just continues West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>[[Return West->20]]<</if>>
@@ -3117,7 +3140,7 @@ Kraid�s attack method is to hurl the spikes growing throughout its body as a w
 
 
 :: 08 [Brinstar] {"position":"475,475","size":"100,100"}
-###Room A-8
+!!! Room A-8
 This is a corridor running East to West from here to room [A-4]. Apart from that, there is a Blue Door leading South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->07]]
@@ -3125,7 +3148,7 @@ This is a corridor running East to West from here to room [A-4]. Apart from that
 
 
 :: 10 [Brinstar Hidden-Passage] {"position":"600,475","size":"100,100"}
-###Room A-10: Statue Room
+!!! Room A-10: Statue Room
 This room ends in a gate. In front of the gate are two large statues of grotesque beasts: a massive lizard covered in spikes and fur and a fierce multi-eyed dragon. These must be Kraid and Ridley, the bosses of Brinstar and Norfair.
 <<if $GateOpen == 0>><<include "Statue Room Description">><<else>>I 've inserted Kraid and Ridley 's Key Stones. The gate to Mother Brain is now open. I can proceed to the Elevator room leading to Tourian.<br ><br ><</if>>
 <<if $GateOpen == 1>>[[Go North->09]]<br >[[Go South->11]]<<elseif $items.includes("KraidStone ") && $items.includes("RidleyStone ")>>[[Go back North->09]]<<else>>[[I don 't have both Key Stones, so I must go back North to <b >Room A-9 </b >.->09]]<</if>>
@@ -3136,7 +3159,7 @@ I should come back after replenishing my Energy and Missiles. I [[exit through t
 
 
 :: 39 [Brinstar Red-Door] {"position":"850,475","size":"100,100"}
-###Room A-39
+!!! Room A-39
 West is a passage leading to <b >Hidden Room A-18 </b >that I can blast with my Beam to go back through. <<if hasVisited("40")>>To the South is an opened Red Door.<<else>>To the South there is a Red Door I can 't pass through unless I use Missiles to destroy it.<</if>>
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>>{
@@ -3146,7 +3169,7 @@ I need at least 2 Missiles to open the Red Door. [[Go back <b >to Room A-18 </b 
 
 
 :: 40 [Brinstar Item-Room] {"position":"975,475","size":"100,100"}
-###Room A-40
+!!! Room A-40
 <img src="assets/images/VariaRoom.webp">I fire the Missiles at the door, which opens up to a dark, empty hole. I move into the chamber ahead, <b >Room A-40 </b >. <span style="color:red">(-2 Missiles.)</span><<set $missiles = $missiles - 2>>
 
 The room looks like some kind of laboratory. Although the floor 's overall makeup�a sort of rocky cavern�hasn 't changed, an organic computer made of crystals has been installed here. There is a pedestal in the center on which some kind of tiny machine has been placed, and the ambiance is noticeably different from that of the other room. The machine placed on the pedestal is an electromagnetic barrier generator that blunts enemy attacks. I add it to my equipment.
@@ -3159,7 +3182,7 @@ There is nothing else in this room.
 
 
 :: 14 [Brinstar] {"position":"1100,475","size":"100,100"}
-###Room A-14
+!!! Room A-14
 This room is merely a corridor leading East and West. However, it seems like there might be something interesting here...
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>...However, there are no hidden passages leading to other rooms. In any event, this chamber only continues East and West.
@@ -3169,7 +3192,7 @@ This room is merely a corridor leading East and West. However, it seems like the
 
 
 :: 23 [Brinstar] {"position":"1225,475","size":"100,100"}
-###Room A-23
+!!! Room A-23
 Like <b >Room A-14 </b >to the East, this is part of a corridor that only runs from East to West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->14]]
@@ -3177,7 +3200,7 @@ Like <b >Room A-14 </b >to the East, this is part of a corridor that only runs f
 
 
 :: 24 [Brinstar] {"position":"100,600","size":"100,100"}
-###Room A-24
+!!! Room A-24
 In this room, there is a long corridor running all the way to the East and a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->26]]
@@ -3185,7 +3208,7 @@ In this room, there is a long corridor running all the way to the East and a Blu
 
 
 :: 26 [Brinstar Hidden-Passage] {"position":"225,600","size":"100,100"}
-###Room A-26
+!!! Room A-26
 This room has only a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -3197,7 +3220,7 @@ This room has only a Blue Door to the South.
 
 
 :: 27 [GAME-OVER] {"position":"350,600","size":"100,100"}
-###Room A-27
+!!! Room A-27
 There is a strange stone statue in this room with a metal plate at its feet. On the plate is written the means of defeating the Metroids. It reads, �Placing the Metroids in a frozen state will put them in suspended animation. You can destroy them at that time. However, much Energy is required to do this.�
 
 <<if $items.includes("Bombs ")>>The statue holds the cracked shell of an egg. There is nothing else of importance in this room.<<else>>The statue is also cradling a large egg of some kind. I crack it open and find Bombs inside. (<span style="color:blue ">Bombs</span> acquired.<<set $items = $items + [ "Bombs "]>><<set $Bombs = "Bombs ">> I can now destroy weak walls to open up secret passages.)<</if>>
@@ -3206,7 +3229,7 @@ There is a strange stone statue in this room with a metal plate at its feet. On 
 
 
 :: 28 {"position":"475,600","size":"100,100"}
-###Room A-28
+!!! Room A-28
 To the South is a hidden passage leading to the neighboring room. In addition, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->32]]
@@ -3214,7 +3237,7 @@ To the South is a hidden passage leading to the neighboring room. In addition, t
 
 
 :: 35 [Brinstar Trap-Room] {"position":"600,600","size":"100,100"}
-###Room A-35
+!!! Room A-35
 The moment I come through the Blue Door, I start floating. I quickly grab the edge of the door, halting my movement.
 
 ...A powerful magnetic field pulls at me from West to East. There is a massive magnetic field generator attached to the West wall, running steadily. There is a vaulted pit to the East, and although it 's a considerable distance, I could definitely jump it if I were assisted by the magnetic pull. 
@@ -3229,7 +3252,7 @@ Aside from that, there is only the Blue Door to the South and the corridor with 
 
 
 :: 99 [Brinstar Energy-Tank] {"position":"725,600","size":"100,100"}
-###A-35 'I fire the Booster Rockets equipped to my legs and jump to the wall on the North side of the room. Although the magnetic field pulls me back, I somehow overcome it and latch on to the wall. I go through the hidden passage and head to the hidden room on the other side. An Energy Tank has been placed here. (<span style="color:yellow">Energy Tank (B)</span> acquired. Energy restored to maximum.)<<run setup.grantEnergyPack("B ")>>
+!!! A-35 'I fire the Booster Rockets equipped to my legs and jump to the wall on the North side of the room. Although the magnetic field pulls me back, I somehow overcome it and latch on to the wall. I go through the hidden passage and head to the hidden room on the other side. An Energy Tank has been placed here. (<span style="color:yellow">Energy Tank (B)</span> acquired. Energy restored to maximum.)<<run setup.grantEnergyPack("B ")>>
 
 I go back South again. In doing so, the flow of the magnetic field throws me two rooms East, and I rocket over to [[Room 36->36]].
 
@@ -3440,7 +3463,7 @@ Double-click this passage to edit it.
 
 
 :: 34 [Item-Room] {"position":"1225,850","size":"100,100"}
-###Room A-34
+!!! Room A-34
 <<if hasVisited("34")>><<else>>The Missile fires, pulling a tail of white smoke behind it. The smoke hangs thickly. I fire one more shot after it and feel the wall shudder as it is struck. Simultaneously, cracks spider down the door with a squeal, and a large hole bursts open. <span style="color:red">(-2 Missiles.)</span><<set $missiles = $missiles - 2>><br ><br ><</if>>A strange statue stands on a pedestal in the center of the adjoining room. The statue holds up a weapon as if in offering. I add it to my equipment.<<set $items = $items + ["Ice Beam"]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>>
 
 (<span style="color:blue">Ice Beam</span> acquired. My current beam is replaced. If I replace the Ice Beam somewhere else, I can come back to this room when I need it later.)
@@ -3451,7 +3474,7 @@ It looks like there 's nothing else in the room. What 's more, there aren 't any
 
 
 :: 33 {"position":"100,975","size":"100,100"}
-###Room A-33
+!!! Room A-33
 To the West is a hidden passage looping back to <b >Room A-32 </b >. To the South is <<if hasVisited("34")>>an open<<else>>a locked<</if>> Red Door.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -3466,7 +3489,7 @@ The battle is over.
 
 
 :: 32 [Secret-Passage] {"position":"225,975","size":"100,100"}
-###Room A-32
+!!! Room A-32
 This room has only Blue Doors to the North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>As it turns out, there is a passage to a hidden room in the East side of this chamber. It is <b >Room A-33 </b >. A pool of lava bubbles near the wall. <span class="revealsText">I step closer...<<linkreplace "I step closer...">>and find it is a holographic projection. There 's a strange <<if $items.includes("Bombs ")>>alloy on the floor blocking the passage forward. <<linkreplace "alloy ">>I blast it open with a Bomb, revealing a passage to [[Room A-33.->33]]<</linkreplace>><<else>>alloy on the floor blocking the passage forward.<</if>><</linkreplace>></span >[[Go North->35]]
@@ -3474,7 +3497,7 @@ This room has only Blue Doors to the North and South.
 
 
 :: 09 {"position":"350,975","size":"100,100"}
-###Room A-9
+!!! Room A-9
 This is just a chamber running North to South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Zeb">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->08]]
@@ -3482,7 +3505,7 @@ This is just a chamber running North to South.
 
 
 :: 11 [Elevator] {"position":"475,975","size":"100,100"}
-###Room A-11: Brinstar, Elevator Room
+!!! Room A-11: Brinstar, Elevator Room
 {<<linkreplace "Save game?">>
   <<if Save.save("Slot A ")>>
     Game saved!
@@ -4067,8 +4090,7 @@ However, I successfully avoid the Rio�s attack. I escape!
 
 :: GAME OVER [GAME-OVER] {"position":"350,1975","size":"100,100"}
 <<set $displayStats = 0; $displayMap = 0>>
-==><==
-###GAME OVER 
+!!! GAME OVER 
 
 {<<linkreplace "Save Game ">>
   <<if Save.save("Slot A ")>>
@@ -4216,21 +4238,62 @@ I need at least 2 Missiles to fight Kraid  <<linkreplace "I need at least 2 Miss
 
 :: Title Screen {"position":"100,2350","size":"100,100"}
 <div class="title-card">
-  <div class="title-ornament">=><=</div>
-  <div class="title-series">1. Twinetroid</div>
   <div class="title-links">
     <<link "Start">><<set $uiBarOpenOnStart = 1>><<goto "PROLOGUE">><</link>><br>
-    <<linkreplace "Load Game">><<load "Slot A">><</linkreplace>><br>
-    [[Instructions]]<br>
-    [[About]]<br>
-    [[Credits]]
+    [[Information]]
   </div>
 </div>
 <<set $displayStats = 0; $displayMap = 0>>
 
 
+:: Information {"position":"115,2475","size":"100,100"}
+!!! Information
+This version is adapted from the original *Twinetroid* by Devin Monnens, presented by The Metroid Database.
+
+!!! Instructions
+* Explore the labyrinthine corridors of Zebes to find the Mother Brain and retrieve the Metroid Capsule.
+* Fight your way through the monsters infesting the maze...but sometimes it is better to run than fight!
+* Combat results are randomly generated. Different weapons will increase your odds of winning and change the types of power-ups enemies leave behind.
+* Zebes is riddled with secret passages. Use your mouse to locate hidden links within the text. Some can be tricky to find!
+* You can save your game in Elevator Rooms. The game will also automatically save your progress in other points.
+The game tracks your progress. However, the Map may load a bit more slowly on some computers than others.
+
+!!! About
+<i >Twinetroid </i >is based on <i >Metroid: Zebesian Incursion </i >, Volume 5 of the <a href="https://ja.wikipedia.org/wiki/%E5%86%92%E9%99%BA%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%96%E3%83%83%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE1986%E5%B9%B4%E5%88%8A%E8%A1%8C%E4%BD%9C%E5%93%81 ">Famicom Adventure Game Book </a >series published in Japan from 1986-1991. These are essentially Choose Your Own Adventure books based on Nintendo games. The original text was translated off and on over the course of several years before being converted to Twine in November 2018. 
+
+The text remains loyal to the spirit of the original, with a few alterations. For instance, Energy Tanks were called Energy Packs, and you used to have to fire four Missiles to escape from a Metroid rather than use Bombs. The room that describes how to defeat the Metroids was originally a death trap; now the Bombs have been moved here from the Map Room. Other oddities, like Zebes being an asteroid, were maintained from the original.
+
+The mechanics have also changed. The original used dice rolls for combat, and players had to keep track of their progress and item collection by filling out stats sheets and crossing off entries in the book. Combat was extremely tedious because the player had to flip through the book every time they chose a weapon or rolled the dice, and then they had to calculate their health and missile count. <i >Twinetroid </i >obviously automates these mechanics.
+
+One interesting feature of the original was the secret passages system. The player was given a map and told where secret rooms were located, but the chapter numbers were incomplete. For instance, you might be told there is a hidden passage leading to Room B-47, but given the chapter number of 1X4. You would have to flip through the book looking at each chapter (104, 114, etc.) until you found the one leading to B-47. Even the author admitted it was tedious, but it was the best way of simulating finding hidden passages.
+
+<i >Twinetroid </i >uses a hidden passage system as well, but since it 's a text-based game, I 've implemented a number of mechanics that resemble a lot of tricks the original used, such as bombable blocks, hidden passages, and fake lava. I hope you enjoy discovering these secrets for yourself!
+
+!!! Credits
+!! Metroid
+<b >Zebes Incursion Directive </b ><b >Original Staff </b ><==
+<i >Metroid: Zebes Shin-nyuu Shirei </i >Famicom Adventure Game Book #5
+January 5, 1987
+
+Planning/Composition: <a href="https://ja.wikipedia.org/wiki/%E5%A1%A9%E7%94%B0%E4%BF%A1%E4%B9%8B_(%E8%91%97%E4%BD%9C%E5%AE%B6)">Nobuyuki Shioda </a >(Studio Hard)
+Production: Ikeda Misa
+Text: Nobuyuki Shioda
+Illustrations: <a href="https://ja.wikipedia.org/wiki/%E6%9C%89%E5%9D%82%E9%A0%88%E7%BE%8E ">Arisaka Sumi </a >ï¿½Nintendo, 1986
+<b >Twinetroid </b ><==
+Translation and Programming: Devin Monnens
+
+Presented by: <a href="http://www.metroiddatabase.com ">The Metroid Database </a ><img src="assets/images/Gun.webp"><i >Twinetroid </i >v.1.03 (October 6, 2021) 
+(Fixed Room 35 bug)
+
+<i >History </i >v.1.02 (October 4, 2021) (Fixed Rio bug &Bomb Room bug, added an extra save point, updated negative Energy display.)
+v.1.01 (December 26, 2018)
+v.1.00 (December 24, 2018)
+
+[[Back->Title Screen]]
+
+
 :: About {"position":"225,2350","size":"100,100"}
-###About
+!!! About
 <i >Twinetroid </i >is based on <i >Metroid: Zebesian Incursion </i >, Volume 5 of the <a href="https://ja.wikipedia.org/wiki/%E5%86%92%E9%99%BA%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%96%E3%83%83%E3%82%AF%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE1986%E5%B9%B4%E5%88%8A%E8%A1%8C%E4%BD%9C%E5%93%81 ">Famicom Adventure Game Book </a >series published in Japan from 1986-1991. These are essentially Choose Your Own Adventure books based on Nintendo games. The original text was translated off and on over the course of several years before being converted to Twine in November 2018. 
 
 The text remains loyal to the spirit of the original, with a few alterations. For instance, Energy Tanks were called Energy Packs, and you used to have to fire four Missiles to escape from a Metroid rather than use Bombs. The room that describes how to defeat the Metroids was originally a death trap; now the Bombs have been moved here from the Map Room. Other oddities, like Zebes being an asteroid, were maintained from the original.
@@ -4245,8 +4308,7 @@ One interesting feature of the original was the secret passages system. The play
 
 
 :: Credits {"position":"350,2350","size":"100,100"}
-==><==
-##Metroid
+!! Metroid
 <b >Zebes Incursion Directive </b ><b >Original Staff </b ><==
 <i >Metroid: Zebes Shin-nyuu Shirei </i >Famicom Adventure Game Book #5
 January 5, 1987
@@ -4255,8 +4317,6 @@ Planning/Composition: <a href="https://ja.wikipedia.org/wiki/%E5%A1%A9%E7%94%B0%
 Production: Ikeda Misa
 Text: Nobuyuki Shioda
 Illustrations: <a href="https://ja.wikipedia.org/wiki/%E6%9C%89%E5%9D%82%E9%A0%88%E7%BE%8E ">Arisaka Sumi </a >�Nintendo, 1986
-
-==><==
 <b >Twinetroid </b ><==
 Translation and Programming: Devin Monnens
 
@@ -4303,7 +4363,7 @@ Double-click this passage to edit it.
 
 
 :: 43 [Secret-Passage Missiles] {"position":"1225,2350","size":"100,100"}
-###Room B-43
+!!! Room B-43
 At first glance, this room appears to only have a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("3 ")>>There is an empty pedestal here, encrusted with lime.<<else>>A pedestal stands in the center of the room, thickly encrusted with lime. On top of it is a pristine Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (3)</span> acquired.<<run setup.grantMissilePod("3 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4313,7 +4373,7 @@ I move about the room. My Radar Scanner detects a passage to a hidden room facin
 
 
 :: 42 {"position":"100,2475","size":"100,100"}
-###Room B-42
+!!! Room B-42
 In this room, there are only Blue Doors to the North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->41]]
@@ -4321,7 +4381,7 @@ In this room, there are only Blue Doors to the North and South.
 
 
 :: 44 [Secret-Passage] {"position":"225,2475","size":"100,100"}
-###Room B-44
+!!! Room B-44
 From this room, there is a Blue Door to the North and a corridor to the West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>However, it seems there is also a hidden passage leading to a room to the East. Its room number is <b >B-47 </b >. <span class="reveals">There 's an odd rock formation. <<if $items.includes("Bombs ")>><<linkreplace "rock formation.">>It looks like I can blast it with a bomb.<</linkreplace>> <<linkreplace "bomb.">>[[I open a passageway heading East.->47]]<</linkreplace>><</if>></span >[[Go North->42]]
@@ -4329,7 +4389,7 @@ From this room, there is a Blue Door to the North and a corridor to the West.
 
 
 :: 46 [Secret-Passage] {"position":"350,2475","size":"100,100"}
-###Room B-46
+!!! Room B-46
 There is a Blue Door facing North and a corridor to the East. My Radar picks up a room to the West. <b >It 's Room B-48 </b >.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>This chamber is full of odd green bubbles; I can 't tell if they are organic or mineral in construct. There are a number of odd fissures   in the wall that capture odd reflections of my suit. <<linkreplace "">>Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.->48]]<</linkreplace>>
@@ -4339,7 +4399,7 @@ There is a Blue Door facing North and a corridor to the East. My Radar picks up 
 
 
 :: 57 [Secret-Passage] {"position":"475,2475","size":"100,100"}
-###Room B-57
+!!! Room B-57
 In this room, there is a Blue Door to the South, in addition to a passage to a hidden chamber facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>The hidden chamber is <b >Room B-59 </b >. There 's a small tunnel in this corner of the room, but it leads to a dead end.  <<if $items.includes("Bombs ")>><<linkreplace ".  ">>I blast a hole with my bombs, opening a small tunnel. As I head through, it collapses again behind me. [[Go North to Room 59.->59]]<</linkreplace>><</if>>
@@ -4348,7 +4408,7 @@ In this room, there is a Blue Door to the South, in addition to a passage to a h
 
 
 :: 59 [Missiles] {"position":"600,2475","size":"100,100"}
-###Room B-59
+!!! Room B-59
 <<if $missilePods.includes("9 ")>>An empty pedestal stands in the center of the room, surrounded by a pool of lava.<<else>>A pedestal stands in the center of the room, surrounded by a pool of lava. If I carefully jump over the pool, I can grab the Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (9)</span> acquired.<<run setup.grantMissilePod("9 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
 
 From here, South is the hidden path to <b >Room B-57 </b >. <b >Room B-60 </b >is to the North.
@@ -4358,7 +4418,7 @@ From here, South is the hidden path to <b >Room B-57 </b >. <b >Room B-60 </b >i
 
 
 :: 60 [Missiles] {"position":"725,2475","size":"100,100"}
-###Room B-60
+!!! Room B-60
 This room is impassible. The only open path just goes back South to <b >Room B-59 </b >.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("10 ")>>An empty pedestal stands in the center of the chamber.<<else>>A pedestal stands in the center of the chamber, holding a shiny new Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (10)</span> acquired.<<run setup.grantMissilePod("10 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4367,7 +4427,7 @@ Since there are no more hidden rooms, [[go back South.->59]]<</if>>
 
 
 :: 48 {"position":"850,2475","size":"100,100"}
-###Room B-48
+!!! Room B-48
 East is a passageway to <b >Hidden Room B-46 </b >. This chamber also continues West, and there is also a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -4379,14 +4439,14 @@ East is a passageway to <b >Hidden Room B-46 </b >. This chamber also continues 
 
 
 :: 58 [Red-Door] {"position":"975,2475","size":"100,100"}
-###Room B-58
+!!! Room B-58
 South is a Blue Door, and North is a Red Door.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("63")>>Since I have already gone North to the chamber behind the Red Door, I can either [[check the room again->63]] or [[retrace my steps and go back South->48]]<<else>><<if $missiles >1>>[[Blast open the Red Door->63]]<<else>>I do not have enough Missiles to open the Red Door. [[Go back South.->48]]<</if>><</if>><</if>>
 
 
 :: 63 B [Item-Room] {"position":"1100,2475","size":"100,100"}
-###Room B-63 - Norfair Map Room
+!!! Room B-63 - Norfair Map Room
 <<if hasVisited("63")>><<else>>I fire Missiles at the Red Door. The Red Door takes 2 Missiles, and <span class="fx-rumble">KABOOM</span>, it opens. <<set $missiles = $missiles - 2>><</if>>
 
 I move forward and take a look. In the center of the room stands the figure of a strange creature fashioned from stone and perhaps modeled after one of the life-forms of this asteroid. An iron plate is embedded at its feet. On the plate is a map of Norfair. (Norfair Map Acquired. I can now view the map below the Navigation Options.)<<run setup.grantMapItem("NorfairMap ")>>
@@ -4397,7 +4457,7 @@ Beyond this, there is nothing else in the room. [[I go back South to Room B-58.-
 
 
 :: 52 {"position":"1225,2475","size":"100,100"}
-###Room B-52
+!!! Room B-52
 <<set $enemyFrozen = 0>>From this room, there is a Blue Door to the North, and a corridor stretches East.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->61]]
@@ -4405,7 +4465,7 @@ Beyond this, there is nothing else in the room. [[I go back South to Room B-58.-
 
 
 :: 61 [Secret-Passage] {"position":"100,2600","size":"100,100"}
-###Room B-61
+!!! Room B-61
 North is a passage to a hidden chamber. South is a Blue Door, and there is a corridor to the West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>>The hidden chamber to the North is <b >Room B-66 </b >. <span class="reveals">There 's a ledge high up<<if $enemyFrozen == 1>>, and I can use the frozen Dessgeega as a platform to reach the it. [[Go North.->66]]<<else>>...but it 's too far to jump.<</if>></span >[[Go West->64]]
@@ -4413,7 +4473,7 @@ North is a passage to a hidden chamber. South is a Blue Door, and there is a cor
 
 
 :: 64 {"position":"225,2600","size":"100,100"}
-###Room B-64
+!!! Room B-64
 <<set $enemyFrozen = 0>><<if $items.includes("RidleyStone ")>>Ridley has been defeated. The door to the North has deactivated for good.<<else>>There is a Blue Door to the North, and the room continues East.<</if>>
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -4424,7 +4484,7 @@ North is a passage to a hidden chamber. South is a Blue Door, and there is a cor
 
 
 :: 65 {"position":"350,2600","size":"100,100"}
-###Room B-65
+!!! Room B-65
 {<<linkreplace "Save game?">>
   <<if Save.save("Slot A ")>>
     Game saved!
@@ -4440,7 +4500,7 @@ My Command Computer chimes.
 
 
 :: 66 {"position":"475,2600","size":"100,100"}
-###Room B-66
+!!! Room B-66
 <<set $enemyFrozen = 0>>To the South is the hidden passageway to <b >Room B-67 </b >. Aside from that, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
@@ -4452,7 +4512,7 @@ My Command Computer chimes.
 
 
 :: 67 [Secret-Passage] {"position":"600,2600","size":"100,100"}
-###Room<<if $combat == 0>>   <</if>> B-67
+!!! Room<<if $combat == 0>>   <</if>> B-67
 There are Blue Doors to the North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>In this chamber there is a passage to the hidden room to the East. It is <b >Room B-71 </b >. If I can�t discover it, I can only go South to <b >Room B-66 </b >or North to <b >Room B-68 </b >.
@@ -4463,7 +4523,7 @@ There are Blue Doors to the North and South.
 
 
 :: 68 [Secret-Passage] {"position":"725,2600","size":"100,100"}
-###Room B-68
+!!! Room B-68
 North is a passage to a hidden room. South is a Blue Door, and there is a corridor to the West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>There is a passage to a hidden chamber to the North of here, <b >Room B-73 </b >. Alongside the wall is a large mass of weak <<link "bricks.  ">><<set $random = $random + 1>><<if $random == 12>>Alongside the wall is a large mass of weak bricks.
@@ -4474,7 +4534,7 @@ North is a passage to a hidden room. South is a Blue Door, and there is a corrid
 
 
 :: 69 {"position":"850,2600","size":"100,100"}
-###Room B-69
+!!! Room B-69
 There is a Blue Door to the South, and the room extends to the East.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->68]]
@@ -4482,7 +4542,7 @@ There is a Blue Door to the South, and the room extends to the East.
 
 
 :: 70 [Missiles] {"position":"975,2600","size":"100,100"}
-###Room B-70
+!!! Room B-70
 This room is a dead end. There is just a Blue Door leading back North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("12 ")>>There is a cracked pedestal in the center of the chamber.<<else>>There is a pedestal in the center of the chamber that has been cracked by a rockfall. On top of it is a Missile Pod, still intact. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (12)</span> acquired.<<run setup.grantMissilePod("12 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4491,7 +4551,7 @@ Aside from the pedestal, this chamber is just a dead end. [[I have to go back to
 
 
 :: 71 [Red-Door] {"position":"1100,2600","size":"100,100"}
-###Room B-71
+!!! Room B-71
 West is the hidden passage to <b >Room B-67 </b >. Apart from that, there is a Red Door facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -4501,7 +4561,7 @@ West is the hidden passage to <b >Room B-67 </b >. Apart from that, there is a R
 
 
 :: 72 [Item-Room] {"position":"1225,2600","size":"100,100"}
-###Room B-72
+!!! Room B-72
 Boom<<linkreplace "Boom ">>, boom!<<linkreplace "boom!">>
 
 With a heavy thud, the Missiles slam into the Red Door. When the smoke from the explosion clears, the door has opened to reveal a fine entrance. <<set $missiles = $missiles - 2>>
@@ -4512,7 +4572,7 @@ After collecting it, there is nothing else in this room. [[I go back to the prev
 
 
 :: 47 [Secret-Passage] {"position":"100,2725","size":"100,100"}
-###Room B-47
+!!! Room B-47
 There is a hidden passage to <b >Room B-44 </b >facing West. A Blue Door faces North. There is a hidden room to the East. <span class="reveals "><<if $combat == 0>><<if $items.includes("Bombs ")>>  .<<else>>  .<</if>><</if>></span ><<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
 	<<set $random = random( 1,6)>>
 	<<if $random == 5>><<goto "Rio">><<elseif $random == 3>><<goto "Geruda">><<elseif $random == 1>><<goto "Geruda">><<else>><<goto "Geemer">><</if>>
@@ -4523,7 +4583,7 @@ There is a hidden passage to <b >Room B-44 </b >facing West. A Blue Door faces N
 
 
 :: 50 [Missiles] {"position":"225,2725","size":"100,100"}
-###Room B-50
+!!! Room B-50
 This room is a dead end. There is only a Blue Door facing South. I notice there is a hidden room to the North, but the passage is impassible from this direction.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("4 ")>>There is an empty pedestal in the center of the room, covered with a variety of cables.<<else>>A pedestal stands in the center of the room, covered by a wide assortment of cables snaking towards the center. Nested there is a Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (4)</span> acquired.<<run setup.grantMissilePod("4 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4534,7 +4594,7 @@ There is a tunnel in this room leading to a hidden chamber to the North, but unl
 
 
 :: 45 {"position":"350,2725","size":"100,100"}
-###Room B-45
+!!! Room B-45
 Facing South is the passage to the <b >Hidden Room B-43 </b >. Apart from that, the room continues West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->62]]
@@ -4542,7 +4602,7 @@ Facing South is the passage to the <b >Hidden Room B-43 </b >. Apart from that, 
 
 
 :: 62 [Missiles] {"position":"475,2725","size":"100,100"}
-###Room B-62
+!!! Room B-62
 This room is a dead end. It leads only to the East.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("11 ")>>There is an empty pedestal in the center of the room that once held a Missile Pod.<<else>>A pedestal stands in the center of the room, holding a Missile Pod that glitters in the dim light. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (11)</span> acquired.<<run setup.grantMissilePod("11 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4551,7 +4611,7 @@ This room is a dead end, and since I can only go East, [[I retrace my steps.->45
 
 
 :: 73 [Missiles] {"position":"600,2725","size":"100,100"}
-###Room B-73
+!!! Room B-73
 Facing South is the passageway to <b >Hidden Room B-68 </b >. Aside from this, the room just continues to the West.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("13 ")>>An empty pedestal sits in the center of the room.<<else>>A pedestal sits in the center of the room. A Missile Pod sits on top of it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (13)</span> acquired.<<run setup.grantMissilePod("13 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4563,7 +4623,7 @@ If I already collected the Missile Pod, I move about the room. I can either go S
 
 
 :: 74 [Missiles Secret-Passage] {"position":"725,2725","size":"100,100"}
-###Room B-74
+!!! Room B-74
 At first glance, the room only continues East, but there is a passage to a hidden chamber to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("14 ")>>An empty pedastal sits in the center of the room.<<else>>A pedestal sits in the center of the room. I grab the Missile Pod sitting atop it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (14)</span> acquired.<<run setup.grantMissilePod("14 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4572,7 +4632,7 @@ At first glance, the room only continues East, but there is a passage to a hidde
 
 
 :: 75 [Secret-Passage] {"position":"850,2725","size":"100,100"}
-###Room<<if $combat == 0>>   <</if>>B-75
+!!! Room<<if $combat == 0>>   <</if>>B-75
 There are only hidden tunnels leading from this chamber. North<<if $combat == 0>><<linkreplace ",">> which upon closer inspection is revealed as [[a fake wall->78]],<</linkreplace>><<else>>,<</if>> South, and East: all are hidden passages.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
@@ -4586,14 +4646,14 @@ There are only hidden tunnels leading from this chamber. North<<if $combat == 0>
 
 
 :: 76 [Red-Door] {"position":"975,2725","size":"100,100"}
-###Room B-76
+!!! Room B-76
 In this room, there is a hidden tunnel that continues West and a Red Door facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("77")>>Since the Red Door is already open, there is nothing else in the next room, so [[go back West.->75]]<<else>><<if $missiles >1>>[[I blast open the Red Door.->77]]<<else>>I do not have enough Missiles to open the Red Door. [[Go back West.->75]]<</if>><</if>><</if>>
 
 
 :: 77 [Item-Room] {"position":"1100,2725","size":"100,100"}
-###Room B-77
+!!! Room B-77
 <<if hasVisited("77")>><<else>>Two heavy thuds echo through the chamber as the Missiles explode on the portal. That sound mixes with the clatter of the collapsing door. I destroy the Red Door with an attack from 2 Missiles. <<set $missiles = $missiles - 2>><</if>>
 
 I head through the other side of the portal. In adjoining chamber, <b >Room B-77 </b >, a stone statue modeled after a uniquely ghastly creature has been placed in the center of the desolate room. To my astonishment, this stone statue reverently holds a powerful beam weapon in its arms.
@@ -4606,7 +4666,7 @@ Now that I�ve collected the weapon, there is nothing else in this room.
 
 
 :: 78 [Missiles Secret-Passage] {"position":"1225,2725","size":"100,100"}
-###Room B-78
+!!! Room B-78
 <<if $missilePods.includes("15 ")>>An empty pedestal sits in the center of the room.<<else>>A pedestal sits in the center of the room. A Missile Pod sits atop it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (15)</span> acquired.<<run setup.grantMissilePod("15 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
 
 I proceed along the narrow passageway to a dead end. Steam hisses from cracks in the walls, fogging my visor. At the end of the chamber is a gurgling pool of lava, but it 's too far to jump over.<span class="hides ">[.  ]</span >My Radar picks up a hidden chamber on the other side of the pool, <b >Room B-75 </b >, but I can 't seem to find the entrance.
@@ -4617,7 +4677,7 @@ I proceed along the narrow passageway to a dead end. Steam hisses from cracks in
 
 
 :: 79 [Energy-Tank] {"position":"100,2850","size":"100,100"}
-###Room B-79
+!!! Room B-79
 This room is a dead end with only a passageway leading South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>> The battle is over.
@@ -4628,7 +4688,7 @@ Since I 've taken the Energy Tank, there 's nothing else in this room. [[I can o
 
 
 :: 49 {"position":"225,2850","size":"100,100"}
-###Room B-49
+!!! Room B-49
 From this room, there is a hidden passageway to the West leading to <b >Room B-47 </b >, and there is a Blue Door facing North.
 
 <<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
@@ -4639,7 +4699,7 @@ From this room, there is a hidden passageway to the West leading to <b >Room B-4
 
 
 :: 51 [Missiles] {"position":"350,2850","size":"100,100"}
-###Room B-51
+!!! Room B-51
 The room continues North, and there is a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("5 ")>>An empty pedestal stands in the center of the chamber.<<else>>A metal pedestal stands in the center of the chamber, a Missile Pod on top. Steam hisses from the odd vent slits at its base. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (5)</span> acquired.<<run setup.grantMissilePod("5 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
@@ -4651,7 +4711,7 @@ From this room, I can head North to <b >Room B-54 </b >or South to <b >Room B-49
 
 
 :: 54 [Missiles Secret-Passage] {"position":"475,2850","size":"100,100"}
-###Room B-54
+!!! Room B-54
 This room is a Missile Pod room, too. The room turns into a corridor leading South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("6 ")>><<else>>A Missile Pod  lies in the center of the room. <<linkreplace "Missile Pod  ">>(<span style="color:red">Missile Pod (6)</span> acquired.<<run setup.grantMissilePod("6 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><br ><</if>>
@@ -4659,7 +4719,7 @@ At first, it appears there is only the corridor leading South, but to the North 
 
 
 :: 55 [Missiles] {"position":"600,2850","size":"100,100"}
-###Room B-55
+!!! Room B-55
 <<if $missilePods.includes("7 ")>>There is a perfectly preserved pedestal in the center of the room. It stands empty.<<else>>In the center of the room is a large pedestal of gleaming metal. Although ancient it looks as if it were built yesterday. A Missile Pod sits on top. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (7)</span> acquired.<<run setup.grantMissilePod("7 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
 
 From this room, I can head South to <b >Room B-54 </b >or West to <b >Room B-56 </b >.
@@ -4669,7 +4729,7 @@ From this room, I can head South to <b >Room B-54 </b >or West to <b >Room B-56 
 
 
 :: 56 [Missiles Secret-Passage] {"position":"725,2850","size":"100,100"}
-###Room B-56 <span class="hidden ">[[Go South->53]]</span ><<if $missilePods.includes("8 ")>>An empty pedestal towers in the center of the room.<<else>>A large pedestal towers in the center of the room, capped by a Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (8)</span> acquired.<<run setup.grantMissilePod("8 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+!!! Room B-56 <span class="hidden ">[[Go South->53]]</span ><<if $missilePods.includes("8 ")>>An empty pedestal towers in the center of the room.<<else>>A large pedestal towers in the center of the room, capped by a Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (8)</span> acquired.<<run setup.grantMissilePod("8 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
 
 From this chamber, I can go to <b >Room B-55 </b >, but the long passageway to <b >Room B-53 </b >is hidden. Thick stalagtites hang obscenely in the oppressive gloom, obscuring my vision above.
 
@@ -4677,7 +4737,7 @@ From this chamber, I can go to <b >Room B-55 </b >, but the long passageway to <
 
 
 :: 53 [Item-Room] {"position":"850,2850","size":"100,100"}
-###Room B-53
+!!! Room B-53
 The statue of a strange monster has been placed in the center of the room; it seems to be offering the beam weapon placed in its stone arms. It�s the Ice Beam.
 
 <<if $items.includes("Ice Beam ")>>I currently have the Ice Beam. Therefore, it is pointless to take it now. Eventually there might be a time when I will need it, but for now, I leave it placed in the room as it is.<<else>><span style="color:blue">Ice Beam collected.</span> <<set $items = $items + [ "Ice Beam "]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>><</if>>
@@ -5579,7 +5639,7 @@ Given my current equipment, I conclude I am no match for Ridley. For now, I [[go
 
 
 :: 80 {"position":"975,4475","size":"100,100"}
-###Room C-80: Tourian, Elevator Room
+!!! Room C-80: Tourian, Elevator Room
 	<<set $displayStats = 1>>
 	<<set $startRoom = "80"; $location = "Tourian ">>
   	<<linkreplace "Save game?">>
@@ -5597,14 +5657,14 @@ I can go up to Area A, Brinstar. Aside from that, the room only continues East.
 
 
 :: 81 [Red-Door] {"position":"1100,4475","size":"100,100"}
-###Room C-81
+!!! Room C-81
 From this room, there is only the Elevator Room to the West and a Yellow Door facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid">><</linkreplace>><<else>><<set $combat = 1>><<if $yd1 == 1>>The door is already destroyed, so I keep moving through the rooms. [[Go West->80]] or [[go North.->82]]<<elseif $missiles >3>>Blast open the door  <<linkreplace "Blast open the door  ">><<include "Open Yellow Door 1">><</linkreplace>><<else>>I will need at least 4 Missiles to open the Yellow Door. [[I can only go back West to the Elevator Room.->80]]<</if>><</if>>
 
 
 :: 82 {"position":"1225,4475","size":"100,100"}
-###Room C-82
+!!! Room C-82
 From this point, the room continues to the North, and there is a destroyed Yellow Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rinka">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->83]]
@@ -5612,14 +5672,14 @@ From this point, the room continues to the North, and there is a destroyed Yello
 
 
 :: 83 [Red-Door] {"position":"100,4600","size":"100,100"}
-###Room C-83
+!!! Room C-83
 North is a Red Door. To the South is a corridor.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd1 == 1>>The Red Door is already open, so I can either [[Go North->84]] or [[go South.->82]]<<elseif $missiles >1>>Blast open the Red Door  <<linkreplace "Blast open the Red Door  ">><hr ><<include "Open Red Door 1">><</linkreplace>><<else>>I 'll need at least 2 Missiles to open this door. [[Go back South->82]]<</if>><</if>>
 
 
 :: 84 {"position":"225,4600","size":"100,100"}
-###Room C-84
+!!! Room C-84
 In this room, there is a destroyed Red Door facing South, and the room continues to the East.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->85]]
@@ -5627,7 +5687,7 @@ In this room, there is a destroyed Red Door facing South, and the room continues
 
 
 :: 85 {"position":"350,4600","size":"100,100"}
-###Room C-85
+!!! Room C-85
 This room continues West, and there is a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rinka">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->84]]
@@ -5635,7 +5695,7 @@ This room continues West, and there is a Blue Door to the South.
 
 
 :: 86 {"position":"475,4600","size":"100,100"}
-###Room C-86
+!!! Room C-86
 This room continues East, and there is a Blue Door to the North.
 
 <<if $combat == 1>>[[Fight->Rinka]]<<else>><<set $combat = 1>>[[Go North->85]]
@@ -5643,7 +5703,7 @@ This room continues East, and there is a Blue Door to the North.
 
 
 :: 87 {"position":"600,4600","size":"100,100"}
-###Room C-87
+!!! Room C-87
 This deliberately confusing room is full of twists and turns. This room continues West, and there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->88]]
@@ -5651,14 +5711,14 @@ This deliberately confusing room is full of twists and turns. This room continue
 
 
 :: 88 [Red-Door] {"position":"725,4600","size":"100,100"}
-###Room C-88
+!!! Room C-88
 There is a Red Door to the North. To the South is an ordinary Blue Door.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd2 == 1>>The Red Door is already destroyed, so I can either [[go back South->87]] or [[go North.->89]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.  ">><<include "Open Red Door 2">><</linkreplace>><<else>>I 'll need at least 2 Missiles to open this door. [[Go back South.->87]]<</if>><</if>>
 
 
 :: 89 {"position":"850,4600","size":"100,100"}
-###Room C-89
+!!! Room C-89
 To the South are the remains of a collapsed Red Door. Beyond that, the room only continues to the East.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->90]]
@@ -5666,21 +5726,21 @@ To the South are the remains of a collapsed Red Door. Beyond that, the room only
 
 
 :: 90 [Red-Door] {"position":"975,4600","size":"100,100"}
-###Room C-90
+!!! Room C-90
 The room continues West, and there is a Red Door facing South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd3 == 1>>The Red Door is already destroyed, so I can either [[go back West->89]] or [[go South.->91]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.">><<include "Open Red Door 3">><</linkreplace>><<else>>I 'll need at least 2 Missiles to open this door. [[I can only go back West.->89]]<</if>><</if>>
 
 
 :: 91 [Red-Door] {"position":"1100,4600","size":"100,100"}
-###Room C-91
+!!! Room C-91
 This room contains Red Doors to both the North and South. Of course, if the door facing North isn�t destroyed yet, it is impossible for me to have entered this room...
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd4 == 1>>The Red Door is already destroyed, so I can either [[go back North->90]] or [[go South.->92]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.  ">><<include "Open Red Door 4">><</linkreplace>><<else>>I 'll need at least 2 Missiles to open this door. [[Go back North.->90]]<</if>><</if>>
 
 
 :: 92 {"position":"1225,4600","size":"100,100"}
-###Room C-92: Zebetite Room I
+!!! Room C-92: Zebetite Room I
 I have entered Mother Brain 's Lair at the heart of Tourian. This chamber is filled with snaking cables, machines, and other equipment. Gun turrets are mounted on the ceiling. Only three chambers separate me from my goal. However, each room is blocked by a Zebetite that must be destroyed before I can proceed. This is the first Zebetite Room.
 
 <<if $Zebetite1 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><br >[[Go back North->91]]<<else>>This Zebetite has been destroyed. Gelatinous blobs of Mother Brain 's life fluid ooze across the floor.
@@ -5691,7 +5751,7 @@ I have entered Mother Brain 's Lair at the heart of Tourian. This chamber is fil
 
 
 :: 93 {"position":"100,4725","size":"100,100"}
-###Room C-93: Zebetite Room II
+!!! Room C-93: Zebetite Room II
 I leave the shattered remains of the Zebetite behind. Glass crunches under my boots. This next chamber is pierced by several more gun turrets and the thick coils of Mother Brain 's life-support system.
 
 <<if $Zebetite2 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><<else>>The Zebetite has been destroyed. Nothing remains but shattered glass and blood-red gel.
@@ -5701,7 +5761,7 @@ I leave the shattered remains of the Zebetite behind. Glass crunches under my bo
 
 
 :: 94 {"position":"225,4725","size":"100,100"}
-###Room C-94: Zebetite Room III
+!!! Room C-94: Zebetite Room III
 This is the final Zebetite chamber before Mother Brain. This appears to be some sort of auxilliary control chamber. Countless lights blink on the mechanical walls, displaying information about the entirety of Zebes and the vital stats of Mother Brain. My ultimate goal lies in the next room.
 
 <<if $Zebetite3 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><br >[[Go back North->93]]<<else>>The Zebetite has been destroyed in a shower of gelatinous debris. I can see Mother Brain through the jagged glass.
@@ -5711,7 +5771,7 @@ This is the final Zebetite chamber before Mother Brain. This appears to be some 
 
 
 :: 95 {"position":"350,4725","size":"100,100"}
-###Room C-95: Mother Brain 's Room
+!!! Room C-95: Mother Brain 's Room
 I hear the voice of the Command Computer:
 
 �This is Mother Brain�s Room. In the next chamber, about ten meters ahead, is Mother Brain, the central computer of the asteroid Zebes.�
@@ -6097,7 +6157,6 @@ Dangerously Low <<linkreplace "Dangerously Low ">><<set $energy = 1>><</linkrepl
 
 
 :: Time Bomb Set {"position":"725,5225","size":"100,100"}
-==><==
 	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 	<<set $displayStats = 0>>
 	<<set $startRoom = "Time Bomb Set ">>
@@ -6146,7 +6205,6 @@ However, my second attempt fails tragically. In the end, it is impossible to cli
 I begin to move at once. I barely manage to reach to my tiny spaceship I had hidden upon first arriving on this asteroid and remove the camouflage covering it. I prime the engines and start them almost simultaneously. I take off from Zebes.
 
 Ten seconds after liftoff, Zebes is engulfed in an enormous explosion. I escaped by just a hair�s breadth. Even at this distance, I feel the considerable force of the explosion. If I had delayed even a moment, it would have taken my life.
-==><==
 	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 <<set $startRoom = "An Unpleasant Discovery ">>
 <==
@@ -6398,7 +6456,6 @@ Considering the sector of space I 'm in, could these be the band of Pirates who 
 
 
 :: A Prisoner of the Pirates {"position":"350,5600","size":"100,100"}
-==><==
 	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
 <<set $startRoom = "A Prisoner of the Pirates ">>
 
@@ -6806,8 +6863,7 @@ I become an embryo submerged in the amniotic fluid of space...
 
 
 :: Epilogue {"position":"350,6100","size":"100,100"}
-==><==
-##EPILOGUE
+!! EPILOGUE
 <==
 The darkness of space. A jet-black darkness. The void of space, like jet black velvet inset with glass beads. It is the outer edge of a small solar system. A little while ago, a small asteroid had been here. Until recently, that is. Now, it�s gone. It was annihilated by a large burst of uncontrollable energy. There isn 't even a trace left by this disturbance. Filling this space is only silence and darkness. 
 
@@ -6893,17 +6949,16 @@ But above all, it is seeking its [[nemesis.->Mysterious Object]]<</linkreplace>>
 
 
 :: Mysterious Object {"position":"100,6225","size":"100,100"}
-==><==
-##The New York Times
+!! The New York Times
 <==
-###Mysterious Object Falls into Austin, Nevada
+!!! Mysterious Object Falls into Austin, Nevada
 <i >March 21, 100X, Cosmic Calendar </i >Yesterday, a meteorite fell in Austin, Nevada in the early hours of the morning. A considerably large meteor, it was observed over a very wide area. However, when the authorities came to investigate, although they discovered an enormous impact crater, in the end, the meteor itself was never found. 
 
 The rumor from the scientific community is that it is a second incarnation of the Tunguska Meteorite. The Government of the Galactic Federation gave no comment regarding this incident, causing further [[suspicion.->Mysterious Corpse]]
 
 
 :: Mysterious Corpse {"position":"225,6225","size":"100,100"}
-###Mysterious Corpse Found in Area Surrounding Meteorite Impact
+!!! Mysterious Corpse Found in Area Surrounding Meteorite Impact
 A mysterious corpse was discovered at yesterday�s meteorite impact in Austin, Nevada. It was found to be the body of Mr. Terry Gilliam, 45, the owner of a private ranch in Austin. The corpse, which had no external wounds, was wrinkled as all the fluids had been sucked out of it, and had been disfigured to resemble a frail old man.
 
 That same day, Mr. Gilliam, an eyewitness to the meteorite impact, rushed out of his home screaming, �The meteor! The meteor!,� and never returned. 
@@ -7067,7 +7122,7 @@ The battle between me and the Boss begins.<<linkreplace "The battle between me a
 
 
 :: 38 [Item-Room Missiles] {"position":"975,6350","size":"100,100"}
-###Room A-38
+!!! Room A-38
 My Missiles slam into the locked Red Door. After firing 2 rounds, the door collapses noisily. <span style="color:red">(-2 Missiles.)</span><<set $missiles = $missiles - 2>>
 
 The door brings down a mass of rock with it, raising a thick shroud of dust. The room dims, but finally my field of vision into the next chamber clears. I enter the room.
@@ -7081,7 +7136,7 @@ I store the above information in my computer. There are no hidden rooms here. [[
 
 
 :: 63 [Item-Room] {"position":"1100,6350","size":"100,100"}
-###Room B-63
+!!! Room B-63
 <<if hasVisited("63")>><<else>>I fire Missiles at the Red Door. The Red Door takes 2 Missiles, and <i ><span class="fx-rumble">KABOOM</span></i >, it opens. <<set $missiles = $missiles - 2>> I move forward and take a look.<</if>>
 
 In the center of the room stands the figure of a strange creature fashioned from stone and perhaps modeled after one of the life-forms of this asteroid. An iron plate is embedded at its feet. On the plate is written information about the hidden rooms.
@@ -7099,7 +7154,7 @@ Beyond this, there is nothing else in the room. [[I go back South to Room B-58.-
 
 
 :: Instructions {"position":"100,6475","size":"100,100"}
-###Instructions
+!!! Instructions
 
 * Explore the labyrinthine corridors of Zebes to find the Mother Brain and retrieve the Metroid Capsule.
 * Fight your way through the monsters infesting the maze...but sometimes it is better to run than fight!

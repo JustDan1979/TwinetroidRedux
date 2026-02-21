@@ -1,4 +1,4 @@
-:: StoryTitle
+﻿:: StoryTitle
 Twinetroid
 
 
@@ -3352,13 +3352,7 @@ In addition to the corridor running all the way to the South, there is a Blue Do
 
 :: 19 [Elevator] {"position":"1100,350","size":"100,100"}
 !!! Room A-19: Brinstar Elevator Room 
-{<<linkreplace "Save game?">>
-  <<if Save.save("Slot A ")>>
-    Game saved!
-  <<else>>
-    Sorry, I couldn't save your game.
-  <</if>>
-<</linkreplace>>}
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>}
 
 I can descend to Area B, Norfair. If I don't want to go down, I can only head South.
 
@@ -3369,13 +3363,7 @@ I can descend to Area B, Norfair. If I don't want to go down, I can only head So
 
 :: 41 [Elevator] {"position":"1225,350","size":"100,100"}
 !!! Room B-41: Norfair Elevator Room
-{<<linkreplace "Save game?">>
-  <<if Save.save("Slot A ")>>
-    Game saved!
-  <<else>>
-    Sorry, I couldn't save your game.
-  <</if>>
-<</linkreplace>>
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>
 <<set $displayStats = 1>>}
 
 I can go up to Area A, Brinstar. If I don't want to go up or just came down, there are Blue Doors leading from this room to the North and South, so I can move forward in either direction.
@@ -3780,13 +3768,7 @@ This is just a chamber running North to South.
 
 :: 11 [Elevator] {"position":"475,975","size":"100,100"}
 !!! Room A-11: Brinstar, Elevator Room
-{<<linkreplace "Save game?">>
-  <<if Save.save("Slot A ")>>
-    Game saved!
-  <<else>>
-    Sorry, I couldn't save your game.
-  <</if>>
-<</linkreplace>>}
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>}
 
 I can go down to the floor below, Area C, Tourian. If I don't want to go down, I can only go back North.
 
@@ -4366,13 +4348,7 @@ However, I successfully avoid the Rio's attack. I escape!
 <<set $displayStats = 0; $displayMap = 0>>
 !!! GAME OVER 
 
-{<<linkreplace "Save Game ">>
-  <<if Save.save("Slot A ")>>
-    Game saved!
-  <<else>>
-    Sorry, I couldn't save your game.
-  <</if>>
-<</linkreplace>>}
+{<<link "Save Game">><<run UI.buildSaves(); Dialog.open();>><</link>>}
  <<linkreplace "Load Game ">>
           <<load "Slot A">>
     <</linkreplace>>
@@ -4759,10 +4735,7 @@ North is a passage to a hidden chamber. South is a Blue Door, and there is a cor
 
 :: 65 {"position":"350,2600","size":"100,100"}
 !!! Room B-65
-{<<linkreplace "Save game?">>
-  <<if Save.save("Slot A ")>>
-    Game saved!
-<</if>><</linkreplace>>
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>
 <<set $displayStats = 1>>}
 
 My Command Computer chimes. 
@@ -5916,13 +5889,7 @@ Given my current equipment, I conclude I am no match for Ridley. For now, I [[go
 !!! Room C-80: Tourian, Elevator Room
 	<<set $displayStats = 1>>
 	<<set $startRoom = "80"; $location = "Tourian ">>
-  	<<linkreplace "Save game?">>
-  	<<if Save.save("Slot A ")>>
-    	Game saved!
-  		<<else>>
-    	Sorry, I couldn't save your game.
-  		<</if>>
-<</linkreplace>>}
+  	<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>}
 
 I can go up to Area A, Brinstar. Aside from that, the room only continues East.
 
@@ -7503,6 +7470,7 @@ Attack successful! The enemy's movements are quick, and although it gives you so
   <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.4" aria-label="Music volume">
   <div id="music-toast" aria-live="polite"></div>
 </div>
+
 
 
 

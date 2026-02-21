@@ -3317,26 +3317,14 @@ In addition to the corridor running all the way to the South, there is a Blue Do
 
 [[Go North-&gt;19]]
 [[Go South-&gt;17]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="19" tags="Elevator" position="1100,350" size="100,100">!!! Room A-19: Brinstar Elevator Room 
-{&lt;&lt;linkreplace &quot;Save game?&quot;&gt;&gt;
-  &lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    Game saved!
-  &lt;&lt;else&gt;&gt;
-    Sorry, I couldn&#39;t save your game.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;/linkreplace&gt;&gt;}
+{&lt;&lt;link &quot;Save game?&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;}
 
 I can descend to Area B, Norfair. If I don&#39;t want to go down, I can only head South.
 
 [[Descend-&gt;41]]
 [[Go South-&gt;18]]
 &lt;&lt;set $startRoom = &quot;01&quot;; $location = &quot;Brinstar &quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="41" tags="Elevator" position="1225,350" size="100,100">!!! Room B-41: Norfair Elevator Room
-{&lt;&lt;linkreplace &quot;Save game?&quot;&gt;&gt;
-  &lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    Game saved!
-  &lt;&lt;else&gt;&gt;
-    Sorry, I couldn&#39;t save your game.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;/linkreplace&gt;&gt;
+{&lt;&lt;link &quot;Save game?&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;set $displayStats = 1&gt;&gt;}
 
 I can go up to Area A, Brinstar. If I don&#39;t want to go up or just came down, there are Blue Doors leading from this room to the North and South, so I can move forward in either direction.
@@ -3565,13 +3553,7 @@ This is just a chamber running North to South.
 
 &lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Zeb&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;[[Go North-&gt;08]]
 [[Go South-&gt;10]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="11" tags="Elevator" position="475,975" size="100,100">!!! Room A-11: Brinstar, Elevator Room
-{&lt;&lt;linkreplace &quot;Save game?&quot;&gt;&gt;
-  &lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    Game saved!
-  &lt;&lt;else&gt;&gt;
-    Sorry, I couldn&#39;t save your game.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;/linkreplace&gt;&gt;}
+{&lt;&lt;link &quot;Save game?&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;}
 
 I can go down to the floor below, Area C, Tourian. If I don&#39;t want to go down, I can only go back North.
 
@@ -3835,13 +3817,7 @@ If it hits successfully, I can blow it to smithereens with just one shot...
 &lt;&lt;linkreplace &quot;The battle is over.&quot;&gt;&gt;&lt;&lt;set $combat = 0&gt;&gt;&lt;&lt;goto $lastRoom&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;set $displayMap = 1&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="GAME OVER" tags="GAME-OVER" position="350,1975" size="100,100">&lt;&lt;set $displayStats = 0; $displayMap = 0&gt;&gt;
 !!! GAME OVER 
 
-{&lt;&lt;linkreplace &quot;Save Game &quot;&gt;&gt;
-  &lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    Game saved!
-  &lt;&lt;else&gt;&gt;
-    Sorry, I couldn&#39;t save your game.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;/linkreplace&gt;&gt;}
+{&lt;&lt;link &quot;Save Game&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;}
  &lt;&lt;linkreplace &quot;Load Game &quot;&gt;&gt;
           &lt;&lt;load &quot;Slot A&quot;&gt;&gt;
     &lt;&lt;/linkreplace&gt;&gt;
@@ -4024,10 +4000,7 @@ North is a passage to a hidden chamber. South is a Blue Door, and there is a cor
 	&lt;&lt;if $random == 3&gt;&gt;&lt;&lt;goto &quot;Multiviola&quot;&gt;&gt;&lt;&lt;elseif $random == 2&gt;&gt;&lt;&lt;goto &quot;Holtz&quot;&gt;&gt;&lt;&lt;elseif $random == 6&gt;&gt;&lt;&lt;goto &quot;Holtz&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;goto &quot;Dessgeega&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;&lt;&lt;if !($items.includes(&quot;RidleyStone &quot;))&gt;&gt;[[Go North-&gt;65]]&lt;&lt;/if&gt;&gt;
 [[Go East-&gt;61]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="204" name="65" tags="" position="350,2600" size="100,100">!!! Room B-65
-{&lt;&lt;linkreplace &quot;Save game?&quot;&gt;&gt;
-  &lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    Game saved!
-&lt;&lt;/if&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;
+{&lt;&lt;link &quot;Save game?&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;set $displayStats = 1&gt;&gt;}
 
 My Command Computer chimes. 
@@ -4561,13 +4534,7 @@ Wave Beam  &lt;&lt;linkreplace &quot;Wave Beam  &quot;&gt;&gt;Wave Beam&lt;hr &g
 	&lt;&lt;if $random == 1&gt;&gt;&lt;&lt;include &quot;Escape Multiviola Ice&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;include &quot;Escape Frozen Multiviola&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="358" name="Fight Ridley Later" tags="" position="850,4475" size="100,100">Given my current equipment, I conclude I am no match for Ridley. For now, I [[go back South-&gt;64]] and will challenge him again after preparing my equipment.</tw-passagedata><tw-passagedata pid="359" name="80" tags="" position="975,4475" size="100,100">!!! Room C-80: Tourian, Elevator Room
 	&lt;&lt;set $displayStats = 1&gt;&gt;
 	&lt;&lt;set $startRoom = &quot;80&quot;; $location = &quot;Tourian &quot;&gt;&gt;
-  	&lt;&lt;linkreplace &quot;Save game?&quot;&gt;&gt;
-  	&lt;&lt;if Save.save(&quot;Slot A &quot;)&gt;&gt;
-    	Game saved!
-  		&lt;&lt;else&gt;&gt;
-    	Sorry, I couldn&#39;t save your game.
-  		&lt;&lt;/if&gt;&gt;
-&lt;&lt;/linkreplace&gt;&gt;}
+  	&lt;&lt;link &quot;Save game?&quot;&gt;&gt;&lt;&lt;run UI.buildSaves(); Dialog.open();&gt;&gt;&lt;&lt;/link&gt;&gt;}
 
 I can go up to Area A, Brinstar. Aside from that, the room only continues East.
 

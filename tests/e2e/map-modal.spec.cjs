@@ -22,6 +22,9 @@ test('Map modal view (headed)', async ({ page }) => {
       vars.items.push('BrinstarMap ');
     }
     window.SugarCube.Engine.play('01');
+    if (window.SugarCube.UIBar && window.SugarCube.UIBar.unstow) {
+      window.SugarCube.UIBar.unstow(true);
+    }
   });
 
   const viewMap = page.getByRole('link', { name: /view map/i });

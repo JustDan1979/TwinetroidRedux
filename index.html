@@ -548,6 +548,7 @@ body[data-room-theme="Tourian"]::after {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  pointer-events: auto;
 }
 
 #music-toggle {
@@ -592,6 +593,12 @@ body[data-room-theme="Tourian"]::after {
 
 #music-toggle.off {
   opacity: 0.6;
+}
+
+#music-volume {
+  width: 110px;
+  accent-color: #7fb0ff;
+  pointer-events: auto;
 }
 
 @media (max-width: 900px) {
@@ -1517,6 +1524,38 @@ setup.ensureMusic = function () {
   return audio;
 };
 
+setup.ensureMusicUI = function () {
+  var nodes = document.querySelectorAll("#music-ui");
+  if (!nodes || nodes.length === 0) {
+    return;
+  }
+  var ui = null;
+  for (var i = 0; i < nodes.length; i++) {
+    if (nodes[i].parentElement === document.body) {
+      ui = nodes[i];
+      break;
+    }
+  }
+  if (!ui) {
+    ui = nodes[0];
+  }
+  for (var j = 0; j < nodes.length; j++) {
+    if (nodes[j] !== ui) {
+      nodes[j].remove();
+    }
+  }
+  if (ui.parentElement !== document.body) {
+    document.body.appendChild(ui);
+  }
+  ui.style.pointerEvents = "auto";
+};
+
+setup.toggleMusic = function () {
+  var v = State.variables;
+  v.musicEnabled = v.musicEnabled ? 0 : 1;
+  setup.updateMusic();
+};
+
 setup.getTrackForKey = function (key) {
   var trackMap = setup.musicTracks || {};
   return trackMap[key] || trackMap.Default || null;
@@ -1875,10 +1914,18 @@ setup.bindMusicControls = function () {
   if (setup._musicBound) {
     return;
   }
-  jQuery(document).on("click", "#music-toggle", function (event) {
+  document.addEventListener("click", function (event) {
+    var target = event.target;
+    if (!target) {
+      return;
+    }
+    var toggle = target.closest ? target.closest("#music-toggle") : null;
+    if (!toggle) {
+      return;
+    }
     event.preventDefault();
-    State.variables.musicEnabled = State.variables.musicEnabled ? 0 : 1;
-    setup.updateMusic();
+    event.stopPropagation();
+    setup.toggleMusic();
   });
   jQuery(document).on("input change", "#music-volume", function () {
     var value = Number(this.value);
@@ -2123,6 +2170,8 @@ setup.updateMusic = function () {
     v.musicVolume = 0.4;
   }
 
+  setup.ensureMusicUI();
+
   var key = setup.getMusicKey();
   var useProcedural = setup.musicMode === "procedural";
   var canProcedural = !!(window.AudioContext || window.webkitAudioContext);
@@ -2168,11 +2217,13 @@ setup.updateMusic = function () {
     } else {
       audio.pause();
     }
+    audio.muted = Number(v.musicEnabled) !== 1;
   }
 
   var $status = jQuery("#music-status");
   var $track = jQuery("#music-track");
   var $toggle = jQuery("#music-toggle");
+  var $volume = jQuery("#music-volume");
   if ($status.length) {
     $status.text(Number(v.musicEnabled) === 1 ? "On" : "Off");
   }
@@ -2193,6 +2244,10 @@ setup.updateMusic = function () {
       titleLabel = toggleTrack.title;
     }
     $toggle.attr("title", titleLabel + (Number(v.musicEnabled) === 1 ? " (On)" : " (Off)"));
+  }
+  if ($volume.length) {
+    $volume.val(Math.min(1, Math.max(0, Number(v.musicVolume) || 0.4)));
+    $volume.prop("disabled", Number(v.musicEnabled) !== 1);
   }
 };
 
@@ -2777,6 +2832,8 @@ setup.updateHud = function () {
   }
 
   setup.ensureInit();
+
+  setup.ensureMusicUI();
 
   if (State.variables && State.variables.uiBarOpenOnStart) {
     if (typeof UIBar !== "undefined" && UIBar && UIBar.isStowed && UIBar.isStowed()) {
@@ -5323,6 +5380,7 @@ Run  &lt;&lt;linkreplace &quot;Run  &quot;&gt;&gt;Run&lt;hr &gt;{
 &lt;/div&gt;
 &lt;div id=&quot;music-ui&quot;&gt;
   &lt;a href=&quot;#&quot; id=&quot;music-toggle&quot; title=&quot;Soundtrack&quot;&gt;♪&lt;/a&gt;
+  &lt;input id=&quot;music-volume&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.01&quot; value=&quot;0.4&quot; aria-label=&quot;Music volume&quot;&gt;
   &lt;div id=&quot;music-toast&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">

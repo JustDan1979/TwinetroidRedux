@@ -774,7 +774,7 @@ body[data-room-theme="Tourian"]::after {
 
 :: Story JavaScript [script]
 Config.history.controls = false;
-Config.ui.stowBarInitially = false;
+Config.ui.stowBarInitially = true;
 
 setup.assetPath = "assets/images/";
 
@@ -2580,6 +2580,13 @@ setup.updateHud = function () {
 
   setup.ensureInit();
 
+  if (State.variables && State.variables.uiBarOpenOnStart) {
+    if (typeof UIBar !== "undefined" && UIBar && UIBar.isStowed && UIBar.isStowed()) {
+      UIBar.unstow(true);
+    }
+    State.variables.uiBarOpenOnStart = 0;
+  }
+
   var currentTitle = String(setup.getPassageTitle() || "").trim();
   if (/^\d+$/.test(currentTitle) || /^Debug Room/i.test(currentTitle) || /Combat Test$/i.test(currentTitle)) {
     State.variables.lastRoom = currentTitle;
@@ -4212,7 +4219,7 @@ I need at least 2 Missiles to fight Kraid  <<linkreplace "I need at least 2 Miss
   <div class="title-ornament">=><=</div>
   <div class="title-series">1. Twinetroid</div>
   <div class="title-links">
-    [[Start->PROLOGUE]]<br>
+    <<link "Start">><<set $uiBarOpenOnStart = 1>><<goto "PROLOGUE">><</link>><br>
     <<linkreplace "Load Game">><<load "Slot A">><</linkreplace>><br>
     [[Instructions]]<br>
     [[About]]<br>

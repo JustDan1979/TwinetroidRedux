@@ -855,7 +855,7 @@ body[data-room-theme="Tourian"]::after {
     align-items: center;
   }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.history.controls = false;
-Config.ui.stowBarInitially = false;
+Config.ui.stowBarInitially = true;
 
 setup.assetPath = "assets/images/";
 
@@ -2661,6 +2661,13 @@ setup.updateHud = function () {
 
   setup.ensureInit();
 
+  if (State.variables && State.variables.uiBarOpenOnStart) {
+    if (typeof UIBar !== "undefined" && UIBar && UIBar.isStowed && UIBar.isStowed()) {
+      UIBar.unstow(true);
+    }
+    State.variables.uiBarOpenOnStart = 0;
+  }
+
   var currentTitle = String(setup.getPassageTitle() || "").trim();
   if (/^\d+$/.test(currentTitle) || /^Debug Room/i.test(currentTitle) || /Combat Test$/i.test(currentTitle)) {
     State.variables.lastRoom = currentTitle;
@@ -3569,7 +3576,7 @@ Yes...the power of this small Missile must have exceeded its normal strength by 
   &lt;div class=&quot;title-ornament&quot;&gt;=&gt;&lt;=&lt;/div&gt;
   &lt;div class=&quot;title-series&quot;&gt;1. Twinetroid&lt;/div&gt;
   &lt;div class=&quot;title-links&quot;&gt;
-    [[Start-&gt;PROLOGUE]]&lt;br&gt;
+    &lt;&lt;link &quot;Start&quot;&gt;&gt;&lt;&lt;set $uiBarOpenOnStart = 1&gt;&gt;&lt;&lt;goto &quot;PROLOGUE&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
     &lt;&lt;linkreplace &quot;Load Game&quot;&gt;&gt;&lt;&lt;load &quot;Slot A&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;br&gt;
     [[Instructions]]&lt;br&gt;
     [[About]]&lt;br&gt;

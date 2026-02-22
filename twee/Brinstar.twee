@@ -1,4 +1,4 @@
-:: 01 [Brinstar] {"position":"1100,100","size":"200,200"}
+﻿:: 01 [Brinstar] {"position":"1100,100","size":"200,200"}
 !!! Room A-1
 <<if $combat == 1>>I have successfully infiltrated the asteroid Zebes. Zebes consists of three levels. This is Area A, Brinstar, with cavern walls of limestone and a floor of bare rock.
 
@@ -201,7 +201,7 @@ This corridor leads North and South.
 !!! Room A-18
 In addition to the corridor running all the way to the South, there is a Blue Door to the North.
 
-<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>Head South to <b >Room A-17 </b >or North to <b >Room A-19 </b >. In addition, my Radar reveals a passage    to a hidden room. It faces East. It is <b >Room A-39 </b >. However, I can't seem to locate the entrance... <<linkreplace "">>However, a closer inspection reveals loose rocks near the ceiling on the East wall. I fire my Beam, and the blockage crumbles to the floor with a loud rumble. [[I climb through the passageway into Room A-39, and more rocks fill the hole behind me.->39]]<</linkreplace>>
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rio">><</linkreplace>><<else>><<set $combat = 1>>Head South to <b >Room A-17 </b >or North to <b >Room A-19 </b >. In addition, my Radar reveals a passage    to a hidden room. It faces East. It is <b >Room A-39 </b >. However, I can't seem to locate the entrance <<linkreplace "... ">>However, a closer inspection reveals loose rocks near the ceiling on the East wall. I fire my Beam, and the blockage crumbles to the floor with a loud rumble. [[I climb through the passageway into Room A-39, and more rocks fill the hole behind me.->39]]<</linkreplace>>
 
 [[Go North->19]]
 [[Go South->17]]<</if>>
@@ -263,7 +263,7 @@ This room ends in a gate. In front of the gate are two large statues of grotesqu
 !!! Room A-39
 West is a passage leading to <b >Hidden Room A-18 </b >that I can blast with my Beam to go back through. <<if hasVisited("40")>>To the South is an opened Red Door.<<else>>To the South there is a Red Door I can't pass through unless I use Missiles to destroy it.<</if>>
 
-<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>>{
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>>
 <<if hasVisited("40")>>The Red Door has been opened, so there is nothing in the next room. [[Go back West->18]]<<else>><<if $missiles >1>>[[I fire 2 Missiles at the Red Door.->40]]<<else>>
 I need at least 2 Missiles to open the Red Door. [[Go back <b >to Room A-18 </b >->18]]<</if>><</if>>
 <</if>>

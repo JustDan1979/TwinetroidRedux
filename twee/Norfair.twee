@@ -45,7 +45,7 @@ From this room, there is a Blue Door to the North and a corridor to the West.
 !!! Room B-46
 There is a Blue Door facing North and a corridor to the East. My Radar picks up a room to the West. <b >It's Room B-48 </b >.
 
-<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>This chamber is full of odd green bubbles; I can't tell if they are organic or mineral in construct. There are a number of odd fissures   in the wall that capture odd reflections of my suit. <<linkreplace "">>Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.->48]]<</linkreplace>>
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>This chamber is full of odd green bubbles; I can't tell if they are organic or mineral in construct. There are a number of odd fissures in the wall that capture odd reflections of my suit.  <<linkreplace ". ">>Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.->48]]<</linkreplace>>
 
 [[Go North->57]]
 [[Go East->44]]<</if>>
@@ -167,7 +167,7 @@ There are Blue Doors to the North and South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>In this chamber there is a passage to the hidden room to the East. It is <b >Room B-71 </b >. If I can't discover it, I can only go South to <b >Room B-66 </b >or North to <b >Room B-68 </b >.
 
-<<linkreplace "">>I spy a small gate in the ceiling. I shoot it with my Beam, and it opens a hidden door leading [[East.->71]]<br ><</linkreplace>>
+<<linkreplace ". ">>I spy a small gate in the ceiling. I shoot it with my Beam, and it opens a hidden door leading [[East.->71]]<br ><</linkreplace>>
 [[Go North->68]]
 [[Go South->66]]<</if>>
 
@@ -310,7 +310,7 @@ There are only hidden tunnels leading from this chamber. North<<if $combat == 0>
 	<<if $random == 6>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 5>><<goto "Holtz">><<else>><<goto "Geruda">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>I already know about the passageway facing South, since that's the way I came in came in. However, if I can't discover the other two hidden rooms, I can only go South.
 
-<<linkreplace "">>I check the East side of the ceiling and discover a weak wall. Blasting it open with my Beam reveals a [[hidden passage.->76]]<</linkreplace>>
+<<linkreplace ". ">>I check the East side of the ceiling and discover a weak wall. Blasting it open with my Beam reveals a [[hidden passage.->76]]<</linkreplace>>
 
 [[Go South->74]]<</if>>
 

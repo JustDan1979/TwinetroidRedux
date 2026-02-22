@@ -3358,7 +3358,7 @@ This corridor leads North and South.
 [[Go South-&gt;16]]&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="18" tags="Brinstar Secret-Passage" position="975,350" size="100,100">!!! Room A-18
 In addition to the corridor running all the way to the South, there is a Blue Door to the North.
 
-&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Rio&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;Head South to &lt;b &gt;Room A-17 &lt;/b &gt;or North to &lt;b &gt;Room A-19 &lt;/b &gt;. In addition, my Radar reveals a passage    to a hidden room. It faces East. It is &lt;b &gt;Room A-39 &lt;/b &gt;. However, I can&#39;t seem to locate the entrance... &lt;&lt;linkreplace &quot;&quot;&gt;&gt;However, a closer inspection reveals loose rocks near the ceiling on the East wall. I fire my Beam, and the blockage crumbles to the floor with a loud rumble. [[I climb through the passageway into Room A-39, and more rocks fill the hole behind me.-&gt;39]]&lt;&lt;/linkreplace&gt;&gt;
+&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Rio&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;Head South to &lt;b &gt;Room A-17 &lt;/b &gt;or North to &lt;b &gt;Room A-19 &lt;/b &gt;. In addition, my Radar reveals a passage    to a hidden room. It faces East. It is &lt;b &gt;Room A-39 &lt;/b &gt;. However, I can&#39;t seem to locate the entrance &lt;&lt;linkreplace &quot;... &quot;&gt;&gt;However, a closer inspection reveals loose rocks near the ceiling on the East wall. I fire my Beam, and the blockage crumbles to the floor with a loud rumble. [[I climb through the passageway into Room A-39, and more rocks fill the hole behind me.-&gt;39]]&lt;&lt;/linkreplace&gt;&gt;
 
 [[Go North-&gt;19]]
 [[Go South-&gt;17]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="19" tags="Elevator" position="1100,350" size="100,100">!!! Room A-19: Brinstar Elevator Room 
@@ -3390,7 +3390,7 @@ This room ends in a gate. In front of the gate are two large statues of grotesqu
 &lt;&lt;if $GateOpen == 1&gt;&gt;[[Go North-&gt;09]]&lt;br &gt;[[Go South-&gt;11]]&lt;&lt;elseif $items.includes(&quot;KraidStone &quot;) &amp;&amp; $items.includes(&quot;RidleyStone &quot;)&gt;&gt;[[Go back North-&gt;09]]&lt;&lt;else&gt;&gt;[[I don&#39;t have both Key Stones, so I must go back North to &lt;b &gt;Room A-9 &lt;/b &gt;.-&gt;09]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="39" tags="Brinstar Red-Door" position="850,475" size="100,100">!!! Room A-39
 West is a passage leading to &lt;b &gt;Hidden Room A-18 &lt;/b &gt;that I can blast with my Beam to go back through. &lt;&lt;if hasVisited(&quot;40&quot;)&gt;&gt;To the South is an opened Red Door.&lt;&lt;else&gt;&gt;To the South there is a Red Door I can&#39;t pass through unless I use Missiles to destroy it.&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Sidehopper&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;{
+&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Sidehopper&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;
 &lt;&lt;if hasVisited(&quot;40&quot;)&gt;&gt;The Red Door has been opened, so there is nothing in the next room. [[Go back West-&gt;18]]&lt;&lt;else&gt;&gt;&lt;&lt;if $missiles &gt;1&gt;&gt;[[I fire 2 Missiles at the Red Door.-&gt;40]]&lt;&lt;else&gt;&gt;
 I need at least 2 Missiles to open the Red Door. [[Go back &lt;b &gt;to Room A-18 &lt;/b &gt;-&gt;18]]&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="40" tags="Brinstar Item-Room" position="975,475" size="100,100">!!! Room A-40
@@ -5226,7 +5226,7 @@ From this room, there is a Blue Door to the North and a corridor to the West.
 [[Go West-&gt;46]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="459" name="46" tags="Secret-Passage" position="350,2475" size="100,100">!!! Room B-46
 There is a Blue Door facing North and a corridor to the East. My Radar picks up a room to the West. &lt;b &gt;It&#39;s Room B-48 &lt;/b &gt;.
 
-&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Geemer&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;This chamber is full of odd green bubbles; I can&#39;t tell if they are organic or mineral in construct. There are a number of odd fissures   in the wall that capture odd reflections of my suit. &lt;&lt;linkreplace &quot;&quot;&gt;&gt;Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.-&gt;48]]&lt;&lt;/linkreplace&gt;&gt;
+&lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Geemer&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;This chamber is full of odd green bubbles; I can&#39;t tell if they are organic or mineral in construct. There are a number of odd fissures in the wall that capture odd reflections of my suit.  &lt;&lt;linkreplace &quot;. &quot;&gt;&gt;Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.-&gt;48]]&lt;&lt;/linkreplace&gt;&gt;
 
 [[Go North-&gt;57]]
 [[Go East-&gt;44]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="460" name="57" tags="Secret-Passage" position="475,2475" size="100,100">!!! Room B-57
@@ -5293,7 +5293,7 @@ There are Blue Doors to the North and South.
 
 &lt;&lt;if $combat == 1&gt;&gt;Fight  &lt;&lt;linkreplace &quot;Fight  &quot;&gt;&gt;&lt;&lt;goto &quot;Multiviola&quot;&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;In this chamber there is a passage to the hidden room to the East. It is &lt;b &gt;Room B-71 &lt;/b &gt;. If I can&#39;t discover it, I can only go South to &lt;b &gt;Room B-66 &lt;/b &gt;or North to &lt;b &gt;Room B-68 &lt;/b &gt;.
 
-&lt;&lt;linkreplace &quot;&quot;&gt;&gt;I spy a small gate in the ceiling. I shoot it with my Beam, and it opens a hidden door leading [[East.-&gt;71]]&lt;br &gt;&lt;&lt;/linkreplace&gt;&gt;
+&lt;&lt;linkreplace &quot;. &quot;&gt;&gt;I spy a small gate in the ceiling. I shoot it with my Beam, and it opens a hidden door leading [[East.-&gt;71]]&lt;br &gt;&lt;&lt;/linkreplace&gt;&gt;
 [[Go North-&gt;68]]
 [[Go South-&gt;66]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="471" name="68" tags="Secret-Passage" position="725,2600" size="100,100">!!! Room B-68
 North is a passage to a hidden room. South is a Blue Door, and there is a corridor to the West.
@@ -5376,7 +5376,7 @@ There are only hidden tunnels leading from this chamber. North&lt;&lt;if $combat
 	&lt;&lt;if $random == 6&gt;&gt;&lt;&lt;goto &quot;Multiviola&quot;&gt;&gt;&lt;&lt;elseif $random == 3&gt;&gt;&lt;&lt;goto &quot;Holtz&quot;&gt;&gt;&lt;&lt;elseif $random == 5&gt;&gt;&lt;&lt;goto &quot;Holtz&quot;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;goto &quot;Geruda&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;/linkreplace&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $combat = 1&gt;&gt;I already know about the passageway facing South, since that&#39;s the way I came in came in. However, if I can&#39;t discover the other two hidden rooms, I can only go South.
 
-&lt;&lt;linkreplace &quot;&quot;&gt;&gt;I check the East side of the ceiling and discover a weak wall. Blasting it open with my Beam reveals a [[hidden passage.-&gt;76]]&lt;&lt;/linkreplace&gt;&gt;
+&lt;&lt;linkreplace &quot;. &quot;&gt;&gt;I check the East side of the ceiling and discover a weak wall. Blasting it open with my Beam reveals a [[hidden passage.-&gt;76]]&lt;&lt;/linkreplace&gt;&gt;
 
 [[Go South-&gt;74]]&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="483" name="76" tags="Red-Door" position="975,2725" size="100,100">!!! Room B-76
 In this room, there is a hidden tunnel that continues West and a Red Door facing North.

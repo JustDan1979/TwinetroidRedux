@@ -1,0 +1,155 @@
+﻿:: 80 {"position":"975,4475","size":"100,100"}
+!!! Room C-80: Tourian, Elevator Room
+	<<set $displayStats = 1>>
+	<<set $startRoom = "80"; $location = "Tourian ">>
+  	<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>}
+
+I can go up to Area A, Brinstar. Aside from that, the room only continues East.
+
+[[Ascend->11]]
+[[Go East->81]]
+
+
+
+:: 81 [Red-Door] {"position":"1100,4475","size":"100,100"}
+!!! Room C-81
+From this room, there is only the Elevator Room to the West and a Yellow Door facing North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid">><</linkreplace>><<else>><<set $combat = 1>><<if $yd1 == 1>>The door is already destroyed, so I keep moving through the rooms. [[Go West->80]] or [[go North.->82]]<<elseif $missiles >3>>Blast open the door  <<linkreplace "Blast open the door  ">><<include "Open Yellow Door 1">><</linkreplace>><<else>>I will need at least 4 Missiles to open the Yellow Door. [[I can only go back West to the Elevator Room.->80]]<</if>><</if>>
+
+
+
+:: 82 {"position":"1225,4475","size":"100,100"}
+!!! Room C-82
+From this point, the room continues to the North, and there is a destroyed Yellow Door to the South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rinka">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->83]]
+[[Go South->81]]<</if>>
+
+
+
+:: 83 [Red-Door] {"position":"100,4600","size":"100,100"}
+!!! Room C-83
+North is a Red Door. To the South is a corridor.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd1 == 1>>The Red Door is already open, so I can either [[Go North->84]] or [[go South.->82]]<<elseif $missiles >1>>Blast open the Red Door  <<linkreplace "Blast open the Red Door  ">><hr ><<include "Open Red Door 1">><</linkreplace>><<else>>I'll need at least 2 Missiles to open this door. [[Go back South->82]]<</if>><</if>>
+
+
+
+:: 84 {"position":"225,4600","size":"100,100"}
+!!! Room C-84
+In this room, there is a destroyed Red Door facing South, and the room continues to the East.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->85]]
+[[Go South->83]]<</if>>
+
+
+
+:: 85 {"position":"350,4600","size":"100,100"}
+!!! Room C-85
+This room continues West, and there is a Blue Door to the South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Rinka">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->84]]
+[[Go South->86]]<</if>>
+
+
+
+:: 86 {"position":"475,4600","size":"100,100"}
+!!! Room C-86
+This room continues East, and there is a Blue Door to the North.
+
+<<if $combat == 1>>[[Fight->Rinka]]<<else>><<set $combat = 1>>[[Go North->85]]
+[[Go East->87]]<</if>>
+
+
+
+:: 87 {"position":"600,4600","size":"100,100"}
+!!! Room C-87
+This deliberately confusing room is full of twists and turns. This room continues West, and there is a Blue Door to the North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->88]]
+[[Go West->86]]<</if>>
+
+
+
+:: 88 [Red-Door] {"position":"725,4600","size":"100,100"}
+!!! Room C-88
+There is a Red Door to the North. To the South is an ordinary Blue Door.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd2 == 1>>The Red Door is already destroyed, so I can either [[go back South->87]] or [[go North.->89]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.  ">><<include "Open Red Door 2">><</linkreplace>><<else>>I'll need at least 2 Missiles to open this door. [[Go back South.->87]]<</if>><</if>>
+
+
+
+:: 89 {"position":"850,4600","size":"100,100"}
+!!! Room C-89
+To the South are the remains of a collapsed Red Door. Beyond that, the room only continues to the East.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->90]]
+[[Go South->88]]<</if>>
+
+
+
+:: 90 [Red-Door] {"position":"975,4600","size":"100,100"}
+!!! Room C-90
+The room continues West, and there is a Red Door facing South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd3 == 1>>The Red Door is already destroyed, so I can either [[go back West->89]] or [[go South.->91]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.">><<include "Open Red Door 3">><</linkreplace>><<else>>I'll need at least 2 Missiles to open this door. [[I can only go back West.->89]]<</if>><</if>>
+
+
+
+:: 91 [Red-Door] {"position":"1100,4600","size":"100,100"}
+!!! Room C-91
+This room contains Red Doors to both the North and South. Of course, if the door facing North isn't destroyed yet, it is impossible for me to have entered this room...
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Metroid B">><</linkreplace>><<else>><<set $combat = 1>><<if $rd4 == 1>>The Red Door is already destroyed, so I can either [[go back North->90]] or [[go South.->92]]<<elseif $missiles >1>>Blast open the Red Door.  <<linkreplace "Blast open the Red Door.  ">><<include "Open Red Door 4">><</linkreplace>><<else>>I'll need at least 2 Missiles to open this door. [[Go back North.->90]]<</if>><</if>>
+
+
+
+:: 92 {"position":"1225,4600","size":"100,100"}
+!!! Room C-92: Zebetite Room I
+I have entered Mother Brain's Lair at the heart of Tourian. This chamber is filled with snaking cables, machines, and other equipment. Gun turrets are mounted on the ceiling. Only three chambers separate me from my goal. However, each room is blocked by a Zebetite that must be destroyed before I can proceed. This is the first Zebetite Room.
+
+<<if $Zebetite1 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><br >[[Go back North->91]]<<else>>This Zebetite has been destroyed. Gelatinous blobs of Mother Brain's life fluid ooze across the floor.
+
+[[Go back North->91]]
+[[Head South->93]]<</if>>
+<<set $combat = 1>>
+
+
+
+:: 93 {"position":"100,4725","size":"100,100"}
+!!! Room C-93: Zebetite Room II
+I leave the shattered remains of the Zebetite behind. Glass crunches under my boots. This next chamber is pierced by several more gun turrets and the thick coils of Mother Brain's life-support system.
+
+<<if $Zebetite2 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><<else>>The Zebetite has been destroyed. Nothing remains but shattered glass and blood-red gel.
+
+[[Go back North->92]]
+[[Go South to the next room->94]]<</if>>
+
+
+
+:: 94 {"position":"225,4725","size":"100,100"}
+!!! Room C-94: Zebetite Room III
+This is the final Zebetite chamber before Mother Brain. This appears to be some sort of auxilliary control chamber. Countless lights blink on the mechanical walls, displaying information about the entirety of Zebes and the vital stats of Mother Brain. My ultimate goal lies in the next room.
+
+<<if $Zebetite3 == 0>>Fight the Zebetite  <<linkreplace "Fight the Zebetite  ">><<goto "Zebetite">><</linkreplace>><br >[[Go back North->93]]<<else>>The Zebetite has been destroyed in a shower of gelatinous debris. I can see Mother Brain through the jagged glass.
+
+[[Go back North->93]]
+[[Proceed to Mother Brain's Room->95]]<</if>>
+
+
+
+:: 95 {"position":"350,4725","size":"100,100"}
+!!! Room C-95: Mother Brain's Room
+I hear the voice of the Command Computer:
+
+'This is Mother Brain's Room. In the next chamber, about ten meters ahead, is Mother Brain, the central computer of the asteroid Zebes.'
+
+Before me is the figure of the Mother Brain. She is an enormous and grotesque dark red brain. The brain has a height of three meters. It towers over the surrounding moat filled with a thick, blood-like fluid. This moat will not be easy to get out of if I were to fall in. To put it bluntly, I would be trapped.
+
+'No weapons except Missiles will work against Mother Brain. If you currently have only a small quantity of Missiles, it would be wise to come back after refilling your Missiles and Energy.'
+
+Should I fight with my current equipment, or try again later?
+
+[[Fight->Mother Brain]]
+[[Try again later->Fight Mother Brain Later]]

@@ -1,0 +1,447 @@
+﻿:: 41 [Elevator] {"position":"1225,350","size":"100,100"}
+!!! Room B-41: Norfair Elevator Room
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>
+<<set $displayStats = 1>>}
+
+I can go up to Area A, Brinstar. If I don't want to go up or just came down, there are Blue Doors leading from this room to the North and South, so I can move forward in either direction.
+
+[[Ascend->19]]
+[[Go North->43]]
+[[Go South->42]]
+<<set $startRoom = "41"; $location = "Norfair ">>
+
+
+
+:: 43 [Secret-Passage Missiles] {"position":"1225,2350","size":"100,100"}
+!!! Room B-43
+At first glance, this room appears to only have a Blue Door to the South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("3 ")>>There is an empty pedestal here, encrusted with lime.<<else>>A pedestal stands in the center of the room, thickly encrusted with lime. On top of it is a pristine Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (3)</span> acquired.<<run setup.grantMissilePod("3 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+I move about the room. My Radar Scanner detects a passage to a hidden room facing North. It's <b >Room B-45 </b >. I'll have to go further in the room to see if there's a way forward. <span class="hides ">But there's nothing here. Maybe I need check this from a different angle...</span >[[Go South->41]]
+<span class="reveals ">When I turn around, I find a fake hole in the floor on the North side of the room. [[Go North.->45]]</span ><</if>>
+
+
+
+:: 42 {"position":"100,2475","size":"100,100"}
+!!! Room B-42
+In this room, there are only Blue Doors to the North and South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->41]]
+[[Go South->44]]<</if>>
+
+
+
+:: 44 [Secret-Passage] {"position":"225,2475","size":"100,100"}
+!!! Room B-44
+From this room, there is a Blue Door to the North and a corridor to the West.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>However, it seems there is also a hidden passage leading to a room to the East. Its room number is <b >B-47 </b >. <span class="reveals">There's an odd rock formation. <<if $items.includes("Bombs ")>><<linkreplace "rock formation.">>It looks like I can blast it with a bomb.<</linkreplace>> <<linkreplace "bomb.">>[[I open a passageway heading East.->47]]<</linkreplace>><</if>></span >[[Go North->42]]
+[[Go West->46]]<</if>>
+
+
+
+:: 46 [Secret-Passage] {"position":"350,2475","size":"100,100"}
+!!! Room B-46
+There is a Blue Door facing North and a corridor to the East. My Radar picks up a room to the West. <b >It's Room B-48 </b >.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geemer">><</linkreplace>><<else>><<set $combat = 1>>This chamber is full of odd green bubbles; I can't tell if they are organic or mineral in construct. There are a number of odd fissures   in the wall that capture odd reflections of my suit. <<linkreplace "">>Upon further investigation, I discover one of these fissures contains a hidden passage leading West. [[Go West.->48]]<</linkreplace>>
+
+[[Go North->57]]
+[[Go East->44]]<</if>>
+
+
+
+:: 57 [Secret-Passage] {"position":"475,2475","size":"100,100"}
+!!! Room B-57
+In this room, there is a Blue Door to the South, in addition to a passage to a hidden chamber facing North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>The hidden chamber is <b >Room B-59 </b >. There's a small tunnel in this corner of the room, but it leads to a dead end.  <<if $items.includes("Bombs ")>><<linkreplace ".  ">>I blast a hole with my bombs, opening a small tunnel. As I head through, it collapses again behind me. [[Go North to Room 59.->59]]<</linkreplace>><</if>>
+
+[[Go South->46]]<</if>>
+
+
+
+:: 59 [Missiles] {"position":"600,2475","size":"100,100"}
+!!! Room B-59
+<<if $missilePods.includes("9 ")>>An empty pedestal stands in the center of the room, surrounded by a pool of lava.<<else>>A pedestal stands in the center of the room, surrounded by a pool of lava. If I carefully jump over the pool, I can grab the Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (9)</span> acquired.<<run setup.grantMissilePod("9 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+From here, South is the hidden path to <b >Room B-57 </b >. <b >Room B-60 </b >is to the North.
+
+[[Go North->60]]
+[[Go South->57]]
+
+
+
+:: 60 [Missiles] {"position":"725,2475","size":"100,100"}
+!!! Room B-60
+This room is impassible. The only open path just goes back South to <b >Room B-59 </b >.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("10 ")>>An empty pedestal stands in the center of the chamber.<<else>>A pedestal stands in the center of the chamber, holding a shiny new Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (10)</span> acquired.<<run setup.grantMissilePod("10 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+Since there are no more hidden rooms, [[go back South.->59]]<</if>>
+
+
+
+:: 48 {"position":"850,2475","size":"100,100"}
+!!! Room B-48
+East is a passageway to <b >Hidden Room B-46 </b >. This chamber also continues West, and there is also a Blue Door to the North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 3>><<goto "Multiviola">><<elseif $random == 1>><<goto "Geruda">><<elseif $random == 4>><<goto "Geruda">><<else>><<goto "Geemer">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>>[[Go North->58]]
+[[Go East->46]]
+[[Go West->52]]<</if>>
+
+
+
+:: 58 [Red-Door] {"position":"975,2475","size":"100,100"}
+!!! Room B-58
+South is a Blue Door, and North is a Red Door.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("63")>>Since I have already gone North to the chamber behind the Red Door, I can either [[check the room again->63]] or [[retrace my steps and go back South->48]]<<else>><<if $missiles >1>>[[Blast open the Red Door->63]]<<else>>I do not have enough Missiles to open the Red Door. [[Go back South.->48]]<</if>><</if>><</if>>
+
+
+
+:: 52 {"position":"1225,2475","size":"100,100"}
+!!! Room B-52
+<<set $enemyFrozen = 0>>From this room, there is a Blue Door to the North, and a corridor stretches East.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>[[Go North->61]]
+[[Go East->48]]<</if>>
+
+
+
+:: 61 [Secret-Passage] {"position":"100,2600","size":"100,100"}
+!!! Room B-61
+North is a passage to a hidden chamber. South is a Blue Door, and there is a corridor to the West.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>>The hidden chamber to the North is <b >Room B-66 </b >. <span class="reveals">There's a ledge high up<<if $enemyFrozen == 1>>, and I can use the frozen Dessgeega as a platform to reach the it. [[Go North.->66]]<<else>>...but it's too far to jump.<</if>></span >[[Go West->64]]
+[[Go South->52]]<</if>>
+
+
+
+:: 64 {"position":"225,2600","size":"100,100"}
+!!! Room B-64
+<<set $enemyFrozen = 0>><<if $items.includes("RidleyStone ")>>Ridley has been defeated. The door to the North has deactivated for good.<<else>>There is a Blue Door to the North, and the room continues East.<</if>>
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 3>><<goto "Multiviola">><<elseif $random == 2>><<goto "Holtz">><<elseif $random == 6>><<goto "Holtz">><<else>><<goto "Dessgeega">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>><<if !($items.includes("RidleyStone "))>>[[Go North->65]]<</if>>
+[[Go East->61]]<</if>>
+
+
+
+:: 65 {"position":"350,2600","size":"100,100"}
+!!! Room B-65
+{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>
+<<set $displayStats = 1>>}
+
+My Command Computer chimes. 
+
+'Warning. Ahead is the room of Ridley, the Boss-Level monster of Area B, Norfair. Ridley should be fought under ideal conditions. Decide whether you have the proper equipment and either confront Ridley or temporarily pull back and come again after preparing your equipment.'
+
+<<if $missiles >1>>[[Go forward with your current equipment->Ridley]]<</if>>
+[[Go back->Fight Ridley Later]]
+
+
+
+:: 66 {"position":"475,2600","size":"100,100"}
+!!! Room B-66
+<<set $enemyFrozen = 0>>To the South is the hidden passageway to <b >Room B-67 </b >. Aside from that, there is a Blue Door to the North.
+
+<<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 1>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 4>><<goto "Holtz">><<else>><<goto "Dessgeega">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>>
+[[Go North->67]]
+[[Go South->61]]<</if>>
+
+
+
+:: 67 [Secret-Passage] {"position":"600,2600","size":"100,100"}
+!!! Room<<if $combat == 0>>   <</if>> B-67
+There are Blue Doors to the North and South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>In this chamber there is a passage to the hidden room to the East. It is <b >Room B-71 </b >. If I can't discover it, I can only go South to <b >Room B-66 </b >or North to <b >Room B-68 </b >.
+
+<<linkreplace "">>I spy a small gate in the ceiling. I shoot it with my Beam, and it opens a hidden door leading [[East.->71]]<br ><</linkreplace>>
+[[Go North->68]]
+[[Go South->66]]<</if>>
+
+
+
+:: 68 [Secret-Passage] {"position":"725,2600","size":"100,100"}
+!!! Room B-68
+North is a passage to a hidden room. South is a Blue Door, and there is a corridor to the West.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>>There is a passage to a hidden chamber to the North of here, <b >Room B-73 </b >. Alongside the wall is a large mass of weak <<link "bricks.  ">><<set $random = $random + 1>><<if $random == 12>>Alongside the wall is a large mass of weak bricks.
+<br >Blasting away the wall reveals a hidden passage leading [[North.->73]]<</if>><</link>>
+
+[[Go West->69]]
+[[Go South->67]]<</if>>
+
+
+
+:: 69 {"position":"850,2600","size":"100,100"}
+!!! Room B-69
+There is a Blue Door to the South, and the room extends to the East.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>>[[Go East->68]]
+[[Go South->70]]<</if>>
+
+
+
+:: 70 [Missiles] {"position":"975,2600","size":"100,100"}
+!!! Room B-70
+This room is a dead end. There is just a Blue Door leading back North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("12 ")>>There is a cracked pedestal in the center of the chamber.<<else>>There is a pedestal in the center of the chamber that has been cracked by a rockfall. On top of it is a Missile Pod, still intact. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (12)</span> acquired.<<run setup.grantMissilePod("12 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+Aside from the pedestal, this chamber is just a dead end. [[I have to go back to the previous room.->69]]<</if>>
+
+
+
+:: 71 [Red-Door] {"position":"1100,2600","size":"100,100"}
+!!! Room B-71
+West is the hidden passage to <b >Room B-67 </b >. Apart from that, there is a Red Door facing North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 6>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 1>><<goto "Holtz">><<else>><<goto "Geruda">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("72")>>I've already opened the Red Door, so the next room is empty. [[I go back West to Room B-67.->67]]<<else>><<if $missiles >1>>[[Blast open the Red Door->72]]<<else>>I need at least 2 Missiles to open the Red Door. [[I must go back West to Room B-67.->67]]<</if>><</if>><</if>>
+
+
+
+:: 72 [Item-Room] {"position":"1225,2600","size":"100,100"}
+!!! Room B-72
+Boom<<linkreplace "Boom ">>, boom!<<linkreplace "boom!">>
+
+With a heavy thud, the Missiles slam into the Red Door. When the smoke from the explosion clears, the door has opened to reveal a fine entrance. <<set $missiles = $missiles - 2>>
+
+Upon entering the chamber, I behold the statue of a grotesque life-form placed in the center of the room, reverently offering some kind of machine in its stone arms (if that is indeed what they are).
+<<if $items.includes("Screw Attack ")>>
+<span style="color:green">(Screw Attack already acquired)</span>
+<<else>>
+<<linkreplace "Take Screw Attack">>
+  <<run setup.grantItem("Screw Attack ")>>
+  <span style="color:green">(Screw Attack collected)</span>
+<</linkreplace>>
+<</if>>
+
+After collecting it, there is nothing else in this room. [[I go back to the previous chamber.->71]]<</linkreplace>><</linkreplace>>
+
+
+
+:: 47 [Secret-Passage] {"position":"100,2725","size":"100,100"}
+!!! Room B-47
+There is a hidden passage to <b >Room B-44 </b >facing West. A Blue Door faces North. There is a hidden room to the East. <span class="reveals "><<if $combat == 0>><<if $items.includes("Bombs ")>>  .<<else>>  .<</if>><</if>></span ><<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 5>><<goto "Rio">><<elseif $random == 3>><<goto "Geruda">><<elseif $random == 1>><<goto "Geruda">><<else>><<goto "Geemer">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>>The room appears to end in a rock wall.<<if $items.includes("Bombs ")>><<linkreplace ".">> Careful inspection reveals a hole on the floor that looks weak to explosives. I lay a bomb to blast open a hole to [[Room B-49.->49]]<</linkreplace>><</if>>
+
+[[Go North->50]]
+[[Go West->44]]<</if>>
+
+
+
+:: 50 [Missiles] {"position":"225,2725","size":"100,100"}
+!!! Room B-50
+This room is a dead end. There is only a Blue Door facing South. I notice there is a hidden room to the North, but the passage is impassible from this direction.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Geruda">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("4 ")>>There is an empty pedestal in the center of the room, covered with a variety of cables.<<else>>A pedestal stands in the center of the room, covered by a wide assortment of cables snaking towards the center. Nested there is a Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (4)</span> acquired.<<run setup.grantMissilePod("4 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+There is a tunnel in this room leading to a hidden chamber to the North, but unless I can perform some special feat of engineering, I can't pass back through. It's a one-way passage from the chamber to the North. Therefore, I have to go South to <b >Room B-47 </b >.
+
+[[Go back to the room to the South.->47]]<</if>>
+
+
+
+:: 45 {"position":"350,2725","size":"100,100"}
+!!! Room B-45
+Facing South is the passage to the <b >Hidden Room B-43 </b >. Apart from that, the room continues West.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>>[[Go West->62]]
+[[Go South->43]]<</if>>
+
+
+
+:: 62 [Missiles] {"position":"475,2725","size":"100,100"}
+!!! Room B-62
+This room is a dead end. It leads only to the East.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("11 ")>>There is an empty pedestal in the center of the room that once held a Missile Pod.<<else>>A pedestal stands in the center of the room, holding a Missile Pod that glitters in the dim light. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (11)</span> acquired.<<run setup.grantMissilePod("11 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+This room is a dead end, and since I can only go East, [[I retrace my steps.->45]]<</if>>
+
+
+
+:: 73 [Missiles] {"position":"600,2725","size":"100,100"}
+!!! Room B-73
+Facing South is the passageway to <b >Hidden Room B-68 </b >. Aside from this, the room just continues to the West.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Multiviola">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("13 ")>>An empty pedestal sits in the center of the room.<<else>>A pedestal sits in the center of the room. A Missile Pod sits on top of it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (13)</span> acquired.<<run setup.grantMissilePod("13 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+If I already collected the Missile Pod, I move about the room. I can either go South to <b >Room B-68 </b >or West to Room <b >B-74 </b >.
+
+[[Go West->74]]
+[[Go South->68]]<</if>>
+
+
+
+:: 74 [Missiles Secret-Passage] {"position":"725,2725","size":"100,100"}
+!!! Room B-74
+At first glance, the room only continues East, but there is a passage to a hidden chamber to the North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("14 ")>>An empty pedastal sits in the center of the room.<<else>>A pedestal sits in the center of the room. I grab the Missile Pod sitting atop it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (14)</span> acquired.<<run setup.grantMissilePod("14 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+<<set $random = 7>>I decide to move about the room. The way East is open. However, there is a hidden chamber to the North, but it is at the top of a very high ledge. It is <b >Room B-75 </b >. However, the wall looks weak in spots. Perhaps I could blast them open to make handholds...<span class="hides "><<link ".  ">><<set $random = random( 1,10)>><<if $random == 6>>[[Go North.->75]]<<else>>.  <</if>><</link>></span >[[Go East->73]]<</if>>
+
+
+
+:: 75 [Secret-Passage] {"position":"850,2725","size":"100,100"}
+!!! Room<<if $combat == 0>>   <</if>>B-75
+There are only hidden tunnels leading from this chamber. North<<if $combat == 0>><<linkreplace ",">> which upon closer inspection is revealed as [[a fake wall->78]],<</linkreplace>><<else>>,<</if>> South, and East: all are hidden passages.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 6>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 5>><<goto "Holtz">><<else>><<goto "Geruda">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>>I already know about the passageway facing South, since that's the way I came in came in. However, if I can't discover the other two hidden rooms, I can only go South.
+
+<<linkreplace "">>I check the East side of the ceiling and discover a weak wall. Blasting it open with my Beam reveals a [[hidden passage.->76]]<</linkreplace>>
+
+[[Go South->74]]<</if>>
+
+
+
+:: 76 [Red-Door] {"position":"975,2725","size":"100,100"}
+!!! Room B-76
+In this room, there is a hidden tunnel that continues West and a Red Door facing North.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("77")>>Since the Red Door is already open, there is nothing else in the next room, so [[go back West.->75]]<<else>><<if $missiles >1>>[[I blast open the Red Door.->77]]<<else>>I do not have enough Missiles to open the Red Door. [[Go back West.->75]]<</if>><</if>><</if>>
+
+
+
+:: 77 [Item-Room] {"position":"1100,2725","size":"100,100"}
+!!! Room B-77
+<<if hasVisited("77")>><<else>>Two heavy thuds echo through the chamber as the Missiles explode on the portal. That sound mixes with the clatter of the collapsing door. I destroy the Red Door with an attack from 2 Missiles. <<set $missiles = $missiles - 2>><</if>>
+
+I head through the other side of the portal. In adjoining chamber, <b >Room B-77 </b >, a stone statue modeled after a uniquely ghastly creature has been placed in the center of the desolate room. To my astonishment, this stone statue reverently holds a powerful beam weapon in its arms.
+ 
+<<if $items.includes("Wave Beam ")>>
+(<span style="color:purple">Wave Beam</span> already acquired.)
+<<else>>
+<<linkreplace "Take Wave Beam">>
+  <<run setup.grantItem("Wave Beam ")>>
+  (<span style="color:purple">Wave Beam</span> collected. My other beam vanishes.)
+<</linkreplace>>
+<</if>>
+
+Now that I've collected the weapon, there is nothing else in this room.
+
+[[Go back South->76]]
+
+
+
+:: 78 [Missiles Secret-Passage] {"position":"1225,2725","size":"100,100"}
+!!! Room B-78
+<<if $missilePods.includes("15 ")>>An empty pedestal sits in the center of the room.<<else>>A pedestal sits in the center of the room. A Missile Pod sits atop it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (15)</span> acquired.<<run setup.grantMissilePod("15 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+I proceed along the narrow passageway to a dead end. Steam hisses from cracks in the walls, fogging my visor. At the end of the chamber is a gurgling pool of lava, but it's too far to jump over.<span class="hides ">[.  ]</span >My Radar picks up a hidden chamber on the other side of the pool, <b >Room B-75 </b >, but I can't seem to find the entrance.
+
+<<linkreplace ".  ">>As I approach the pool, I discover it's not magma at all! It's some kind of ooze that resembles molten rock. [[I wade through it to reveal a hidden passage to the chamber beyond.->79]]<</linkreplace>>
+
+[[Go South->75]]
+
+
+
+:: 79 [Energy-Tank] {"position":"100,2850","size":"100,100"}
+!!! Room B-79
+This room is a dead end with only a passageway leading South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Dessgeega">><</linkreplace>><<else>><<set $combat = 1>> The battle is over.
+
+<<if $energyPacks.includes("C ")>>Since I've already collected the Energy Tank that was here, there is nothing else in this room, so [[go back South.->78]]<<else>>I grab the Energy Tank sitting in the corner of the room. (<span style="color:yellow">Energy Tank (C) collected. </span><<run setup.grantEnergyPack("C ")>>Energy restored to maximum.)<</if>>
+
+Since I've taken the Energy Tank, there's nothing else in this room. [[I can only go back South.->78]]<</if>>
+
+
+
+:: 49 {"position":"225,2850","size":"100,100"}
+!!! Room B-49
+From this room, there is a hidden passageway to the West leading to <b >Room B-47 </b >, and there is a Blue Door facing North.
+
+<<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
+	<<set $random = random( 1,6)>>
+	<<if $random == 4>><<goto "Multiviola">><<elseif $random == 3>><<goto "Geemer">><<elseif $random == 6>><<goto "Geemer">><<else>><<goto "Holtz">><</if>>
+<</linkreplace>><<else>><<set $combat = 1>>[[Go North->51]]
+[[Go West->47]]<</if>>
+
+
+
+:: 51 [Missiles] {"position":"350,2850","size":"100,100"}
+!!! Room B-51
+The room continues North, and there is a Blue Door to the South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("5 ")>>An empty pedestal stands in the center of the chamber.<<else>>A metal pedestal stands in the center of the chamber, a Missile Pod on top. Steam hisses from the odd vent slits at its base. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (5)</span> acquired.<<run setup.grantMissilePod("5 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+From this room, I can head North to <b >Room B-54 </b >or South to <b >Room B-49 </b >.
+
+[[Go North->54]]
+[[Go South->49]]<</if>>
+
+
+
+:: 54 [Missiles Secret-Passage] {"position":"475,2850","size":"100,100"}
+!!! Room B-54
+This room is a Missile Pod room, too. The room turns into a corridor leading South.
+
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("6 ")>><<else>>A Missile Pod  lies in the center of the room. <<linkreplace "Missile Pod  ">>(<span style="color:red">Missile Pod (6)</span> acquired.<<run setup.grantMissilePod("6 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><br ><</if>>
+At first, it appears there is only the corridor leading South, but to the North there is also a passage leading to hidden <b >Room B-55 </b >. There's a small tunnel leading this direction, but it's too dark to see anything... <span class="hidden ">[[I lay a bomb, opening a hole to <b >Room B-55 </b >->55]]</span >[[Go South->51]]<</if>>
+
+
+
+:: 55 [Missiles] {"position":"600,2850","size":"100,100"}
+!!! Room B-55
+<<if $missilePods.includes("7 ")>>There is a perfectly preserved pedestal in the center of the room. It stands empty.<<else>>In the center of the room is a large pedestal of gleaming metal. Although ancient it looks as if it were built yesterday. A Missile Pod sits on top. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (7)</span> acquired.<<run setup.grantMissilePod("7 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+From this room, I can head South to <b >Room B-54 </b >or West to <b >Room B-56 </b >.
+
+[[Go West->56]]
+[[Go South->54]]
+
+
+
+:: 56 [Missiles Secret-Passage] {"position":"725,2850","size":"100,100"}
+!!! Room B-56 <span class="hidden ">[[Go South->53]]</span ><<if $missilePods.includes("8 ")>>An empty pedestal towers in the center of the room.<<else>>A large pedestal towers in the center of the room, capped by a Missile Pod. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (8)</span> acquired.<<run setup.grantMissilePod("8 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
+
+From this chamber, I can go to <b >Room B-55 </b >, but the long passageway to <b >Room B-53 </b >is hidden. Thick stalagtites hang obscenely in the oppressive gloom, obscuring my vision above.
+
+[[Go East->55]]
+
+
+
+:: 53 [Item-Room] {"position":"850,2850","size":"100,100"}
+!!! Room B-53
+The statue of a strange monster has been placed in the center of the room; it seems to be offering the beam weapon placed in its stone arms. It's the Ice Beam.
+
+<<if $items.includes("Ice Beam ")>>I currently have the Ice Beam. Therefore, it is pointless to take it now. Eventually there might be a time when I will need it, but for now, I leave it placed in the room as it is.<<else>><<linkreplace "Take Ice Beam">><<run setup.grantItem("Ice Beam ")>><span style="color:blue">Ice Beam collected.</span><</linkreplace>><</if>>
+
+Ice Beam collected, I consider which other room to go to from here. However, the tunnel from the North I just used is a one-way passage, and I can't go through it. [[I go through the other passageway leading South to Room B-50.->50]]
+
+
+
+:: 63 [Item-Room] {"position":"1100,6350","size":"100,100"}
+!!! Room B-63
+<<if hasVisited("63")>><<else>>I fire Missiles at the Red Door. The Red Door takes 2 Missiles, and <i ><span class="fx-rumble">KABOOM</span></i >, it opens. <<set $missiles = $missiles - 2>> I move forward and take a look.<</if>>
+
+In the center of the room stands the figure of a strange creature fashioned from stone and perhaps modeled after one of the life-forms of this asteroid. An iron plate is embedded at its feet. On the plate is written information about the hidden rooms.
+
+<b >Attention Crew: Reminders for Entering Secret Rooms
+<i >Room B-61:</b >The Ice Beam can be used to reach high places.
+<b >Room B-67:</b >I've hidden the gate in the ceiling; check the <b >Room </b >.
+<b >Room B-74:</b >The wall is too weak for a ladder, so create your own.</i >I store this information into my computer.
+
+Beyond this, there is nothing else in the room. [[I go back South to Room B-58.->58]]

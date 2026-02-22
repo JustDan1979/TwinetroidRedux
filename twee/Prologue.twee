@@ -1,0 +1,71 @@
+﻿:: PROLOGUE [Prologue] {"position":"225,100","size":"100,100"}
+!! PROLOGUE
+<img src="assets/images/TitleScreen.webp">
+Welcome to the future.
+
+The era of Galactic Pioneering has come to a close, and the Galactic Federation has been established.
+
+In deep space, individuals calling themselves Space Pirates have been working in the shadows. There are stories of bands of thieves who roamed the oceans during Ancient Earth's Age of Exploration, and these Pirates have been named after those bands. Although the location of these heinous acts has changed to outer space, [[the Pirates have not changed one bit.->The Galactic Federation Police]]
+
+
+
+:: The Galactic Federation Police [Prologue] {"position":"350,100","size":"100,100"}
+The Federation Bureau organized the Galactic Federation Police to deal with the Pirates.
+
+However, space is vast, and the Space Pirates' military potential far exceeds that of the Federation Police. 
+
+Fed up and unable to capture the Space Pirates, the Federation Police finally posted bounties on their heads. By the time this policy became widespread, there was a profession called Space Warriors, better known as Space Hunters: in other words, bounty hunting had become socially acceptable.
+
+The Space Hunters began to flourish, and the Pirates began to unite. The small, weak Pirate organizations were amalgamated into one large, strong group. 
+
+[[And they became even more powerful.->A Terrible Discovery]]
+
+
+
+:: A Terrible Discovery [Prologue] {"position":"475,100","size":"100,100"}
+Now something terrible has happened!
+
+A bio-capsule containing a Metroid, a mysterious life-form that destroyed the civilization of the distant planet SR388, has been stolen by the Pirates. 
+
+The bio-capsule is a container growing the cell cultures of the Metroid. If the Metroid remains in this state of suspended animation, the Galaxy is safe. However, should it revive and start to multiply, [[the Metroid would be terror incarnate.->Metroids]]
+
+
+
+:: Metroids [Prologue] {"position":"600,100","size":"100,100"}
+!! Metroids
+
+At first glance, Metroids are just another species of aerial life-form. However, they have the ability to latch onto other creatures and absorb their life energy. Therefore, the Federation Bureau's Special Investigation Corps established a Metroid research team, which began studying them. 
+
+Metroids in suspended animation can be revived after being exposed to beta rays for a period of 24 hours. The research team took a sample from the bio capsule and revived it. However, that single Metroid annihilated the research team. The Federation Bureau was at last able to eradicate that one creature by sending in the entire Third Division of the Federation Army. There is one thing that can be said for certain about the Metroids: they are an ultimate life-form with tremendous energy and [[a vitality->A Bio-Weapon]] far beyond anyone's reckoning!
+
+
+
+:: The Planet Zebes [Prologue] {"position":"725,100","size":"100,100"}
+After a desperate search by the Federation Police, the Pirates' stronghold was discovered. It is an asteroid called Zebes. 
+
+Zebes is controlled by Mother Brain, an enormous computer in the center of the fortress that runs all mechanical functions of the fortified asteroid.
+
+The Federation Police mustered all of their forces to attack the fortress. 
+
+However, the Pirates'defenses could not be overpowered by a frontal assault. 
+
+[[All the power of the Federation Police accomplished nothing.->A Desperate Plan]]
+
+
+
+:: A Desperate Plan [Prologue] {"position":"850,100","size":"100,100"}
+So the Federation Police placed this task in the hands of a Space Hunter. 
+
+But this was no ordinary bounty. It came in the form of a commission sent directly from the Federation to Samus Aran, the strongest Space Hunter in the Galaxy and the one who has had the greatest success thus far. Furthermore, Samus was presented with an unbelievably large bounty. 
+
+However, this bounty will only be issued on the condition these orders are actually carried out [[successfully...->The Galaxy's Greatest Warrior, Samus Aran]]
+
+
+
+:: The Galaxy's Greatest Warrior, Samus Aran [Prologue] {"position":"975,100","size":"100,100"}
+!! The Galaxy's Greatest Warrior, Samus Aran
+<img src="assets/images/IntroSamus.webp"><br><br>Infused with cyborg implants throughout the entire body, Samus is a hero with superhuman abilities.
+
+The space suit Samus uses has the ability to absorb an enemy's power - however, more detailed information is not readily available. Nevertheless, so far, Samus has on numerous occasions completed missions that were said to be impossible. This Hunter has been called a modern-day hero, and while no one knows Samus's true identity, there are those who claim he is a man from Earth...
+
+[[Will Samus Aran be able to accomplish this mission safely?->Game Start]]

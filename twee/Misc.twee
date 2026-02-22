@@ -1,0 +1,1208 @@
+﻿:: StoryData
+{
+	"ifid": "641E7208-0EFE-4BB0-9DF7-5B94469C6031",
+	"format": "SugarCube",
+	"format-version": "2.36.1",
+	"start": "Start",
+	"zoom": 1
+}
+
+
+
+:: Brinstar Combat Test {"position":"350,850","size":"100,100"}
+You can fight what you want here.
+
+Geemer  <<linkreplace "Geemer  ">><<goto "Geemer">><</linkreplace>>
+Rio    <<linkreplace "Rio  ">><<goto "Rio">><</linkreplace>>
+Sidehopper  <<linkreplace "Sidehopper  ">><<goto "Sidehopper">><</linkreplace>>
+Zeb    <<linkreplace "Zeb  ">><<goto "Zeb">><</linkreplace>>
+Kraid's Sidehopper    <<linkreplace "Kraid's Sidehopper  ">><<goto "Kraid's Sidehopper">><</linkreplace>>
+Doublehopper  <<linkreplace "Doublehopper  ">><<goto "Doublehopper">><</linkreplace>>
+Kraid  <<linkreplace "Kraid  ">><<goto "Kraid">><</linkreplace>>
+[[01]]
+[[35]]
+[[37]]
+
+Get Varia <<linkreplace "Get Varia ">><<set $items = $items + [ "Varia "]>><</linkreplace>>
+Get Bombs <<linkreplace "Get Bombs ">><<set $items = $items + [ "Bombs "]>><</linkreplace>>
+
+Get Kraid Key Stone <<linkreplace "Get Kraid Key Stone ">><<set $items = $items + [ "KraidStone "]>><</linkreplace>>
+Get Ridley Key Stone <<linkreplace "Get Ridley Key Stone ">><<set $items = $items + [ "RidleyStone "]>><</linkreplace>>
+[[10]]
+<<set $GateOpen = 0; $KraidGate = 0; $RidleyGate = 0>>
+
+Get Normal Beam <<linkreplace "Get Normal Beam ">><<set $items = $items + [ "Normal Beam "]>><<set $items = $items - [ "Ice Beam ", "Wave Beam "]>> --You got Normal Beam<</linkreplace>>
+Get Ice Beam <<linkreplace "Get Ice Beam ">><<set $items = $items + [ "Ice Beam "]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>> --You got Ice Beam!<</linkreplace>>
+Get Wave Beam <<linkreplace "Get Wave Beam ">><<set $items = $items + [ "Wave Beam "]>><<set $items = $items - [ "Ice Beam ", "Normal Beam "]>> --You got Wave Beam<</linkreplace>>
+Get Screw Attack <<linkreplace "Get Screw Attack ">><<set $items = $items + [ "Screw Attack "]>><</linkreplace>>
+
+Get Missiles (10) <<linkreplace "Get Missiles (10)">><<run setup.grantMissilePod("90 ", 10)>><</linkreplace>>
+Get Missiles (20)  <<linkreplace "Get Missiles (20)">><<run setup.grantMissilePod("91 ", 20)>><</linkreplace>>
+Refill Missiles <<linkreplace "Refill Missiles ">><<set $missiles = $maxMissiles>><</linkreplace>>
+Lose All Missiles <<linkreplace "Lose All Missiles ">><<set $missiles = 0>><</linkreplace>>
+
+Get Energy Tank (30)<<linkreplace "Get Energy Tank (30)">><<run setup.refillEnergy()>><</linkreplace>>
+Get Energy Tank (60)<<linkreplace "Get Energy Tank (60)">><<run setup.refillEnergy()>><</linkreplace>>
+Refill Energy<<linkreplace "Refill Energy ">><<set $energy = $maxEnergy; $energy = $maxEnergy>><</linkreplace>>
+Dangerously Low <<linkreplace "Dangerously Low ">><<set $energy = 1>><</linkreplace>>
+
+<<set $location = "Brinstar ">>
+
+
+
+:: A Bio-Weapon {"position":"975,850","size":"100,100"}
+If the Pirates understood the power of the Metroid they stole, it would be disastrous. It is dreadful to imagine what would happen if the Pirates were to manufacture that life-form into a weapon and us it against the Galactic Federation... 
+
+[[Before that happens, it must be recaptured, no matter the cost.->The Planet Zebes]]
+
+
+
+:: A hidden link {"position":"1100,850","size":"100,100"}
+Double-click this passage to edit it.
+
+
+
+:: Secret Passage Instructions {"position":"600,975","size":"100,100"}
+<i >Brinstar Evacuation Procedure:</i >* Block the passage in <b >Room A-2 </b >with rock. Anyone who wants to get to Kraid will need explosives.
+* Place <b >Room A-32 </b >under lockdown. Cloak the entrance and seal the passage with Bomb-proof material, not weak alloy.
+* In <b >Room A-18 </b >, fill in the tunnel to the right of the "passage "with rubble. Mask it to look like natural.
+
+
+
+:: Debug Room Tourian {"position":"475,1975","size":"100,100"}
+Weclome to the Debug Room! Select your quest!
+
+[[Brinstar Combat Test]]
+[[Norfair Combat Test]]
+[[Tourian Test]]
+[[To seek the Holy Grail]]
+Break Energy <<linkreplace "Break Energy ">><</linkreplace>>
+
+<<set $energy = 30; $maxEnergy = 30; $missiles = 0; $items = [ "Normal Beam "]; $startRoom = "Debug Room "; $combat = 1; $MotherBrainHealth = 10; $displayMap = 1>>
+
+Brinstar Map <<linkreplace "Brinstar Map ">><<run setup.grantMapItem("BrinstarMap ")>> - Got it!<</linkreplace>>
+Norfair Map <<linkreplace "Norfair Map ">><<run setup.grantMapItem("NorfairMap ")>> - Got it!<</linkreplace>>
+Tourian Map <<linkreplace "Tourian Map ">><<set $items = $items + [ "TourianMap "]>> - Got it!<</linkreplace>>
+	<<set $maxEnergy = 30; $energy = $maxEnergy; $maxMissiles = 0; $missiles = $maxMissiles; $items = [ "Normal Beam "]; $missilePods = [ "0 "]; $energyPacks = [ "0 "]; $startRoom = "01"; $combat = 1; $Beam = "Normal Beam "; $Bombs = ""; $Varia = ""; $ScrewAttack = ""; $MotherBrainHealth = 10; $combat = 1; $displayStats = 1; $location = "Brinstar "; $displayMap = 1>>
+
+
+
+:: Title Screen {"position":"100,2350","size":"100,100"}
+<div class="title-card">
+  <div class="title-links">
+    <<link "Start">><<set $uiBarOpenOnStart = 1>><<goto "PROLOGUE">><</link>><br>
+    [[Information]]
+  </div>
+</div>
+<<set $displayStats = 0; $displayMap = 0>>
+
+
+
+:: Information {"position":"115,2475","size":"100,100"}
+!!! Information
+This version is adapted from the original *Twinetroid* by Devin Monnens, presented by The Metroid Database.
+
+!!! Instructions
+* Explore the labyrinthine corridors of Zebes to find the Mother Brain and retrieve the Metroid Capsule.
+* Fight your way through the monsters infesting the maze...but sometimes it is better to run than fight!
+* Combat results are randomly generated. Different weapons will increase your odds of winning and change the types of power-ups enemies leave behind.
+* Zebes is riddled with secret passages. Use your mouse to locate hidden links within the text. Some can be tricky to find!
+* You can save your game in Elevator Rooms. The game will also automatically save your progress in other points.
+The game tracks your progress. However, the Map may load a bit more slowly on some computers than others.
+
+!!! About
+<i >Twinetroid </i >is based on <i >Metroid: Zebesian Incursion </i >, Volume 5 of the <a href="https://ja.wikipedia.org/wiki/%E5%86%92%E9%99%BA%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%96%E3%83%83%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE1986%E5%B9%B4%E5%88%8A%E8%A1%8C%E4%BD%9C%E5%93%81 ">Famicom Adventure Game Book </a >series published in Japan from 1986-1991. These are essentially Choose Your Own Adventure books based on Nintendo games. The original text was translated off and on over the course of several years before being converted to Twine in November 2018. 
+
+The text remains loyal to the spirit of the original, with a few alterations. For instance, Energy Tanks were called Energy Packs, and you used to have to fire four Missiles to escape from a Metroid rather than use Bombs. The room that describes how to defeat the Metroids was originally a death trap; now the Bombs have been moved here from the Map Room. Other oddities, like Zebes being an asteroid, were maintained from the original.
+
+The mechanics have also changed. The original used dice rolls for combat, and players had to keep track of their progress and item collection by filling out stats sheets and crossing off entries in the book. Combat was extremely tedious because the player had to flip through the book every time they chose a weapon or rolled the dice, and then they had to calculate their health and missile count. <i >Twinetroid </i >obviously automates these mechanics.
+
+One interesting feature of the original was the secret passages system. The player was given a map and told where secret rooms were located, but the chapter numbers were incomplete. For instance, you might be told there is a hidden passage leading to Room B-47, but given the chapter number of 1X4. You would have to flip through the book looking at each chapter (104, 114, etc.) until you found the one leading to B-47. Even the author admitted it was tedious, but it was the best way of simulating finding hidden passages.
+
+<i >Twinetroid </i >uses a hidden passage system as well, but since it's a text-based game, I've implemented a number of mechanics that resemble a lot of tricks the original used, such as bombable blocks, hidden passages, and fake lava. I hope you enjoy discovering these secrets for yourself!
+
+!!! Credits
+!! Metroid
+<b >Zebes Incursion Directive </b ><b >Original Staff </b ><==
+<i >Metroid: Zebes Shin-nyuu Shirei </i >Famicom Adventure Game Book #5
+January 5, 1987
+
+Planning/Composition: <a href="https://ja.wikipedia.org/wiki/%E5%A1%A9%E7%94%B0%E4%BF%A1%E4%B9%8B_(%E8%91%97%E4%BD%9C%E5%AE%B6)">Nobuyuki Shioda </a >(Studio Hard)
+Production: Ikeda Misa
+Text: Nobuyuki Shioda
+Illustrations: <a href="https://ja.wikipedia.org/wiki/%E6%9C%89%E5%9D%82%E9%A0%88%E7%BE%8E ">Arisaka Sumi </a >(c) Nintendo, 1986
+<b >Twinetroid </b ><==
+Translation and Programming: Devin Monnens
+
+Presented by: <a href="http://www.metroiddatabase.com ">The Metroid Database </a ><img src="assets/images/Gun.webp"><i >Twinetroid </i >v.1.03 (October 6, 2021) 
+(Fixed Room 35 bug)
+
+<i >History </i >v.1.02 (October 4, 2021) (Fixed Rio bug &Bomb Room bug, added an extra save point, updated negative Energy display.)
+v.1.01 (December 26, 2018)
+v.1.00 (December 24, 2018)
+
+[[Back->Title Screen]]
+
+
+
+:: About {"position":"225,2350","size":"100,100"}
+!!! About
+<i >Twinetroid </i >is based on <i >Metroid: Zebesian Incursion </i >, Volume 5 of the <a href="https://ja.wikipedia.org/wiki/%E5%86%92%E9%99%BA%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%96%E3%83%83%E3%82%AF%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE1986%E5%B9%B4%E5%88%8A%E8%A1%8C%E4%BD%9C%E5%93%81 ">Famicom Adventure Game Book </a >series published in Japan from 1986-1991. These are essentially Choose Your Own Adventure books based on Nintendo games. The original text was translated off and on over the course of several years before being converted to Twine in November 2018. 
+
+The text remains loyal to the spirit of the original, with a few alterations. For instance, Energy Tanks were called Energy Packs, and you used to have to fire four Missiles to escape from a Metroid rather than use Bombs. The room that describes how to defeat the Metroids was originally a death trap; now the Bombs have been moved here from the Map Room. Other oddities, like Zebes being an asteroid, were maintained from the original.
+
+The mechanics have also changed. The original used dice rolls for combat, and players had to keep track of their progress and item collection by filling out stats sheets and crossing off entries in the book. Combat was extremely tedious because the player had to flip through the book every time they chose a weapon or rolled the dice, and then they had to calculate their health and missile count. <i >Twinetroid </i >obviously automates these mechanics.
+
+One interesting feature of the original was the secret passages system. The player was given a map and told where secret rooms were located, but the chapter numbers were incomplete. For instance, you might be told there is a hidden passage leading to Room B-47, but given the chapter number of 1X4. You would have to flip through the book looking at each chapter (104, 114, etc.) until you found the one leading to B-47. Even the author admitted it was tedious, but it was the best way of simulating finding hidden passages.
+
+<i >Twinetroid </i >uses a hidden passage system as well, but since it's a text-based game, I've implemented a number of mechanics that resemble a lot of tricks the original used, such as bombable blocks, hidden passages, and fake lava. I hope you enjoy discovering these secrets for yourself!
+
+[[Back->Title Screen]]
+
+
+
+:: Credits {"position":"350,2350","size":"100,100"}
+!! Metroid
+<b >Zebes Incursion Directive </b ><b >Original Staff </b ><==
+<i >Metroid: Zebes Shin-nyuu Shirei </i >Famicom Adventure Game Book #5
+January 5, 1987
+
+Planning/Composition: <a href="https://ja.wikipedia.org/wiki/%E5%A1%A9%E7%94%B0%E4%BF%A1%E4%B9%8B_(%E8%91%97%E4%BD%9C%E5%AE%B6)">Nobuyuki Shioda </a >(Studio Hard)
+Production: Ikeda Misa
+Text: Nobuyuki Shioda
+Illustrations: <a href="https://ja.wikipedia.org/wiki/%E6%9C%89%E5%9D%82%E9%A0%88%E7%BE%8E ">Arisaka Sumi </a >'Nintendo, 1986
+<b >Twinetroid </b ><==
+Translation and Programming: Devin Monnens
+
+Presented by: <a href="http://www.metroiddatabase.com ">The Metroid Database </a ><img src="assets/images/Gun.webp"><i >Twinetroid </i >v.1.03 (October 6, 2021) 
+(Fixed Room 35 bug)
+
+<i >History </i >v.1.02 (October 4, 2021) (Fixed Rio bug &Bomb Room bug, added an extra save point, updated negative Energy display.)
+v.1.01 (December 26, 2018)
+v.1.00 (December 24, 2018)
+
+[[Back->Title Screen]]
+
+
+
+:: To seek the Holy Grail {"position":"475,2350","size":"100,100"}
+<<set $random = random( 1,3)>>
+	<<if $random == 1>>What is your favorite color? 
+	[[Blue]]<<elseif $random == 2>>What is capital of Assyria?
+	[[I don't know that!]]
+	<a href="https://en.wikipedia.org/wiki/Damascus ">Let me Google that for you...</a ><<else>>What is the airspeed velocity of an unladen swallow?
+	[[African or European Swallow?]]
+	[[I don't know that!]]<</if>>
+
+
+
+:: Blue {"position":"600,2350","size":"100,100"}
+<<set $random = random( 1,2)>>
+	<<if $random == 1>>[[Ok, you may go!->Debug Room Tourian]]<<else>>[[No, yellooooooooowww!!!->Debug Room Tourian]]<</if>>
+
+
+
+:: Yellow {"position":"725,2350","size":"100,100"}
+[[Ok, you may go!->Debug Room Tourian]]
+
+
+
+:: I don't know that! {"position":"850,2350","size":"100,100"}
+[[BLAAAAAAAAAAARRRRHHHH!!->Debug Room Tourian]]
+
+
+
+:: African or European Swallow? {"position":"975,2350","size":"100,100"}
+[[I don't know that!!]]
+<a href="http://style.org/unladenswallow/">Let me Google that for you...</a >
+
+
+
+:: I don't know that!! {"position":"1100,2350","size":"100,100"}
+Double-click this passage to edit it.
+
+
+
+:: 63 B [Item-Room] {"position":"1100,2475","size":"100,100"}
+!!! Room B-63 - Norfair Map Room
+<<if hasVisited("63")>><<else>>I fire Missiles at the Red Door. The Red Door takes 2 Missiles, and <span class="fx-rumble">KABOOM</span>, it opens. <<set $missiles = $missiles - 2>><</if>>
+
+I move forward and take a look. In the center of the room stands the figure of a strange creature fashioned from stone and perhaps modeled after one of the life-forms of this asteroid. An iron plate is embedded at its feet. On the plate is a map of Norfair. (Norfair Map Acquired. I can now view the map below the Navigation Options.)<<run setup.grantMapItem("NorfairMap ")>>
+
+I store this information into my computer.
+
+Beyond this, there is nothing else in the room. [[I go back South to Room B-58.->58]]
+
+
+
+:: Norfair Combat Test {"position":"350,2975","size":"100,100"}
+You can fight what you want here.
+
+Geruda  <<linkreplace "Geruda  ">><<goto "Geruda">><</linkreplace>>
+Holtz  <<linkreplace "Holtz  ">><<goto "Holtz">><</linkreplace>>
+Multiviola  <<linkreplace "Multiviola  ">><<goto "Multiviola">><</linkreplace>>
+Dessgeega  <<linkreplace "Dessgeega  ">><<goto "Dessgeega">><</linkreplace>>
+Ridley  <<linkreplace "Ridley  ">><<goto "Ridley">><</linkreplace>>
+Fight Ridley  <<linkreplace "Fight Ridley  ">><<goto "Fight Ridley">><</linkreplace>>
+[[41]]
+[[76]]
+[[71]]
+[[58]]
+
+Repeat-Click tests
+[[74]]
+[[68]]
+
+Get Varia <<linkreplace "Get Varia ">><<set $items = $items + [ "Varia "]>><</linkreplace>>
+Get Bombs <<linkreplace "Get Bombs ">><<set $items = $items + [ "Bombs "]>><</linkreplace>>
+
+Get Normal Beam <<linkreplace "Get Normal Beam ">><<set $items = $items + [ "Normal Beam "]>><<set $items = $items - [ "Ice Beam ", "Wave Beam "]>> --You got Normal Beam<</linkreplace>>
+Get Ice Beam <<linkreplace "Get Ice Beam ">><<set $items = $items + [ "Ice Beam "]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>> --You got Ice Beam!<</linkreplace>>
+Get Wave Beam <<linkreplace "Get Wave Beam ">><<set $items = $items + [ "Wave Beam "]>><<set $items = $items - [ "Ice Beam ", "Normal Beam "]>> --You got Wave Beam<</linkreplace>>
+Get Screw Attack <<linkreplace "Get Screw Attack ">><<set $items = $items + [ "Screw Attack "]>><</linkreplace>>
+
+Get 2 Missiles <<linkreplace "Get 2 Missiles ">><<run setup.grantMissilePod("92 ", 2)>><</linkreplace>>[|SamusMissiles >[$missiles]]
+Get 2 Missiles <<linkreplace "Get 2 Missiles ">><<run setup.grantMissilePod("93 ", 2)>><</linkreplace>>[|SamusMissiles >[$missiles]]
+Get 2 Missiles <<linkreplace "Get 2 Missiles ">><<run setup.grantMissilePod("94 ", 2)>><</linkreplace>>[|SamusMissiles >[$missiles]]
+Get Missiles (10) <<linkreplace "Get Missiles (10)">><<run setup.grantMissilePod("95 ", 10)>><</linkreplace>>
+Get Missiles (20)  <<linkreplace "Get Missiles (20)">><<run setup.grantMissilePod("96 ", 20)>><</linkreplace>>
+Refill Missiles <<linkreplace "Refill Missiles ">><<set $missiles = $maxMissiles>><</linkreplace>>
+Lose All Missiles <<linkreplace "Lose All Missiles ">><<set $missiles = 0>><</linkreplace>>
+
+Get Energy Tank (30)<<linkreplace "Get Energy Tank (30)">><<run setup.refillEnergy()>><</linkreplace>>
+Get Energy Tank (60)<<linkreplace "Get Energy Tank (60)">><<run setup.refillEnergy()>><</linkreplace>>
+Refill Energy<<linkreplace "Refill Energy ">><<set $energy = $maxEnergy; $energy = $maxEnergy>><</linkreplace>>
+Dangerously Low <<linkreplace "Dangerously Low ">><<set $energy = 1>><</linkreplace>>
+
+<<set $location = "Norfair "; $displayMap = 1>>
+
+
+
+:: Go and take it {"position":"1225,3975","size":"100,100"}
+The instant I take the Key Stone, the door behind me closes with a clang. In addition, the Key Stone I tried to take is a forgery. I fell into the trap hook, line, and sinker. I can't get out of this room.
+
+<<if $items.includes("Bombs ")>>[[Lay a Bomb->Use Bombs to Escape]]<</if>>
+<<if $missiles >1>>[[Fire Missiles->Use Missiles to Escape]]<</if>>
+
+
+
+:: Wait and see what happens {"position":"100,4100","size":"100,100"}
+I wait and see what happens and hear a noise behind me. Ridley?!
+
+[[Turn around to face him and make an attack->Turn Around and Attack Ridley]]
+[[Take a step forward, then turn around so I can make a sudden attack->Fell in a Trap]]
+
+
+
+:: Use Bombs to Escape {"position":"225,4100","size":"100,100"}
+I search for a thin part of the wall with my Radar and set some Bombs there. The room is inundated by a series of three explosions. The thin wall is blown back. Instantly, a dense cloud of dust billows up. [[I successfully created an exit.->Ridley Appears]]
+
+
+
+:: Use Missiles to Escape {"position":"350,4100","size":"100,100"}
+I search for a thin spot on the surface of the wall with my Radar. I face that spot and fire Missiles. <span style="color:red">(-2 Missiles)</span><<set $missile = $missile - 2>>
+
+<i ><span class="fx-rumble ">ZOOM, ZOOM.</span></i >As if hitting a beat, I fire the Missiles in succession. A dense cloud of dust boils up. [[I succeed in opening an exit.->Ridley Appears]]
+
+
+
+:: Fell in a Trap {"position":"600,4100","size":"100,100"}
+However, this room is a trap. Just as I take a step forward, the doors to the entrance behind me close, and I am shut in. The stone sitting on the table is a forgery made from some kind of plastic material. If I can't get out of this room...
+
+<<if $items.includes("Bombs ")>>[[Use Bombs->Use Bombs to Escape]]<</if>>
+<<if $missiles >1>>[[Use Missiles->Use Missiles to Escape]]<</if>>
+
+
+
+:: Open Yellow Door 1 {"position":"600,4725","size":"100,100"}
+I launch Missiles into the Yellow Door. One, two, three' The fourth Missile explodes, and with a loud <i ><b ><span class="fx-rumble ">BOOM</span></i ></b >, the door opens up to enormous black hole.<<set $missiles = $missiles - 4>><<set $yd1 = 1>> (<span style="color:red ">-4 Missiles</span>)
+
+[[I proceed to the next room, <b >C-82 </b >.->82]]
+
+
+
+:: Open Red Door 1 {"position":"725,4725","size":"100,100"}
+I fire Missiles at the door. When I drive 2 shots into it, the door crumbles down. (<span style="color:red ">-2 Missiles</span>)<<set $missiles = $missiles - 2>><<set $rd1 = 1>>
+
+I can now proceed North to <b >Room C-84 </b >, or else go back South to <b >Room C-82 </b >.
+
+[[Go North->84]]
+[[Return South->82]]
+
+
+
+:: Open Red Door 2 {"position":"850,4725","size":"100,100"}
+I fire Missiles into the Red Door on the North side of the room. When 2 Missiles explode into the door, it can no longer bear the force, and a large hole crumbles open. (<span style="color:red ">-2 Missiles</span>)<<set $missiles = $missiles - 2>><<set $rd2 = 1>>
+
+Reviewing my current amounts of Energy and Missiles, should I keep moving forward? Or is it better to pull back and stock up?
+
+[[Keep going to the next room->89]]
+[[Pull back for now->87]]
+
+
+
+:: Open Red Door 3 {"position":"975,4725","size":"100,100"}
+I fire a Missile at the Red Door on the South side of the room. This Red Door is the same as all previous ones, and is reduced to rubble with 2 Missiles. (<span style="color:red ">-2 Missiles</span>)<<set $missiles = $missiles - 2>><<set $rd3 = 1>>
+
+[[To head to the next room, go South->91]]
+[[To pull back for now, go back West->89]]
+
+
+
+:: Open Red Door 4 {"position":"1100,4725","size":"100,100"}
+I fire Missiles into this door, too. As usual, when I fire 2 Missiles into it, the door explodes, opening up a large hole. Somehow, this door's wreckage resembles the gaping maw of some foul beast. (<span style="color:red ">-2 Missiles</span>)<<set $missiles = $missiles - 2>><<set $rd4 = 1>>
+
+Should I move forward with my current equipment? Or is it better to turn back temporarily and fill up my Missiles?
+
+[[Move forward->92]]
+[[Turn back->90]]
+
+
+
+:: Escape to Elevator {"position":"600,4975","size":"100,100"}
+I somehow manage to fire Missiles into the Metroid. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>>
+
+At last, it takes damage and loosens the tentacles grabbing me. Not overlooking this chance, I successfully escape. Now I run away.
+
+The Ice Beam seems to be in a hidden room. My records confirm there are two of them.
+
+[[At any rate, I quickly board the elevator ascending to Brinstar.->11]]
+
+
+
+:: Hit by Guns {"position":"600,5100","size":"100,100"}
+I can't avoid Mother Brain's attack. The aim of the snake-like laser guns is dead-on. Their muzzles twinkle, and the moment they flash, my body takes the laser blast.
+
+Since the lasers don't have high output, one or two shots won't be a fatal wound, but I still take considerable damage from them. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-8 Energy)</span><<set $energy = $energy - 8>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
+
+I attempt to regain my balance.  <<linkreplace "I attempt to regain my balance.  ">>balance.<hr >{
+	<<set $random = random( 1,2)>>
+	<<if $random == 1>><<include "Recover Balance">><<else>><<include "Fall into Moat">><</if>>
+<</linkreplace>><</if>>
+
+
+
+:: Recover Balance {"position":"725,5100","size":"100,100"}
+When I absorb Mother Brain's attack, I stumble for a moment, and it seems as if I will fall into the moat. But I somehow manage to remain standing.
+
+Should I continue the attack? Or else, try again later after refilling my Missiles and Energy?
+
+<<if $missiles >0>>Continue the attack  <<linkreplace "Continue the attack  ">>attack<hr ><<include "Mother Brain">><</linkreplace>><</if>>
+Try again later  <<linkreplace "Try again later  ">><hr ><<include "Escape Mother Brain">><</linkreplace>>
+
+
+
+:: Attempt to Dodge Guns {"position":"975,5100","size":"100,100"}
+Can I avoid Mother Brain's attack?  <<linkreplace "Can I avoid Mother Brain's attack?  ">>attack?<hr >{
+	<<set $random = random( 1,3)>>
+	<<if $random == 3>><<include "Freeze Guns">><<else>><<include "Hit by Guns">><</if>>
+<</linkreplace>>
+
+
+
+:: Freeze Guns {"position":"1100,5100","size":"100,100"}
+The narrow snake-necked guns fire their laser beams at me. The attack is extremely accurate, but incredibly easy to predict.
+
+I freeze the cannons with the Ice Beam. However, they instantly thaw.
+
+I can keep fighting so long as my Missiles last.
+
+<<if $missiles >0>>Continue the attack  <<linkreplace "Continue the attack  ">>attack<hr ><<include "Mother Brain">><</linkreplace>><</if>>
+Try again later  <<linkreplace "Try again later  ">><hr ><<include "Escape Mother Brain">><</linkreplace>>
+
+
+
+:: Fall into Moat {"position":"1225,5100","size":"100,100"}
+The moment Mother Brain's attack hits, I pitch forward and fall into the moat completely surrounding her. The red liquid that fills the moat isn't blood, but an electrolytic fluid with energy-absorbing properties. While I am submerged in this liquid, my Energy drains drastically. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-8 Energy)</span><<set $energy = $energy - 8>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
+
+<<if $energy >19>>Freeze the electrolytes.  <<linkreplace "Freeze the electrolytes.  ">>electrolytes.<hr ><<include "Escape Moat">><</linkreplace>><<else>>Attempt to escape the moat.  <<linkreplace "Attempt to escape the moat.  ">>moat.<hr ><<include "Attempt to Escape Moat">><</linkreplace>><</if>><</if>>
+
+
+
+:: Escape Moat {"position":"100,5225","size":"100,100"}
+My Ice Beam freezes the liquid's electrolytes, creating a platform I can stand on.  With that, I escape the moat. No sooner have I escaped then the platform thaws into electrolytic fluid, once again transforming into an eerie trap.
+
+Given my current condition, should I continue to attack the Mother Brain or go back temporarily and refill my Missiles and Energy to try again later?
+
+<<if $missiles >0>>Fight as is  <<linkreplace "Fight as is  ">>is<hr ><<include "Mother Brain">><</linkreplace>><</if>>
+Try again later  <<linkreplace "Try again later  ">><hr ><<include "Escape Mother Brain">><</linkreplace>>
+
+
+
+:: Attempt to Escape Moat {"position":"225,5225","size":"100,100"}
+The moat is very deep, so I can't get out easily. I think I can jump out of the moat, but I can't quite reach the edge. I take massive damage. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-8 Energy)</span><<set $energy = $energy - 8>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
+
+I struggle to escape again.  <<linkreplace "I struggle to escape again.  ">>again.<hr >{
+	<<set $random = random( 1,3)>>
+	<<if $random == 1>><<include "Dissolved in Acid">><<else>><<include "Escape Moat">><</if>>
+<</linkreplace>><</if>>
+
+
+
+:: Tourian Test {"position":"600,5225","size":"100,100"}
+You can fight what you want here.
+
+Metroid  <<linkreplace "Metroid  ">><<goto "Metroid">><</linkreplace>>
+Metroid B  <<linkreplace "Metroid B  ">><<goto "Metroid B">><</linkreplace>>
+Rinka  <<linkreplace "Rinka  ">><<goto "Rinka">><</linkreplace>>
+Zebetite  <<linkreplace "Zebetite  ">><<goto "Zebetite">><</linkreplace>>
+Mother Brain  <<linkreplace "Mother Brain  ">><<goto "Mother Brain">><</linkreplace>>
+[[80]]
+[[91]]
+
+Get Varia <<linkreplace "Get Varia ">><<set $items = $items + [ "Varia "]>><</linkreplace>>
+
+Get Normal Beam <<linkreplace "Get Normal Beam ">><<set $items = $items + [ "Normal Beam "]>><<set $items = $items - [ "Ice Beam ", "Wave Beam "]>> --You got Normal Beam<</linkreplace>>
+Get Ice Beam <<linkreplace "Get Ice Beam ">><<set $items = $items + [ "Ice Beam "]>><<set $items = $items - [ "Normal Beam ", "Wave Beam "]>> --You got Ice Beam!<</linkreplace>>
+Get Screw Attack <<linkreplace "Get Screw Attack ">><<set $items = $items + [ "Screw Attack "]>><</linkreplace>>
+
+Get Missiles (10) <<linkreplace "Get Missiles (10)">><<run setup.grantMissilePod("97 ", 10)>><</linkreplace>>
+Get Missiles (30)  <<linkreplace "Get Missiles (30)">><<run setup.grantMissilePod("98 ", 30)>><</linkreplace>>
+Refill Missiles <<linkreplace "Refill Missiles ">><<set $missiles = $maxMissiles>><</linkreplace>>
+Lose All Missiles <<linkreplace "Lose All Missiles ">><<set $missiles = 0>><</linkreplace>>
+
+Get Energy Tank (30)<<linkreplace "Get Energy Tank (30)">><<run setup.refillEnergy()>><</linkreplace>>
+Get Energy Tank (60)<<linkreplace "Get Energy Tank (60)">><<run setup.refillEnergy()>><</linkreplace>>
+Refill Energy<<linkreplace "Refill Energy ">><<set $energy = $maxEnergy; $energy = $maxEnergy>><</linkreplace>>
+Dangerously Low <<linkreplace "Dangerously Low ">><<set $energy = 1>><</linkreplace>>
+
+<<set $location = "Tourian ">>
+
+
+
+:: Time Bomb Set {"position":"725,5225","size":"100,100"}
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
+	<<set $displayStats = 0>>
+	<<set $startRoom = "Time Bomb Set ">>
+	<<set $random = 1>>
+<==
+Suddenly, a nearby shrill alarm blares. It's Mother Brain's self-destruct sequence! Together with the alarm, the warning, 'Three Minutes until Zebes Destruction,' broadcasts. I must escape this asteroid before it explodes!
+
+Fortunately, I am saved the trouble of achieving my initial goal, finding the Metroid capsule. The capsule is hanging in a cluster of equipment behind Mother Brain. I collect the capsule. Currently, the Metroids here seem to have stopped reproducing as well.
+
+Behind Mother Brain is a secret passage through which I can escape Zebes. However, it seems to have been used already, and is so damaged as to be rendered useless. (As for who used it, there should have been Pirates on this asteroid. Since the escape appears to have been made quite awhile ago, I estimate it was used about the same time as when the Pirates obtained the Metroid capsule. While they were glad to have acquired the capsule, perhaps the Pirates bred too many Metroids here and escaped the asteroid when it became uninhabitable.) There was probably a set of stairs here originally, but now only the remnants of the stairwell and support struts are left.
+
+I must ascend to the top in time.
+
+If I can make it to the top, I can escape through the secret passage I used when I snuck into Zebes.
+
+However, I can't simply ascend. If I don't make full use of my advanced acrobatic skills, it will be difficult to ascend this escape route made of only the fragments of stairs and support struts.
+
+Climb the shaft.<<linkreplace "Climb the shaft.">>
+	<<set $random = random( 1,3)>>
+	<<if $random == 1>><<goto "Lose Your Footing">><<else>><<goto "Escaped the Bomb!">><</if>>
+<</linkreplace>>
+
+
+
+:: Lose Your Footing {"position":"850,5225","size":"100,100"}
+I ascend the escape hatch. However, when I hang my foot on the remains of a narrow support strut, the platform crumbles. Instantly my hand gropes for another brace, but there's no resistance.
+
+I fall. I'm right back where I started. I make the ascent one more time.
+
+However, time is slipping away. If I fail once more, there won't be enough time to do it again...
+
+Climb the shaft.<<linkreplace "Climb the shaft.">>
+	<<set $random = random( 1,2)>>
+	<<if $random == 1>><<goto "Escaped the Bomb!">><<else>><<goto "Failed to Escape">><</if>>
+<</linkreplace>>
+
+
+
+:: Escaped the Bomb! {"position":"1100,5225","size":"100,100"}
+<img src="assets/images/EscapeZebes.webp">I estimate I've ascended about 50 meters up the escape hatch. I spy a path leading off to the side. The escape hatch continues upward, but I sense something is down this side path and I can make it through there. I proceed and am convinced I made the correct choice. I pass through and somehow come out into the room from which I initially infiltrated Zebes. Now that I'm here, I should be able to escape quickly. There isn't much time left.
+
+I begin to move at once. I barely manage to reach to my tiny spaceship I had hidden upon first arriving on this asteroid and remove the camouflage covering it. I prime the engines and start them almost simultaneously. I take off from Zebes.
+
+Ten seconds after liftoff, Zebes is engulfed in an enormous explosion. I escaped by just a hair's breadth. Even at this distance, I feel the considerable force of the explosion. If I had delayed even a moment, it would have taken my life.
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
+<<set $startRoom = "An Unpleasant Discovery ">>
+<==
+[[Now, the remaining question is what to do with the Metroid capsule...->An Unpleasant Discovery]]
+
+
+
+:: An Unpleasant Discovery {"position":"1225,5225","size":"100,100"}
+<img src="assets/images/MetroidMutant.webp">I have to avoid subjecting the capsule to any unnecessary stress during transport, and it has been inside a small spacecraft. The capsule is extremely small. I placed it inside the cabin. I head there now.
+
+However, what awaits inside comes as a complete shock.
+
+Something is emerging from the capsule just as I enter the cabin. The capsule is a container no more than 50 cubic centimeters in size. However, when the Metroid comes out of the capsule, the figure that emerges is enormous, perhaps owing to some effect of the room.
+
+However, this creature is different from the Metroids I've seen before. Even among the Metroids, there are grotesque variants'mutants. I decide to call this creature the Metroid Mutant'and it has just crawled out of the capsule.
+
+The Metroid Mutant notices me. It looks me over slowly, then its enormous bulk vanishes from the room with surprising speed.
+
+Hurriedly, I freeze the capsule. No more of those things must ever come out again.
+
+However, the Metroid Mutant is already lurking within this spaceship. How should I defeat it?
+
+[[Chase after it immediately]]
+[[Think up a strategy]]
+
+
+
+:: Chase after it immediately {"position":"100,5350","size":"100,100"}
+In the end, I decide it is best to kill the thing as quickly as possible and chase after it. Though I was unprepared earlier and the creature escaped, I have a general guess as to the direction it took. It seems to have gone towards the ship's internal energy tanks.
+
+To check, I scan the room with my Command Computer's Radar. There it is. Strange life readings detected.
+
+However, this place is dangerous. If I fight and the energy tanks catch fire, it will be the end for me as well.
+
+What should I do?
+
+[[Just fight it]]
+[[Wait and see what happens->Observe the Metroid Mutant]]
+[[Go back to the cockpit for now and formulate a strategy->Think up a strategy]]
+
+
+
+:: Think up a strategy {"position":"225,5350","size":"100,100"}
+I go back to the cockpit for now to consider my situation and come up with a strategy. However, I have absolutely no data concerning the Metroid Mutant. The truth is, there's no point in devising a battle plan. [[Suddenly...->A Monster Outside the Cockpit]]
+
+
+
+:: A Monster Outside the Cockpit {"position":"350,5350","size":"100,100"}
+<i >WHAM!</i >Suddenly, a deafening noise echoes within the cockpit. Something is slamming its body into the cockpit entrance. 
+
+There are only two lifeforms aboard this spaceship. One of them is me. As for the other...obviously, it's the Metroid Mutant.
+
+The cockpit door is firmly shut. Whether the creature understands this or not, after awhile the sounds cease.
+
+Obviously I am the creature's objective. I will have to fight it. And, the thing is strong. It might be good to call for help. What should I do?
+
+[[Fight solo]]
+[[Call for help]]
+
+
+
+:: Just fight it {"position":"475,5350","size":"100,100"}
+I shoot the Metroid Mutant with the Ice Beam. However, the cold doesn't even phase it. This thing has the ability to resist the Ice Beam!
+
+And it's aboard my spaceship.
+
+However, this doesn't mean there's no other way to fight it.
+
+The Command Computer's shrill warning to turn off the engines blares. At the spur of the moment, I think of a strategy.
+
+The Metroid Mutant finishes feeding off the energy conversion device inside the tank. The energy conversion device changes energy into solid mass, allowing large amounts of energy to be loaded onto even a tiny spacecraft. What's more, this equipment can substantially decrease the mass's volume even further. 
+
+To the Metroid Mutant'that is, to Metroids'some things have characteristics similar to what can be called life-energy, and if a Metroid tries to consume something that uses that sort of energy, it should have the same effect. However, removing the energy conversion device will make it impossible to control the energy flow. There is an extremely high probability the engine would run out of control. 'No, it would <i >definitely </i >run wild.
+
+When the timing is right, the Metroid Mutant feeds on the conversion device. [[The creature's roar echoes throughout the ship.->Engine Overload]]
+
+
+
+:: Engine Overload {"position":"725,5350","size":"100,100"}
+However, at the same time, something strange is starting to happen to the engines. It looks like they will run out of control fairly quickly. Should I finish off the Metroid Mutant first, or stop the engines from overloading?
+
+[[Fight next]]
+[[Stop the engines from overloading]]
+
+
+
+:: Fight next {"position":"850,5350","size":"100,100"}
+There are no visible changes to the Metroid Mutant. However, I am certain it took at least some damage. I fire the Ice Beam into the thing (it won't freeze the creature, but it will deal more damage than the Normal Beam). Although the Metroid Mutant packs some serious power, eventually the energy conversion device does its work, and [[the Metroid Mutant runs from my Ice Beam.->Engine Going Critical]]
+
+
+
+:: Stop the engines from overloading {"position":"975,5350","size":"100,100"}
+First I will stop the engines from running wild. I'll have to take emergency measures to shut off the energy conversion device, but it should prevent a crisis. Unfortunately, I'm not paying attention, and am rushed by the Metroid Mutant, which I thought had been feeding off the energy conversion device.
+
+However, the creature seems to have taken some damage, too. Its movements have slowed. But that won't stop its attack.
+
+Should I fight the Metroid Mutant or run away?
+
+[[Fight->Fight the Metroid Mutant]]
+[[Run->Run from the Metroid Mutant]]
+
+
+
+:: Engine Going Critical {"position":"225,5475","size":"100,100"}
+The out of control engine is ramping up to its limits at full speed. The squeals of an overload start ringing throughout the ship. Now the only sounds coming from the engine are abnormal. There is no way to prevent this ship from exploding.
+
+Before that happens, I must get to the escape pod. But first, what should I do about the Metroid Mutant?
+
+[[Escape immediately]]
+[[Finish off the Metroid Mutant next]]
+
+
+
+:: Escape immediately {"position":"350,5475","size":"100,100"}
+I realize that if I just ignore the Metroid Mutant, the whole situation will be resolved when my ship explodes. In any event, I should escape.
+
+I run for the escape pod. I check that the creature isn't around and go inside. The escape pod is a one-man, narrow, cylindrical space pod. Only a small nozzle is attached, providing almost no maneuverability, as it is made entirely for escape. I immediately escape from my ship upon boarding the pod.
+
+My spaceship detonates in the distance. The soundless explosion is beautiful and serene.
+
+However, when I escaped the ship, I also left behind the frozen capsule. Now, I can only transmit a rescue signal and wait for help to come...
+
+[[That was an exhausting battle...->An Unwanted Hitchhiker]]
+
+
+
+:: Fight solo {"position":"600,5475","size":"100,100"}
+Suddenly, a warning blares. The computer explains the Metroid Mutant has penetrated the room holding the energy tanks and the energy is out of control. I display the Energy Room on the monitor.
+
+However, a single glance at the image reveals I am too late. Immediately, the picture cuts out, probably rendered nonoperational due to the high temperatures.
+
+I decide to board the escape pod and flee the ship.
+
+I head through the passage on the side of the cockpit, and come out to the escape pod. I immediately start the engines, and the pod slowly separates from the ship.
+
+<i >'KABOOM!</i >The spacecraft scatters into space in a soundless firework. [[But I wonder...what happened to the Metroid Mutant?->An Unwanted Hitchhiker]]
+
+
+
+:: Call for help {"position":"725,5475","size":"100,100"}
+I broadcast a distress signal on all frequencies...however, it may be a long time before help actually arrives. I have no idea how long it will take.
+
+At that moment, my Command Computer barks a warning. It states the Metroid Mutant has penetrated the room where the oxygen tanks are stored. Indeed, when I look at my Radar, the creature's readings are coming from the direction of the Oxygen Storage Room.
+
+I wonder if the thing took this action knowing I would die if my oxygen supply was cut off. If so, the oxygen tanks are in danger.
+
+[[Go protect the oxygen tanks]]
+[[Barricade yourself in the room]]
+
+
+
+:: An Unwanted Hitchhiker {"position":"850,5475","size":"100,100"}
+<i >CLANK.</i >Sounds. Impossible!!
+
+I have a bad feeling about this. I go see what is making those noises.
+
+Sure enough, my worst fears are confirmed. I don't know how the thing got inside, but the Metroid Mutant is right there.
+
+I don't know whether or not the creature has real eyes, so although it's a somewhat amusing thought, at that moment, the Metroid Mutant and I are staring at each other.
+
+Eye to eye... As enemies.
+
+There is an airlock by my right hand. I can eject the creature into space. Of course, I can also leap out into space myself.
+
+[[Eject the Metroid Mutant]]
+[[Go out myself]]
+
+
+
+:: Go out myself {"position":"1100,5475","size":"100,100"}
+I open the airlock. The air pressure inside the escape pod drops abruptly. Simultaneously, I go outside alone, and the airlock closes again. This means the Metroid Mutant is locked inside.
+
+However, at that moment, something astonishing occurs
+
+My tiny escape pod is enveloped by an enormous spacecraft.
+
+'It is a Pirate ship. What's more, it belongs to the band that had lived on Zebes.
+
+[[Board the Pirate ship]]
+[[Run->Run from the Pirates]]
+
+
+
+:: Board the Pirate ship {"position":"100,5600","size":"100,100"}
+I somehow get aboard successfully. At the proper moment, I let myself be discovered on purpose and become [[a prisoner of the Pirates.->A Prisoner of the Pirates]]
+
+
+
+:: However, I can't let my guard down just yet. {"position":"225,5600","size":"100,100"}
+<img src="assets/images/PirateWhale.webp">At this moment, one more threat is approaching the escape pod.
+
+If I think of this escape pod as an ordinary fish, the spaceship looming over the pod is as big as a whale. On the side of that spaceship, a skull and crossbones have been intricately drawn.
+
+Considering the sector of space I'm in, could these be the band of Pirates who made Zebes their stronghold'in other words, the ones who stole the Metroid capsule?
+
+...When I successfully threw the Metroid Mutant outside, I felt a great sense of relief.
+
+...However, I haven't lost my nerve. If I meet the Pirates here, I should be able to talk to their boss and solve the riddle of how Zebes became the way it was. [[I allow myself to be captured by the Pirates.->A Prisoner of the Pirates]]
+
+
+
+:: A Prisoner of the Pirates {"position":"350,5600","size":"100,100"}
+	<i ><span style="color:yellow ">GAME SAVED</span></i ><<save "Slot A">>
+<<set $startRoom = "A Prisoner of the Pirates ">>
+
+<==
+Although they are Pirates, it seems they want to question me and immediately take me to the man who is their boss. Despite being their boss, this man doesn't seem to be all that clever.
+
+When I am wearing my helmet, I am unable to speak. The Pirates seem to wonder why I don't say anything. Since I am currently bound hand and foot in chains before the Boss's chair, there isn't anything I can do about it. Moreover, the Metroid capsule has also come into the hands of the Pirates.
+
+'Take off his helmet,' the Boss says.
+
+[[Several of his underlings take off my helmet...]]
+
+
+
+:: Go protect the oxygen tanks {"position":"475,5600","size":"100,100"}
+I head towards the oxygen storage room. The Metroid Mutant floats inside mockingly'the thing was expecting me...
+
+Abruptly, I fire the Ice Beam at the Metroid Mutant. Although I know the Ice Beam doesn't have much stopping power against the creature, it's better than firing off a Missile in the narrow confines of the ship. But that doesn't mean my weapon is completely ineffective. The beam seems to slow the creature's movements a little. However, I can't keep this up for long... <<linkreplace "However, I can't keep this up for long...">>
+	<<set $random = random( 1,3)>>
+	<<if $random == 3>><<goto "A Metroid Mutant Meal">><<else>><<goto "Saved by Pirates?">><</if>>
+<</linkreplace>>
+
+
+
+:: Barricade yourself in the room {"position":"600,5600","size":"100,100"}
+When I barricade myself in the cockpit, alarms fill the room. Of course, they warn the oxygen tanks have taken damage. Since I have been disregarding them until now and intend to stay put until rescue comes, I ignore these alarms, too.
+
+Perhaps because the it has become impatient, the Metroid Mutant comes back to the cockpit. However, this time the creature has learned from before. Before I realize what's happening, the thing has carried over the magnetic field line generator from the Navigational Engine Room and is now undoing the cockpit's electromagnetic lock. If the Metroid Mutant's gets even more intelligent, it is easy to predict that the lock will soon be undone. And if the lock is opened, I will have to either fight the Metroid Mutant or use the escape pod to flee the ship.
+
+<i >CRACK.</i >The electric lock opens wider and wider...
+
+[[Fight->Fight the Metroid Mutant in the Cockpit]]
+[[Escape->Use the Escape Pod]]
+
+
+
+:: Use the Escape Pod {"position":"850,5600","size":"100,100"}
+The cockpit's double layered ceramic door opens with a <i >BANG.</i >Facing me is, of course, the Metroid Mutant.
+
+I turn around and flee. I will have to use the escape pod on the side of the cockpit in order to escape the ship...
+
+The Metroid Mutant raises a cry of surprise. It seems to know I am trying to escape and closes in with a vengeance. 
+
+I open the door, escaping by a hair's breadth. Several seconds of silence fill the space.
+
+What's the creature doing? Has it given up?  Since the door is locked, I shouldn't have anything to worry about. But I'm still uneasy.
+
+The escape pod's nozzle light flares up. Slowly, it separates from the ship. The ship gets further and further away.
+
+As time passes, I grow worried about whether I was able to leave the Metroid Mutant behind. Perhaps the thing has hidden itself in some corner of the escape pod. [[I fear this may be the case...->An Unwanted Hitchhiker]]
+
+
+
+:: Captured for Execution {"position":"975,5600","size":"100,100"}
+I have been captured by the Pirates. This had been their plan from the very beginning.
+
+I do not resist.
+
+And why not? I've determined this band are the same ones who captured the Metroid capsule, the people who escaped Zebes. [[They intend to bring me to their leader and cut off my head.->A Prisoner of the Pirates]]
+
+
+
+:: Saved by Pirates? {"position":"1225,5600","size":"100,100"}
+Just as I feared, attacking with just the Ice Beam has no effect. The Metroid Mutant is slowly building up resistance to the attack. The creature closes in. Already, the Ice Beam is losing its effect.
+
+...However, at that moment, something unexpected happens. Well, it wasn't completely outside the realm of possibility. However, it was still a surprise.
+
+I hear a beep from the communications terminal, and extremely gruff voice yells, '<i >Heey!</i >Who sent out that distress call? We've come to rescue you!'
+
+I check the ship's external monitor. There's a ship jumping in right on top of me. On the side of the ship is an intricately drawn skull and crossbones'it's a Pirate ship.
+
+Well, this is a surprisingly narrow escape from death. The Metroid Mutant has disappeared, perhaps startled by the [[yelling.->Captured for Execution]]
+
+
+
+:: Several of his underlings take off my helmet... {"position":"600,5725","size":"100,100"}
+<img src="assets/images/HelmetOff.webp">For several minutes, the Pirate underlings struggle with my helmet, which is firmly in place. Nevertheless, they somehow unfasten the lock. Little by little, they raise my helmet, and a feeling of disbelief spreads among the Pirates.
+
+...What they see is beyond their wildest imaginations.
+
+They are able to hear my voice for the first time.
+   
+[["Yes. As you can see, I am a woman from Earth."]]
+
+The Pirates stand there in disbelief, unable to either move or speak.
+
+At length, the Boss says weakly, 'Y...you destroyed Zebes...? A woman...?'
+
+The man is horrified. However, this clearly is my chance. Suddenly, I power up my cyborg-enhanced arms to the limit. The chains that firmly bind me creak and shatter.<<linkreplace "The chains that firmly bind me creak and shatter.">>
+	<<set $random = random( 1,2)>>
+	<<if $random == 1>><<goto "Metroid Mutant Attacks the Pirates">><<else>><<goto "Secret Identity Revealed">><</if>>
+<</linkreplace>>
+
+
+
+:: Take advantage of the situation and escape {"position":"850,5725","size":"100,100"}
+I knee the man in front of me, simultaneously using my elbow to strike the man to my left on the chin. The two scream, and the attention of the crewmen facing the ship's internal monitor returns to me again.
+
+So I don't get overpowered again, this time I mercilessly drive my attacks into the vitals of solar plexus, forehead, knee, and groin. A breach opens. The crowd in front of me thins. 
+
+A crewman cries out, 'The lifeform is coming into the command room!'
+
+Again they turned to their attention towards the door. Not missing my chance, I rush through the breach without stopping.
+
+I successfully escape. The crew aren't interested in pursuing. [[They are feverishly preparing for the Metroid Mutant.->An Important Decision]]
+
+
+
+:: Watch what happens {"position":"975,5725","size":"100,100"}
+A crewman calls on the ship's internal monitor, 'The monster is heading for the control room!'
+
+Veins bulge out on the Boss's face. 'You there! Fight it!' he bellows.
+
+Each one of the Pirates responds in unison, 'Aye!' their voices dull.
+
+Their opponent in this battle is the Metroid Mutant. This enemy is no match even for me. I consider working together with the Pirates and defeat the creature...
+
+[[Fight the Metroid Mutant together]]
+[[Don't lend a hand]]
+
+
+
+:: Secret Identity Revealed {"position":"1100,5725","size":"100,100"}
+Now that the fact I am a woman is revealed, I forget all thoughts of speaking with the Boss, and choose that moment to run. It turns out the Boss is the type who doesn't understand what a leader should do, and there's really nothing I can do about that.
+
+I consider that as I walk around the ship, trying to discover some means of escape, when [[suddenly, I come upon something I didn't expect to find here...->An Unfortunate Discovery]]
+
+
+
+:: An Unfortunate Discovery {"position":"1225,5725","size":"100,100"}
+'It is the Metroid Mutant. The creature is feeding on a Pirate. 
+
+That thing has also come aboard the Pirate ship.
+
+The Metroid Mutant notices me. The creature seems a little taken aback as well at seeing me without my helmet, but then remembers that I am its arch-nemesis.
+
+The creature approaches slowly.<<linkreplace "The creature approaches slowly.">>
+	<<set $random = random( 1,2)>>
+	<<if $random == 1>><<goto "Bashed by the Mutant">><<else>><<goto "Battleus Interruptus">><</if>>
+<</linkreplace>>
+
+
+
+:: Suddenly... {"position":"225,5850","size":"100,100"}
+An alarm blares through the entire ship. Instantly, the Metroid Mutant and I stop in our tracks. What is the reason for this alarm? Perhaps it is due to my escape. Or perhaps it is because the Metroid Mutant has invaded the ship.
+
+'I consider this this, but remember now is not the time for reflection.
+
+Should I keep fighting the creature, or run?
+
+[[Fight->Fight the Mutant Now]]
+[[Run->Run from the Mutant]]
+
+
+
+:: Battleus Interruptus {"position":"350,5850","size":"100,100"}
+The Metroid Mutant flies at me. However, I feel now is not the time to fight it. When it comes time for me to have a showdown with the creature, that will be the'final battle.'
+
+[[Suddenly...->Suddenly...]]
+
+
+
+:: Pirates Investigate {"position":"725,5850","size":"100,100"}
+That alarm seems to be in response to the Metroid Mutant. Hearing the Missile's explosion, Pirates enter the room one after another. Then they see the Metroid Mutant and attack. However, the difference in their reflexes is too great, and they only fall victim to the creature. The Metroid Mutant grabs hold of the Pirates one by one, squeezes out their final drop of life energy, and repeats this bloodbath again. 
+
+[[I turn pale at the sight and flee the scene at once.->An Important Decision]]
+
+
+
+:: An Important Decision {"position":"975,5850","size":"100,100"}
+I flee, but consider what to do from here. As a means of fleeing the ship, my best bet is to locate a small spacecraft, steal it as quickly as possible, and escape. In that case, if I just move quickly, I'll definitely make good time.
+
+However, the Metroid capsule is still stolen. I still want to go back and get it. However, if I go, my chances of escaping will dwindle.
+
+What should I do?
+
+[[Go and recover the capsule]]
+[[Escape Now]]
+
+
+
+:: Go and recover the capsule {"position":"1100,5850","size":"100,100"}
+<img src="assets/images/PirateBossSmoking.webp">Before anyone knew what hit them, the Metroid Mutant had annihilated almost all the Pirates. However, by the time I returned to the Control Room to retrieve the capsule, the Metroid Mutant had exhausted all its strength. Corpses lie strewn about in the center of the room. Beyond them is the capsule. In addition, there is a man who survived the battle and left his comrades all dead, smoking a cigarette. That man is the Pirate Boss.
+
+I tell him, [['I have come to take back the capsule.'->Grab Sword]]
+
+
+
+:: Escape Now {"position":"1225,5850","size":"100,100"}
+<img src="assets/images/MutantEscapeNow.webp">Already the interior of the ship has transformed into a hellish pandemonium. Wherever the Metroid Mutant passed by, not a single soul remains alive. I hurry to the ship's docking bay.
+
+Arriving at the dock, I am surprised to find the Metroid Mutant waiting for me. The creature came here in its tenacious pursuit. No matter where I might flee, the thing will follow, even to the furthest reaches of hell. I am its nemesis.
+
+Suddenly, that thought gives me an inspiration.
+
+Should I fight or run?
+
+Fight  <<linkreplace "Fight  ">>
+	<<set $random = random( 1,3)>>
+	<<if $random == 3>><<goto "Fend off the Metroid Mutant">><<else>><<goto "Fight Your Nemesis">><</if>>
+<</linkreplace>>
+[[Run->Flee the Ship]]
+
+
+
+:: Flee the Ship {"position":"100,5975","size":"100,100"}
+I run without stopping, thinking I can get aboard the small spacecraft and flee from this place.
+	<<set $random = random( 1,2)>>
+	<<if $random == 1>><<include "Bazooka Joe">><<else>><<include "Showdown">><</if>>
+
+
+
+:: Bazooka Joe {"position":"225,5975","size":"100,100"}
+I pretend to run away from the spacecraft, making a U-turn to go back to the docking bay entrance. However, when I get there, I discover this is where all my power suit equipment had been placed'along with a Gravity Bazooka for use on a powered suit.
+
+I load the bazooka with a speed that impresses even myself.
+
+Then I aim and fire.
+
+The recoil of a bazooka built for a power suit is incredible. It takes two sturdy men to hold one up and fire it. Even while wearing a space suit, lifting and firing it with just one arm would be completely impossible if I had not gotten cyborg implants.
+
+The bazooka hits its target. The Metroid Mutant is blown away by the tremendous impact. There is a span of several seconds until the creature can recover. [[In that time, I successfully get aboard the small spacecraft.->Mission Complete - Bad Ending]]
+
+
+
+:: Showdown {"position":"475,5975","size":"100,100"}
+I try to circle around, but can't get to the spaceship without a fight. Since there's no way I can run, [[I have to fight.->Fight Your Nemesis]]
+
+
+
+:: Don't lend a hand {"position":"850,5975","size":"100,100"}
+<img src="assets/images/MutantPirateDoor.webp">Cracks appear in the door. The Pirates quickly point all of their guns towards the portal.
+
+'The Metroid Mutant is already on the other side of the door to this room.
+
+The next time the creature slams into the door, it blows apart with a loud squeal. Instantly, interlaced beams of light flash from the Pirates'guns.
+
+However, the Pirates' resistance is pitiful. The power of lasers designed for use aboard a spaceship doesn't amount to much. Even the Ice Beam is ineffective, and the slight power of the laser beams is no match for their opponent.
+
+[[In the midst of battle, I escape unnoticed.->An Important Decision]]
+
+
+
+:: Duel to the Death {"position":"1225,5975","size":"100,100"}
+The Metroid Mutant stops moving entirely. Although it's possible the thing might revive, at any rate, it has been defeated. ...And the Pirates have also been completely annihilated.
+
+'No, there is one person with some fight left in him. ...It's that dimwitted Boss. He must be smarter than he looks. He knew what I was planning'[[I fired a Missile to annihilate the Metroid Mutant along with the Pirates.->Grab Sword 2]]
+
+
+
+:: MISSION COMPLETE [MISSION-COMPLETE] {"position":"225,6100","size":"100,100"}
+<img src="assets/images/GoodEnd.webp">After arriving at the docking bay, I manage to get aboard the small spacecraft and immediately escape. After I have gone a considerable distance, I target the Pirate ship and launch the large missile equipped on my spacecraft'destroying the Metroid Mutant, which I had left behind. 
+
+The large missile launches without a sound. It seems to flow towards its target. Upon impact, a brilliant white light envelops the Pirate ship. The ring of light expands infinitely large and thin. The light cycles through the spectrum, then finally contracts like a withering flower. And with that, it is over.
+
+I somehow managed to recovered the capsule, defeat the Metroid Mutant, and even annihilate the Pirates. I report my current status to Earth. In short, my mission is a success.
+
+I have finished my work and become drowsy. I enter the time it will take to reach Earth into the ship's computer and enter cold sleep.
+
+I become an embryo submerged in the amniotic fluid of space...
+
+[[MISSION COMPLETE!->Epilogue]]
+
+
+
+:: Epilogue {"position":"350,6100","size":"100,100"}
+!! EPILOGUE
+<==
+The darkness of space. A jet-black darkness. The void of space, like jet black velvet inset with glass beads. It is the outer edge of a small solar system. A little while ago, a small asteroid had been here. Until recently, that is. Now, it's gone. It was annihilated by a large burst of uncontrollable energy. There isn't even a trace left by this disturbance. Filling this space is only silence and darkness. 
+
+No, not entirely. 
+
+Something is worming its way within darkness. Something is there, moving stickily and persistently, creeping and squirming, seething with [[malice.->The Worm]]
+
+
+
+:: Fighting Spirit {"position":"475,6100","size":"100,100"}
+I possess a cyborg-enhanced body. My speed and power should surpass those of my opponent.
+
+...However, the Pirate Boss is strong. I'm lacking something. 
+
+...Zeal I'd have to call it.
+
+At this point, I am clearly losing. From here on, it seems certain my chances of victory have dropped below 50%. It might be better to just abandon the capsule.
+
+[[Abandon the capsule]]
+[[Don't give it up->Don't abandon it]]
+
+
+
+:: Abandon the capsule {"position":"600,6100","size":"100,100"}
+I try to abandon the capsule and run, but the Pirate Boss won't give me the opportunity. However, as luck would have it, my chance comes when my arch-nemesis, the Metroid Mutant, revives. Though the thing appeared to be dead, the Metroid Mutant stirs. The moment arises the instant the Boss notices it.
+
+Now is my chance. In the space of that moment, I escape. I speed towards the ship's internal dock where a small [[spacecraft->Escape Now]] is stored.
+
+
+
+:: A Desperate Fight {"position":"725,6100","size":"100,100"}
+The Pirate Boss is strong. With my cyborg-enhanced body, my speed and power seem to exceed his, but I am lacking something. Zeal...that's what I'd call it.
+
+At this moment, I am definitely losing. From here on, my chances of winning are just under 50%. It might be better to give up recovering the capsule and run for it.
+
+[[Abandon the capsule]]
+[[Don't abandon it]]
+
+
+
+:: Don't abandon it {"position":"850,6100","size":"100,100"}
+Nevertheless, I continue to fight, unwilling to give up the capsule.
+	<<set $random = random( 1,3)>>
+	<<if $random == 3>><<include "Metroid Mutant Revives">><<else>><<include "Skewered">><</if>>
+
+
+
+:: The Worm {"position":"1100,6100","size":"100,100"}
+If there was an atmosphere here, that air would have the consistency of tar, and there would be permeated with dread. 
+
+If this place were filled with water, that water would be instantly corrupted and filled with sludge, changing to a color of black and brown pus, an effect that would evoke every kind of physiological repulsion. 
+
+And the thing is alive. Without question, it is alive. Nothing should exist in the void of space almost at absolute zero, but beyond a shadow of a doubt, this thing is [[alive.->Lurks in the Darkness]]
+
+
+
+:: Seeking its Nemesis {"position":"1225,6100","size":"100,100"}
+It is a strong life-form. It has a morbid obsession with life.
+
+And, it wants things.
+
+Blood.<<linkreplace "Blood.">>
+
+Flesh.<<linkreplace "Flesh.">>
+
+Life.<<linkreplace "Life.">>
+
+Consciousness.<<linkreplace "Consciousness.">>
+
+Space.<<linkreplace "Space.">>
+
+Perhaps it even craves love.<<linkreplace "love.">>
+
+But above all, it is seeking its [[nemesis.->Mysterious Object]]<</linkreplace>><</linkreplace>><</linkreplace>><</linkreplace>><</linkreplace>><</linkreplace>>
+
+
+
+:: Lurks in the Darkness {"position":"350,6225","size":"100,100"}
+Furthermore, it is not a bacterium. This abnormal life-form leaves behind its offspring through asexual reproduction, but it is a fully developed higher order life-form. It possesses a definite consciousness.
+
+But it is a thing of evil.
+
+Before long, it impulsively inhales a deep breath. It absorbs the dust floating in the surrounding space. In that instant - whoosh! - it seems as though its body has been imbued with light. It may have actually glowed. This is a life-form that can rapidly convert to energy any material its body [[absorbs.->Seeking its Nemesis]]
+
+
+
+:: Tourian Gate Opened {"position":"725,6225","size":"100,100"}
+With both Key Stones inserted, the large gate slowly begins to rise, shaking dust and small rocks from the walls. It finishes with a dull <i >BOOM </i >that echoes through the haunted chamber. The way to Mother Brain is open.<<set $GateOpen = 1>>
+
+[[Go through the gate->11]]
+
+
+
+:: Statue Room Description {"position":"850,6225","size":"100,100"}
+The next chamber must lead to Mother Brain. However, this room has special Key Stones without which I cannot proceed further South. 
+
+Based on information from the Intelligence Bureau, the Key Stones cannot be collected unless I defeat the bosses in Areas A and B. <<if $KraidGate == 1 && $RidleyGate == 0>>Kraid's gate is open. I still need to insert <span style="color:purple ">Ridley's Key Stone.</span><</if>><<if $RidleyGate == 1 && $KraidGate == 0>>Ridley's gate is open. I still need to insert <span style="color:green ">Kraid's Key Stone.</span><</if>>
+
+At the base of the statues are slots where the stones can be inserted. These must have been used by Kraid and Ridley to enter Mother Brain's lair. The gate could only open if both bosses were present, protecting her from intruders...
+
+<<if $KraidGate == 0 && $items.includes("KraidStone ")>>Place Kraid's Key Stone in his statue. <<linkreplace "Place Kraid's Key Stone in his statue.">><span style="color:green ">Kraid's Key Stone</span> clicks into place. With a loud rumble, Kraid's statue shakes as it rises, shedding a cloud of dust. One of the locks on the gate opens with a <i >CLANG </i >. <<set $KraidGate = 1>><<if $RidleyGate == 1>><<include "Tourian Gate Opened">><</if>><</linkreplace>><</if>>
+
+<<if $RidleyGate == 0 && $items.includes("RidleyStone ")>>Place Ridley's Key Stone in his statue. <<linkreplace "Place Ridley's Key Stone in his statue.">><span style="color:purple ">Ridley's Key Stone</span> smoothly slides into place. Stone grinds on stone as Ridley's statue rises, filling the room with a deep growl. The statue triggers a mechanism, and one of the locks squeels open. <<set $RidleyGate = 1>><<if $KraidGate == 1>><<include "Tourian Gate Opened">><</if>><</linkreplace>><</if>>
+
+
+
+:: Show Map {"position":"1225,6225","size":"100,100"}
+|map >[<<include "Brinstar Map">>]
+
+
+|modalhooks >[]
+
+|map >[<<include "Brinstar Map">>]
+
+
+
+:: Brinstar Map {"position":"100,6350","size":"100,100"}
+<<set $Brinstar to [
+		00,00,00,00,00,00,00,00,00,
+		00,35,00,00,00,00,00,00,00,
+		00,35,35,36,31,19,00,00,00,
+		00,32,33,37,30,18,39,00,00,
+		00,28,34,38,29,17,40,00,00,
+		00,26,27,00,25,16,00,00,00,
+		00,24,23,14,12,13,15,00,00,
+		00,00,00,00,6,00,00,00,00,
+		00,00,8,7,5,4,00,00,00,
+		00,00,9,00,00,3,22,00,00,
+		00,00,10,00,00,2,20,21,00,
+		00,00,11,00,00,1,00,00,00,
+		00,00,00,00,00,00,00,00,00]>>
+<span style="font-family:Courier ">
+<<set $lineBreak = 10>>	(for: each _y, ...(range: 1, $Brinstar's length))[		<<set $i = $i + 1>>		<<if $i == $lineBreak>><br ><<set $lineBreak = $lineBreak + 9>><</if>>		<<set $number = ($i) of $Brinstar>>	<<if $Brinstar's (_y) == 00>><big >?<big ><<elseif $Brinstar's (_y) <10>>0$number<<else>>$number<</if>>]</span>
+<<set $i = 0>>
+
+
+
+:: Game Start {"position":"225,6350","size":"100,100"}
+<<set $maxEnergy = 30; $energy = $maxEnergy; $maxMissiles = 0; $missiles = $maxMissiles; $items = [ "Normal Beam "]; $missilePods = [ "0 "]; $energyPacks = [ "0 "]; $startRoom = "01"; $combat = 1; $Beam = "Normal Beam "; $Bombs = ""; $Varia = ""; $ScrewAttack = ""; $MotherBrainHealth = 10; $combat = 1; $displayStats = 1; $location = "Brinstar "; $displayMap = 1>>
+	
+<<goto "01">>
+
+
+
+:: Debug Room Brinstar [DEBUG-ROOM] {"position":"350,6350","size":"100,100"}
+Weclome to the Debug Room! Select your quest!
+
+[[Brinstar Combat Test]]
+[[Norfair Combat Test]]
+[[Tourian Test]]
+To seek the Holy Grail
+Break Energy <<linkreplace "Break Energy ">><</linkreplace>>
+
+<<set $energy = 30; $maxEnergy = 30; $missiles = 0; $items = [ "Normal Beam "]; $startRoom = "Debug Room "; $combat = 1; $MotherBrainHealth = 10>>
+	<<set $maxEnergy = 30; $energy = $maxEnergy; $maxMissiles = 0; $missiles = $maxMissiles; $items = [ "Normal Beam "]; $missilePods = [ "0 "]; $energyPacks = [ "0 "]; $startRoom = "01"; $combat = 1; $Beam = "Normal Beam "; $Bombs = ""; $Varia = ""; $ScrewAttack = ""; $MotherBrainHealth = 10; $combat = 1; $displayStats = 1; $location = "Brinstar "; $displayMap = 1>>
+
+
+
+:: DEBUG ROOM NORFAIR [DEBUG-ROOM] {"position":"475,6350","size":"100,100"}
+Weclome to the Debug Room! Select your quest!
+
+[[Brinstar Combat Test]]
+[[Norfair Combat Test]]
+[[Tourian Test]]
+[[To seek the Holy Grail]]
+Break Energy <<linkreplace "Break Energy ">><</linkreplace>>
+
+<<set $energy = 30; $maxEnergy = 30; $missiles = 0; $items = [ "Normal Beam "]; $startRoom = "Debug Room "; $combat = 1; $MotherBrainHealth = 10>>
+	<<set $maxEnergy = 30; $energy = $maxEnergy; $maxMissiles = 0; $missiles = $maxMissiles; $items = [ "Normal Beam "]; $missilePods = [ "0 "]; $energyPacks = [ "0 "]; $startRoom = "01"; $combat = 1; $Beam = "Normal Beam "; $Bombs = ""; $Varia = ""; $ScrewAttack = ""; $MotherBrainHealth = 10; $combat = 1; $displayStats = 1; $location = "Brinstar "; $displayMap = 1>>
+
+
+
+:: Grab Sword {"position":"600,6350","size":"100,100"}
+<img src="assets/images/SamusSword.webp">The Boss glances at me, raises an eyebrow in surprise, then stands slowly and takes two swords hanging on the wall. He tosses one of the swords to me. He wants to fight.
+
+I get the drift and accept the sword, then remove the Ice Beam from my arm and toss it aside.
+
+The Boss drops the cigarette he'd been smoking and stamps it out with the sole of his boot. Then he mutters quietly, 'Let's do this,' and rushes at me.<<linkreplace "rushes at me.">>
+	<<set $random = random( 1,3)>>
+	<<if $random == 3>><<goto "Metroid Mutant Revives">><<else>><<goto "Fighting Spirit">><</if>>
+<</linkreplace>>
+
+
+
+:: Grab Sword 2 {"position":"725,6350","size":"100,100"}
+<img src="assets/images/SamusSword.webp">The Boss tosses aside his gun, takes two swords hanging on the wall, and throws one of them to me. I catch the sword, and getting the gist of his actions, remove my Ice Beam.
+
+'Prepare yourself, little girl. You won't get out of here alive.'
+ 
+The battle between me and the Boss begins.<<linkreplace "The battle between me and the Boss begins.">>
+	<<set $random = random( 1,3)>>
+	<<if $random == 2>><<goto "Metroid Mutant Revives">><<else>><<goto "A Desperate Fight">><</if>>
+<</linkreplace>>
+
+
+
+:: New Mapper {"position":"850,6350","size":"100,100"}
+<<if $displayMap == 1>>		<<if $location == "Brinstar ">><<if $items.includes("BrinstarMap ")>><hr ><img src="assets/images/Brinstar2.webp"><</if>><</if>>	<<if $location == "Norfair ">><<if $items.includes("NorfairMap ")>><hr ><img src="assets/images/Norfair2.webp"><</if>><</if>><</if>>
+
+
+
+:: ME Mapper {"position":"1225,6350","size":"100,100"}
+<<if $displayMap == 1>><hr >Map <<linkreplace "Map ">><<include "More Efficient Mapper">><</linkreplace>><</if>>
+
+
+
+:: Instructions {"position":"100,6475","size":"100,100"}
+!!! Instructions
+
+* Explore the labyrinthine corridors of Zebes to find the Mother Brain and retrieve the Metroid Capsule.
+* Fight your way through the monsters infesting the maze...but sometimes it is better to run than fight!
+* Combat results are randomly generated. Different weapons will increase your odds of winning and change the types of power-ups enemies leave behind.
+* Zebes is riddled with secret passages. Use your mouse to locate hidden links within the text. Some can be tricky to find!
+* You can save your game in Elevator Rooms. The game will also automatically save your progress in other points.
+The game tracks your progress. However, the Map may load a bit more slowly on some computers than others.
+
+[[Back->Title Screen]]
+
+
+
+:: Start {"position":"725,6475","size":"100,100"}
+<<goto "Title Screen">>

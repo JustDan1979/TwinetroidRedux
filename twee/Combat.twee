@@ -1,4 +1,4 @@
-﻿:: Kraid {"position":"350,475","size":"100,100"}
+:: Kraid {"position":"350,475","size":"100,100"}
 <<set $displayMap = 0>><img src="assets/images/Kraid.webp">Although the Doublehopper was defeated, there is no time to relax. A saurian creature appears, covered with countless enormous spikes. It is slightly over three meters in height. The Command Computer says, 'This is Kraid.'
 
 Kraid's attack method is to hurl the spikes growing throughout its body as a weapon. Without any kind of introduction, he fires his spikes.
@@ -20,7 +20,6 @@ There is a strange stone statue in this room with a metal plate at its feet. On 
 <<linkreplace "Take Bombs">>
   <<run setup.grantItem("Bombs ")>>
   (<span style="color:blue">Bombs</span> acquired. I can now destroy weak walls to open up secret passages.)
-<</linkreplace>>
 <</if>>
 
 [[Go West->26]]
@@ -233,7 +232,6 @@ The enemy is currently frozen, but if I attack, it might melt.
 Use the Ice Beam again  <<linkreplace "Use the Ice Beam again  ">><hr >I continue my attack with the Ice Beam. The Ice Beam is 50% effective against a Sidehopper.
 	<<set $random = random( 1,2)>>
 	<<if $random == 2>><<include "Ice Beam Misses Sidehopper">><<else>><<include "Ice Beam Misses Sidehopper 2">><</if>>
-<</linkreplace>>
 	<<if $missiles >0>><<include "Sidehopper Weapon Missiles">><</if>>
 	<<if $items.includes("Screw Attack ")>><<include "Sidehopper Weapon Screw Attack">><</if>>
 Run  <<linkreplace "Run  ">><hr ><<include "Escape Sidehopper">><</linkreplace>>
@@ -255,7 +253,6 @@ The enemy is currently frozen, but if I attack, it might melt.
 Use the Ice Beam again  <<linkreplace "Use the Ice Beam again  ">><hr >I continue my attack with the Ice Beam. The Ice Beam is 50% effective against a Sidehopper.
 	<<set $random = random( 1,2)>>
 	<<if $random == 2>><<include "Ice Beam Misses Sidehopper">><<else>><<include "Ice Beam Misses Sidehopper 2">><</if>>
-<</linkreplace>>
 	<<if $missiles >0>><<include "Sidehopper Weapon Missiles">><</if>>
 	<<if $items.includes("Screw Attack ")>><<include "Sidehopper Weapon Screw Attack">><</if>>
 
@@ -401,7 +398,6 @@ The figure of the next Zeb emerges from the mouth of the air vent. Once again, i
 
 Fight  <<linkreplace "Fight  ">>
 	<<if $items.includes("Normal Beam ")>><<goto "Zeb Normal Beam">><<else>><<goto "Beam Shoots Toward Zeb">><</if>>
-<</linkreplace>>
 Ignore it and run  <<linkreplace "Ignore it and run ">><hr ><<include "Run from Zeb">><</linkreplace>>
 
 
@@ -500,7 +496,6 @@ Fight with current equipment  <<linkreplace "Fight with current equipment  ">><<
 Go back  <<linkreplace "Go back  ">><hr >However, before I can get away, the Doublehopper comes around behind me. It takes a giant leap...
 	<<set $random = random( 1,3)>>
 	<<if $random == 2>><<include "Doublehopper Escape Fails">><<else>><<include "Escape Doublehopper Success">><</if>>
-<</linkreplace>>
 
 
 
@@ -706,7 +701,6 @@ I fire Missiles at Kraid again. Although he was not frightened by the previous a
 Kraid rears up as if in a panic, and to guard his body from the Missiles, fires the spikes growing on his hide.  <<linkreplace "fires the spikes growing on his hide.  ">>hide.<hr >{
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Kraid Defeated">><<else>><<include "Missiles Miss Kraid 2">><</if>>
-<</linkreplace>>
 
 
 
@@ -835,10 +829,7 @@ However, I successfully avoid the Rio's attack. I escape!
 <<set $displayStats = 0; $displayMap = 0>>
 !!! GAME OVER 
 
-{<<link "Save Game">><<run UI.buildSaves(); Dialog.open();>><</link>>}
- <<linkreplace "Load Game ">>
-          <<load "Slot A">>
-    <</linkreplace>>
+<<link "Game Saves">><<run UI.buildSaves(); Dialog.open();>><</link>>
 Continue
 	<<linkreplace "Continue ">>
 	<<set $energy = 10; $displayStats = 1; $displayMap = 1>>
@@ -1371,7 +1362,6 @@ Run  <<linkreplace "Run  ">>Run<hr ><<include "Run from Multiviola">><</linkrepl
 Screw Attack  <<linkreplace "Screw Attack  ">>Attack<hr >{
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Screw Attack Hits Multiviola">><</if>>
-<</linkreplace>>
 
 
 
@@ -1379,7 +1369,6 @@ Screw Attack  <<linkreplace "Screw Attack  ">>Attack<hr >{
 Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >{
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Wave Beam Hits Multiviola">><</if>>
-<</linkreplace>>
 
 
 
@@ -1387,7 +1376,6 @@ Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >{
 Missiles  <<linkreplace "Missiles  ">>Missiles<hr >I fire a Missile at the Multiviola. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Missile Hits Multiviola">><</if>>
-<</linkreplace>>
 
 
 
@@ -1528,7 +1516,6 @@ The creature rushes at me faster than I can ready myself.
 Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >I attack the Dessgeega with the Wave Beam!
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Wave Beam Hits Dessgeega">><<else>><<include "Wave Beam Misses Dessgeega">><</if>>
-<</linkreplace>>
 
 
 
@@ -1536,7 +1523,6 @@ Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >I attack the Dessgeega with the
 Ice Beam  <<linkreplace "Ice Beam  ">>Beam<hr >I promptly fire the Ice Beam at the Dessgeega. There is no time to select another weapon.
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Ice Beam Misses Dessgeega">><<else>><<include "Ice Beam Hits Dessgeega">><</if>>
-<</linkreplace>>
 
 
 
@@ -1675,7 +1661,6 @@ This fire breath is otherworldly. Ridley is the original inhabitant of this aste
 <<if $missiles >1>>Fight as-is  <<linkreplace "Fight as-is  ">><hr ><<include "Fire Missiles at Ridley 1">><</linkreplace>><</if>>
 Pull back  <<linkreplace "Pull back  ">><hr >{
 	<<if $energy >9>><<include "Escape Ridley">><<else>><<include "Escape from Ridley Fails">><</if>>
-<</linkreplace>>
 
 
 
@@ -1945,7 +1930,6 @@ I'll try again later after replenishing my Missiles and Energy. [[Go back North.
 <<set $displayMap = 0>>It's a Rinka. As inorganic attack matter, it only targets and flies at me. Its attack power isn't that great, either. However, it's best to avoid them.<<linkreplace "However, it's best to avoid them.">>
 	<<set $random = random( 1,3)>>
 	<<if $random == 1>><<include "Freeze Rinka">><<else>><<include "Miss Rinka">><</if>>
-<</linkreplace>>
 
 
 
@@ -1955,7 +1939,6 @@ I'll try again later after replenishing my Missiles and Energy. [[Go back North.
 I fire the Ice Beam without a moment's hesitation.<<linkreplace "I fire the Ice Beam without a moment's hesitation.">>
 	<<set $random = random( 1,3)>>
 	<<if $random == 1>><<include "Ice Beam Misses Metroid">><<else>><<include "Ice Beam Hits Metroid">><</if>>
-<</linkreplace>>
 
 
 
@@ -2099,7 +2082,6 @@ The guns installed about the room fire all at once. Can I avoid them?!
 Dodge Guns  <<linkreplace "Dodge Guns  ">>Guns<hr >{
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<include "Missed Zebetite 1">><<else>><<include "Missile Zebetite 2">><</if>>
-<</linkreplace>>
 
 
 
@@ -2121,7 +2103,6 @@ The guns fire again.
 Dodge Guns  <<linkreplace "Dodge Guns  ">>Guns<hr >{
 	<<set $random = random( 1,3)>>
 	<<if $random == 2>><<include "Zebetite Destroyed">><<else>><<include "Missed Zebetite 2">><</if>>
-<</linkreplace>>
 
 
 
@@ -2225,7 +2206,6 @@ I immediately roll on the floor to avoid the Metroid Mutant's attack. Simultaneo
 The Metroid Mutant is still here. The thing is trying to escape to somewhere. It seems this creature also knows the ship is going to explode. I attack it with the Missiles I resupplied after returning to the ship.<<linkreplace "I attack it with the Missiles I resupplied after returning to the ship.">>
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<goto "Metroid Mutant Defeated?">><<else>><<goto "Missiles Fail">><</if>>
-<</linkreplace>>
 
 
 
@@ -2287,7 +2267,6 @@ GAME OVER <<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>>
 I fire a continuous stream of Missiles. I refilled my Missiles after returning to the ship, and now fire every last one. Not even the Metroid Mutant is invincible. That thing could not have taken so many Missile blasts and lived. I have defeated the Metroid Mutant.<<linkreplace "I have defeated the Metroid Mutant.">>
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<goto "Failed to Escape - Game Over">><<else>><<goto "Escaped - Bad Ending">><</if>>
-<</linkreplace>>
 
 
 
@@ -2343,7 +2322,6 @@ I stop when my back crashes into the wall. If the Metroid Mutant could express e
 Suddenly, I am spurred by the impulse to end this with the Metroid Mutant. Even though this impulse is reckless if left unchecked, I fire a Missile at the creature.<<linkreplace "I fire a Missile at the creature.">>
 	<<set $random = random( 1,3)>>
 	<<if $random == 2>><<goto "Rocket Jump Fail">><<else>><<goto "Pirates Investigate">><</if>>
-<</linkreplace>>
 
 
 
@@ -2411,7 +2389,6 @@ On the other side of the open door is...the Metroid Mutant.
 Instantly, flashes burst from the Pirates' laser guns.<<linkreplace "Instantly, flashes burst from the Pirates' laser guns.">>
 	<<set $random = random( 1,3)>>
 	<<if $random == 1>><<goto "Metroid Massacre">><<else>><<goto "Blast the Mutant">><</if>>
-<</linkreplace>>
 
 
 

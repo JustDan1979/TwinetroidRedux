@@ -210,7 +210,7 @@ In addition to the corridor running all the way to the South, there is a Blue Do
 
 :: 19 [Elevator] {"position":"1100,350","size":"100,100"}
 !!! Room A-19: Brinstar Elevator Room 
-{<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>}
+<<link "Save game?">><<run UI.buildSaves(); Dialog.open();>><</link>>
 
 I can descend to Area B, Norfair. If I don't want to go down, I can only head South.
 
@@ -350,7 +350,7 @@ The moment I come through the Blue Door, I start floating. I quickly grab the ed
 
 Aside from that, there is only the Blue Door to the South and the corridor with the vaulted pit to the East leading from this room. However, when I scan this room with my Radar, I find a secret door continuing North to a hidden room. However, I can't easily grope my way along the North wall due to the force of the magnetic pull. 
 
-<<if hasVisited("99")>>I've already entered the Hidden Room to the North.<<else>>Attempt to reach the hidden room.<<linkreplace "Attempt to reach the hidden room.">>{
+<<if hasVisited("99")>>I've already entered the Hidden Room to the North.<<else>>Attempt to reach the hidden room.<<linkreplace "Attempt to reach the hidden room.">>
 	<<set $random = random( 1,2)>>
 	<<if $random == 1>><<goto "99">><<else>><<goto "Poor Timing!">><</if>>
 <</linkreplace>><</if>>

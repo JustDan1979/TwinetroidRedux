@@ -3248,7 +3248,7 @@ postdisplay.hud = function () {
   } else {
     setup.enhanceCombat();
   }
-};</script><tw-passagedata pid="1" name="01" tags="Brinstar" position="1100,100" size="100,200">!!! Room A-1
+};</script><tw-passagedata pid="1" name="01" tags="Brinstar" position="1100,100" size="200,200">!!! Room A-1
 &lt;&lt;if $combat == 1&gt;&gt;I have successfully infiltrated the asteroid Zebes. Zebes consists of three levels. This is Area A, Brinstar, with cavern walls of limestone and a floor of bare rock.
 
 The capsule is thought to be located in Area C, the heart of the asteroid. There at the center of the Space Pirate organization is the giant computer called Mother Brain. My first step to accomplishing this mission is to get there as quickly as possible.

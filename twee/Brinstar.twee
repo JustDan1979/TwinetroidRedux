@@ -1,4 +1,4 @@
-﻿:: 01 [Brinstar] {"position":"1100,100","size":"200,200"}
+:: 01 [Brinstar] {"position":"1100,100","size":"200,200"}
 !!! Room A-1
 <<if $combat == 1>>I have successfully infiltrated the asteroid Zebes. Zebes consists of three levels. This is Area A, Brinstar, with cavern walls of limestone and a floor of bare rock.
 
@@ -150,12 +150,11 @@ This room just runs North to South. <<if hasVisited("38")>>There is an open Red 
 !!! Room A-20
 To the West is the secret passage leading to <b >Room A-2 </b >. This room continues to the East. Apart from that, there is a Blue Door to the North.
 
-<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>><<if $kraidDefeated == 0>>[[Go North->22]]<<else>>Kraid is defeated, and the Blue Door has turned gray.<</if>>
+<<set $kraidCleared = $items.includes("KraidStone ")>>
+<<set $kraidDefeated = $kraidCleared ? 1 : 0>>
+<<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Sidehopper">><</linkreplace>><<else>><<set $combat = 1>><<if $kraidCleared>>Kraid is defeated, and the Blue Door has turned gray.<<else>>[[Go North->22]]<</if>>
 [[Go East->21]]
 [[Go West->02]]<</if>>
-
-
-
 :: 13 [Brinstar] {"position":"475,350","size":"100,100"}
 !!! Room A-13
 This corridor continues to the West and East, and there is a Blue Door facing North.
@@ -452,3 +451,4 @@ The plate also shows a map of Brinstar. (Brinstar Map acquired. I can now view t
 The statue cradles a Missile Pod in its hands. (<span style="color:red">Missile Pod (2)</span> acquired.<<run setup.grantMissilePod("2 ", 2)>> Maximum Missiles increased to $maxMissiles.) 
 
 I store the above information in my computer. There are no hidden rooms here. [[I retrace my steps.->37]]
+

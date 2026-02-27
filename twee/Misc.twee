@@ -186,7 +186,7 @@ v.1.00 (December 24, 2018)
 
 
 :: To seek the Holy Grail {"position":"475,2350","size":"100,100"}
-<<set $random = random( 1,3)>>
+<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>>What is your favorite color? 
 	[[Blue]]<<elseif $random == 2>>What is capital of Assyria?
 	[[I don't know that!]]
@@ -197,7 +197,7 @@ v.1.00 (December 24, 2018)
 
 
 :: Blue {"position":"600,2350","size":"100,100"}
-<<set $random = random( 1,2)>>
+<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>>[[Ok, you may go!->Debug Room Tourian]]<<else>>[[No, yellooooooooowww!!!->Debug Room Tourian]]<</if>>
 
 
@@ -376,7 +376,7 @@ I can't avoid Mother Brain's attack. The aim of the snake-like laser guns is dea
 Since the lasers don't have high output, one or two shots won't be a fatal wound, but I still take considerable damage from them. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-8 Energy)</span><<set $energy = $energy - 8>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 I attempt to regain my balance.  <<linkreplace "I attempt to regain my balance.  ">>balance.<hr >{
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Recover Balance">><<else>><<include "Fall into Moat">><</if>>
 <</linkreplace>><</if>>
 
@@ -394,7 +394,7 @@ Try again later  <<linkreplace "Try again later  ">><hr ><<include "Escape Mothe
 
 :: Attempt to Dodge Guns {"position":"975,5100","size":"100,100"}
 Can I avoid Mother Brain's attack?  <<linkreplace "Can I avoid Mother Brain's attack?  ">>attack?<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Freeze Guns">><<else>><<include "Hit by Guns">><</if>>
 <</linkreplace>>
 
@@ -433,7 +433,7 @@ Try again later  <<linkreplace "Try again later  ">><hr ><<include "Escape Mothe
 The moat is very deep, so I can't get out easily. I think I can jump out of the moat, but I can't quite reach the edge. I take massive damage. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-8 Energy)</span><<set $energy = $energy - 8>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 I struggle to escape again.  <<linkreplace "I struggle to escape again.  ">>again.<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Dissolved in Acid">><<else>><<include "Escape Moat">><</if>>
 <</linkreplace>><</if>>
 
@@ -489,7 +489,7 @@ If I can make it to the top, I can escape through the secret passage I used when
 However, I can't simply ascend. If I don't make full use of my advanced acrobatic skills, it will be difficult to ascend this escape route made of only the fragments of stairs and support struts.
 
 Climb the shaft.<<linkreplace "Climb the shaft.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<goto "Lose Your Footing">><<else>><<goto "Escaped the Bomb!">><</if>>
 <</linkreplace>>
 
@@ -503,7 +503,7 @@ I fall. I'm right back where I started. I make the ascent one more time.
 However, time is slipping away. If I fail once more, there won't be enough time to do it again...
 
 Climb the shaft.<<linkreplace "Climb the shaft.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "Escaped the Bomb!">><<else>><<goto "Failed to Escape">><</if>>
 <</linkreplace>>
 
@@ -735,7 +735,7 @@ When I am wearing my helmet, I am unable to speak. The Pirates seem to wonder wh
 I head towards the oxygen storage room. The Metroid Mutant floats inside mockingly'the thing was expecting me...
 
 Abruptly, I fire the Ice Beam at the Metroid Mutant. Although I know the Ice Beam doesn't have much stopping power against the creature, it's better than firing off a Missile in the narrow confines of the ship. But that doesn't mean my weapon is completely ineffective. The beam seems to slow the creature's movements a little. However, I can't keep this up for long... <<linkreplace "However, I can't keep this up for long...">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<goto "A Metroid Mutant Meal">><<else>><<goto "Saved by Pirates?">><</if>>
 <</linkreplace>>
 
@@ -806,7 +806,7 @@ The Pirates stand there in disbelief, unable to either move or speak.
 At length, the Boss says weakly, 'Y...you destroyed Zebes...? A woman...?'
 
 The man is horrified. However, this clearly is my chance. Suddenly, I power up my cyborg-enhanced arms to the limit. The chains that firmly bind me creak and shatter.<<linkreplace "The chains that firmly bind me creak and shatter.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "Metroid Mutant Attacks the Pirates">><<else>><<goto "Secret Identity Revealed">><</if>>
 <</linkreplace>>
 
@@ -854,7 +854,7 @@ That thing has also come aboard the Pirate ship.
 The Metroid Mutant notices me. The creature seems a little taken aback as well at seeing me without my helmet, but then remembers that I am its arch-nemesis.
 
 The creature approaches slowly.<<linkreplace "The creature approaches slowly.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "Bashed by the Mutant">><<else>><<goto "Battleus Interruptus">><</if>>
 <</linkreplace>>
 
@@ -915,7 +915,7 @@ Suddenly, that thought gives me an inspiration.
 Should I fight or run?
 
 Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<goto "Fend off the Metroid Mutant">><<else>><<goto "Fight Your Nemesis">><</if>>
 <</linkreplace>>
 [[Run->Flee the Ship]]
@@ -924,7 +924,7 @@ Fight  <<linkreplace "Fight  ">>
 
 :: Flee the Ship {"position":"100,5975","size":"100,100"}
 I run without stopping, thinking I can get aboard the small spacecraft and flee from this place.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Bazooka Joe">><<else>><<include "Showdown">><</if>>
 
 
@@ -1026,7 +1026,7 @@ At this moment, I am definitely losing. From here on, my chances of winning are 
 
 :: Don't abandon it {"position":"850,6100","size":"100,100"}
 Nevertheless, I continue to fight, unwilling to give up the capsule.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Metroid Mutant Revives">><<else>><<include "Skewered">><</if>>
 
 
@@ -1162,7 +1162,7 @@ Break Energy <<linkreplace "Break Energy ">><</linkreplace>>
 I get the drift and accept the sword, then remove the Ice Beam from my arm and toss it aside.
 
 The Boss drops the cigarette he'd been smoking and stamps it out with the sole of his boot. Then he mutters quietly, 'Let's do this,' and rushes at me.<<linkreplace "rushes at me.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<goto "Metroid Mutant Revives">><<else>><<goto "Fighting Spirit">><</if>>
 <</linkreplace>>
 
@@ -1174,7 +1174,7 @@ The Boss drops the cigarette he'd been smoking and stamps it out with the sole o
 'Prepare yourself, little girl. You won't get out of here alive.'
  
 The battle between me and the Boss begins.<<linkreplace "The battle between me and the Boss begins.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<goto "Metroid Mutant Revives">><<else>><<goto "A Desperate Fight">><</if>>
 <</linkreplace>>
 
@@ -1206,3 +1206,4 @@ The game tracks your progress. However, the Map may load a bit more slowly on so
 
 :: Start {"position":"725,6475","size":"100,100"}
 <<goto "Title Screen">>
+

@@ -3,7 +3,7 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 async function openStory(page) {
-  const fileUrl = pathToFileURL(path.resolve(__dirname, '../../Twinetroid.html')).href;
+  const fileUrl = pathToFileURL(path.resolve(__dirname, '../../index.html')).href;
   await page.goto(fileUrl);
   await page.waitForSelector('#story');
   await page.waitForFunction(() => window.SugarCube && window.SugarCube.Engine && window.SugarCube.State);

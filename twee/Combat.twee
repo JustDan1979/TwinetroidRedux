@@ -53,7 +53,8 @@ Run, or do nothing to my opponent  <<linkreplace "Run, or do nothing to my oppon
 
 
 :: Sidehopper {"position":"100,725","size":"100,100"}
-<<set $displayMap = 0>>Suddenly, a Sidehopper rushes at me!
+<<set $displayMap = 0>><<run setup.roll(1,6)>>
+Suddenly, a Sidehopper rushes at me!
 
 <<if hasVisited("Sidehopper")>>I will need Missiles or something more powerful than the Normal Beam to defeat it. If I have none of these weapons, I have to run away.<<else>><<include "Scan Sidehopper">><</if>>
 
@@ -115,7 +116,7 @@ The damage was only slight, but it was dealt by a Geemer, the weakest enemy! Wha
 
 :: Ice Beam Hits Geemer {"position":"1100,725","size":"100,100"}
 The Ice Beam hits the Geemer squarely. It instantly freezes. As soon as I see this, I rapidly fire the Ice Beam and destroy the frozen Geemer.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 1>><<include "Nothing">><<elseif $random == 6>><<include "Nothing">><<else>><<include "Energy Ball">><</if>>
 
 
@@ -143,7 +144,7 @@ My attack fails. It is impossible to match the movement speed of the Rio. Simult
 
 :: Run from the Rio {"position":"225,850","size":"100,100"}
 However, I can't run away that easily. The Rio loops around in the air and rushes at me.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Escape Rio Fails">><<else>><<include "Escape Rio Success">><</if>>
 
 
@@ -165,7 +166,7 @@ Run  <<linkreplace "Run  ">><<set $combat = 0; $displayMap = 1>><<goto $lastRoom
 Attack successful!
 
 My attack hits, and instantly the Rio seems to shrink before it expands and disappears in an explosion. Its dying cry of agony echoes through the room.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Missile">><<elseif $random == 2>><<include "Energy Ball">><<else>><<include "Nothing">><</if>>
 
 
@@ -178,7 +179,7 @@ Powerful energy envelops my entire body, diffusing as I strike and damaging my o
 This time the attack succeeds beautifully. 
 
 The Rio takes the Screw Attack and is blown to bits in one fell swoop.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Nothing">><<elseif $random == 2>><<include "Missile">><<else>><<include "Energy Ball">><</if>>
 
 
@@ -211,7 +212,7 @@ Run  <<linkreplace "Run  ">>Run<hr ><<include "Attempt Sidehopper Escape">><</li
 The Sidehopper attacks. Although it gives me a brutal strike using its powerful springs, I also give it a taste of my beam. <<if $items.includes("Varia ")>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><<else>><span style="color:red">(-4 Energy)</span><<set $energy = $energy - 4>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 The beam's flash instantly swallows the frozen Sidehopper. The ice melts, and the creature coughs twice before it twitches, shudders, takes a leap, and explodes in mid-air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == (3)>><<include "Nothing">><<elseif $random == 1>><<include "Medium Energy Ball">><<elseif $random == 4>><<include "Medium Energy Ball">><<else>><<include "Missile">><</if>>
 <</if>>
 
@@ -230,7 +231,7 @@ I immediately fire the Ice Beam. The Sidehopper is instantly frozen. Now I can r
 The enemy is currently frozen, but if I attack, it might melt.
 
 Use the Ice Beam again  <<linkreplace "Use the Ice Beam again  ">><hr >I continue my attack with the Ice Beam. The Ice Beam is 50% effective against a Sidehopper.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 2>><<include "Ice Beam Misses Sidehopper">><<else>><<include "Ice Beam Misses Sidehopper 2">><</if>>
 	<<if $missiles >0>><<include "Sidehopper Weapon Missiles">><</if>>
 	<<if $items.includes("Screw Attack ")>><<include "Sidehopper Weapon Screw Attack">><</if>>
@@ -251,7 +252,7 @@ What weapon should I use?
 The enemy is currently frozen, but if I attack, it might melt.
 
 Use the Ice Beam again  <<linkreplace "Use the Ice Beam again  ">><hr >I continue my attack with the Ice Beam. The Ice Beam is 50% effective against a Sidehopper.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 2>><<include "Ice Beam Misses Sidehopper">><<else>><<include "Ice Beam Misses Sidehopper 2">><</if>>
 	<<if $missiles >0>><<include "Sidehopper Weapon Missiles">><</if>>
 	<<if $items.includes("Screw Attack ")>><<include "Sidehopper Weapon Screw Attack">><</if>>
@@ -260,14 +261,14 @@ Use the Ice Beam again  <<linkreplace "Use the Ice Beam again  ">><hr >I continu
 
 :: Screw Attack Sidehopper {"position":"350,1100","size":"100,100"}
 I use the Screw Attack. The Screw Attack is 50% effective against the Sidehopper.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 2>><<include "Screw Attack Hits Sidehopper">><<else>><<include "Screw Attack Misses Sidehopper">><</if>>
 
 
 
 :: Screw Attack Hits Sidehopper {"position":"475,1100","size":"100,100"}
 Attack successful! The enemy's movements are quick, and although it gives me some trouble, I am somehow able to beat it. The creature screams a single shriek through the air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 2>><<include "Nothing">><<elseif $random == 1>><<include "Missile">><<elseif $random == 3>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -282,7 +283,7 @@ Should I continue again with the attack? Or should I run?
 
 :: Escape Screw Attack Sidehopper {"position":"725,1100","size":"100,100"}
 I give up the attack and flee.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Escape Sidehopper">><<else>><<include "Escape Sidehopper Fails">><</if>>
 
 
@@ -298,7 +299,7 @@ I feign rushing to attack, but change actions mid-motion. I take the Sidehopper'
 However, I can't get away so easily. The Sidehopper's attack is much faster than humans can react. I take damage. <<if $items.includes("Varia ")>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><<else>><span style="color:red">(-4 Energy)</span><<set $energy = $energy - 4>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 The Sidehopper attacks again. <<linkreplace "The Sidehopper attacks again.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Escape Sidehopper">><<else>><<include "Escape Sidehopper Fails">><</if>>
 <</linkreplace>><</if>>
 
@@ -308,7 +309,7 @@ The Sidehopper attacks again. <<linkreplace "The Sidehopper attacks again.">>
 I fire a Missile at the Sidehopper. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 
 Missiles are 100% effective against the Sidehopper. However, whether or not they hit is another story, as they have about 50% accuracy.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missile Misses Sidehopper">><<else>><<include "Missile Hits Sidehopper">><</if>>
 
 
@@ -325,7 +326,7 @@ Select a Weapon:
 The Sidehopper attacks. Although it gives me a brutal strike using its powerful springs, I also give it a taste of my beam. <<if $items.includes("Varia ")>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><<else>><span style="color:red">(-4 Energy)</span><<set $energy = $energy - 4>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 The beam's flash instantly swallows the frozen Sidehopper. The ice melts, and the creature coughs twice before it twitches, shudders, takes a leap, and explodes in mid-air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Nothing">><<elseif $random == 1>><<include "Medium Energy Ball">><<elseif $random == 4>><<include "Medium Energy Ball">><<else>><<include "Missile">><</if>>
 <</if>>
 
@@ -335,7 +336,7 @@ The beam's flash instantly swallows the frozen Sidehopper. The ice melts, and th
 The Sidehopper jumps high. My attack with the Ice Beam misses. The enemy uses its powerful springs to strike. Its thick legs spring into a powerful jump. A large blow sends my flying, and my back hits the wall. <<if $items.includes("Varia ")>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><<else>><span style="color:red">(-4 Energy)</span><<set $energy = $energy - 4>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 However, I'm also not finished. While the Sidehopper is leaping, I keep attacking with the Ice Beam. Since I already damaged it a bit, the Sidehopper's body crumbles from this attack. Simultaneously, it explodes. I took some damage, but am somehow able to defeat the Sidehopper.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Nothing">><<elseif $random == 2>><<include "Medium Energy Ball">><<elseif $random == 5>><<include "Medium Energy Ball">><<else>><<include "Missile">><</if>>
 <</if>>
 
@@ -381,7 +382,7 @@ Even so, I am able to leave the range of their hearing before the next Zeb can c
 
 :: Beam Hits Zeb {"position":"975,1225","size":"100,100"}
 My attack is successful. The beam hit the Zeb as it flies through my line of fire, blowing it to bits.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Zeb Energy Ball">><<elseif $random == 2>><<include "Zeb Nothing">><<elseif $random == 3>><<include "Zeb Missiles">><</if>>
 
 
@@ -428,14 +429,14 @@ Ignore it and run  <<linkreplace "Ignore it and run ">><hr ><<include "Run from 
 
 :: Beam Shoots Toward Zeb {"position":"475,1350","size":"100,100"}
 My beam shoots towards the Zeb.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Beam Misses Zeb">><<else>><<include "Beam Hits Zeb">><</if>>
 
 
 
 :: Normal Beam Hits Zeb {"position":"600,1350","size":"100,100"}
 Even though I'm using the Normal Beam, the enemy isn't that scary once I can land a direct hit. The destructive power of the Normal Beam isn't just for show. The Zeb is defeated.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Zeb Nothing">><<else>><<include "Zeb Energy Ball">><</if>>
 
 
@@ -452,7 +453,7 @@ Ignore it and run  <<linkreplace "Ignore it and run ">><hr ><<include "Run from 
 
 :: Zeb Normal Beam {"position":"850,1350","size":"100,100"}
 I attack the Zeb with the Normal Beam. Since my opponent is a Command Level I Zeb, even the Normal Beam should be able to defeat it.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Normal Beam Hits Zeb">><<else>><<include "Normal Beam Misses Zeb">><</if>>
 
 
@@ -465,7 +466,7 @@ I attack the Zeb with the Normal Beam. Since my opponent is a Command Level I Ze
 
 :: Missile Kraid's Sidehopper {"position":"1100,1350","size":"100,100"}
 I fire a Missile at the Sidehopper. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>>First, there is a deafening sound like clanging metal. Then comes the slow, muffled roar of the Sidehopper. Finally, the ear-splitting boom of a loud explosion shakes the room. [[The Missile hits the Sidehopper, smashing it to atoms.->Doublehopper]]<<else>><<include "Kraid's Sidehopper Missile Misses">><</if>>
 
 
@@ -494,7 +495,7 @@ The Doublehopper's attack abilities are completely unknown. Should I fight with 
 
 Fight with current equipment  <<linkreplace "Fight with current equipment  ">><<include "Fight Doublehopper">><</linkreplace>>
 Go back  <<linkreplace "Go back  ">><hr >However, before I can get away, the Doublehopper comes around behind me. It takes a giant leap...
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Doublehopper Escape Fails">><<else>><<include "Escape Doublehopper Success">><</if>>
 
 
@@ -540,7 +541,7 @@ The problem is...will I escape the Doublehopper without any trouble?
 
 :: Escape Doublehopper {"position":"850,1475","size":"100,100"}
 However, before I can get away, the Doublehopper comes around behind me. It takes a giant leap...
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Doublehopper Escape Fails">><<else>><<include "Escape Doublehopper Success">><</if>>
 
 
@@ -561,7 +562,7 @@ But I still continue to attack.  <<linkreplace "But I still continue to attack."
 
 :: Doublehopper Wave Beam {"position":"1225,1475","size":"100,100"}
 I spray the Doublehopper with the Wave Beam.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Wave Beam Misses Doublehopper">><<else>><<include "Wave Beam Damaged Doublehopper">><</if>>
 
 
@@ -575,7 +576,7 @@ I successfully deal the Doublehopper a considerably large blow. The creature mak
 
 :: Wave Beam Doublehopper Again {"position":"225,1600","size":"100,100"}
 Although the Doublehopper has taken damage and its movement has slowed, I still haven't defeated it. I press on with another attack. I pump the Wave Beam into the Doublehopper again.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Wave Beam Misses Doublehopper 2">><<else>>The Wave Beam finishes off the Doublehopper. The creature finally bursts, exploding from the inside. The beast is slain. [[I can proceed forward.->Kraid]]<</if>>
 
 
@@ -593,7 +594,7 @@ Well, that wasn't the least bit painless... Nevertheless, I am able to respond w
 
 :: Doublehopper Ice Beam {"position":"475,1600","size":"100,100"}
 I attack the Doublehopper with the Ice Beam.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Ice Beam Hits Doublehopper">><<else>><<include "Ice Beam Misses Doublehopper">><</if>>
 
 
@@ -607,7 +608,7 @@ Even though it's an Ice Beam attack, if I continue to adjust the exposure levels
 
 :: Ice Beam Doublehopper Again {"position":"725,1600","size":"100,100"}
 I continue attacking with the Ice Beam.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Ice Beam Misses Doublehopper 2">><<else>><<include "Ice Beam Destroys Doublehopper">><</if>>
 
 
@@ -635,7 +636,7 @@ My back slams to a stop against the wall. However, in that instant, I somehow ma
 
 :: Doublehopper Missiles {"position":"1225,1600","size":"100,100"}
 I fire a stream of Missiles at the Doublehopper.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missiles Miss Doublehopper">><<else>><<include "Missiles Destroy Doublehopper">><</if>>
 
 
@@ -669,7 +670,7 @@ I should leave Kraid's Room for now and come back after replenishing my Energy a
 
 :: Attempt to Escape Kraid [Combat-Ended] {"position":"475,1725","size":"100,100"}
 Can I escape from Kraid's room?<<linkreplace "Can I escape from Kraid's room?">><hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Escape Kraid Fails">><<else>>I slip past the enemy's attack. In any case, I can come back to fight the creature again once my Missiles and Energy are replenished. [[Go back to Room A-20->20]]<</if>>
 <</linkreplace>><<set $displayMap = 1>>
 
@@ -684,7 +685,7 @@ GAME OVER <<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>>
 
 :: Kraid Missiles 1 {"position":"725,1725","size":"100,100"}
 I attack Kraid with Missiles. 2 Missiles fly towards him. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>> 
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missiles Hit Kraid 1">><<else>><<include "Missiles Miss Kraid 1">><</if>>
 
 
@@ -699,7 +700,7 @@ Before Kraid fires the spikes on his body, my Missiles score a direct hit. The c
 I fire Missiles at Kraid again. Although he was not frightened by the previous attack, he is a little hesitant about taking damage again. The 2 Missiles fly towards Kraid. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>>
 
 Kraid rears up as if in a panic, and to guard his body from the Missiles, fires the spikes growing on his hide.  <<linkreplace "fires the spikes growing on his hide.  ">>hide.<hr >{
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Kraid Defeated">><<else>><<include "Missiles Miss Kraid 2">><</if>>
 
 
@@ -745,21 +746,21 @@ The Missiles don't reach Kraid. Kraid's spikes detonate them in mid-air. Simulta
 The Wave Beam is 100% effective against the Geemer. My aim is precise. However, the beam also has the power to completely disintegrate the Geemer, even if it only hits one part of it. Of course, the Geemer can't walk away from this attack, either.
 
 The Geemer is vaporized the instant I fire the beam.
-	<<set $random = random( 5,6)>>
+	<<set $random = setup.roll( 5,6)>>
 	<<if $random == 5>><<include "Nothing">><<elseif $random == 4>><<include "Missile">><<elseif $random == 6>><<include "Missile">><<else>><<include "Energy Ball">><</if>>
 
 
 
 :: Geemer Ice Beam {"position":"350,1850","size":"100,100"}
 I fire the Ice Beam at the Geemer.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 2>><<include "Missed the Geemer">><<elseif $random == 5>><<include "Missed the Geemer">><<else>><<include "Ice Beam Hits Geemer">><</if>>
 
 
 
 :: Geemer Normal Beam {"position":"475,1850","size":"100,100"}
 I attack the Geemer with the Normal Beam. The Normal Beam is 50% effective against a Geemer.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Normal Beam Hits Geemer">><</if>>
 	<<if $random == 2>><<include "Missed the Geemer">><</if>>
 
@@ -776,21 +777,21 @@ The Normal Beam fired from my arm is sucked into the small creature barreling do
 
 :: Normal Beam Rio {"position":"725,1850","size":"100,100"}
 I fire the Normal Beam at the Rio. However, the Normal Beam's output is weak. The battle will be desperate!
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Rio Destroyed">><<else>><<include "Attack Missed Rio 2">><</if>>
 
 
 
 :: Wave Beam Rio {"position":"850,1850","size":"100,100"}
 I fire the Wave Beam. It's definitely an effective weapon against the Rio.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Missed the Rio">><<else>><<include "Rio Destroyed">><</if>>
 
 
 
 :: Ice Beam Rio {"position":"975,1850","size":"100,100"}
 I fire at the Rio with the Ice Beam. Will it work?!
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Rio Destroyed">><<elseif $random == 2>><<include "Rio Destroyed">><<else>><<include "Missed the Rio">><</if>>
 
 
@@ -799,14 +800,14 @@ I fire at the Rio with the Ice Beam. Will it work?!
 I fire a Missile at the Rio. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 
 If it hits successfully, I can blow it to smithereens with just one shot...
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 2>><<include "Attack Missed Rio 2">><<elseif $random == 5>><<include "Attack Missed Rio 2">><<else>><<include "Rio Destroyed">><</if>>
 
 
 
 :: Screw Attack Rio {"position":"1225,1850","size":"100,100"}
 I strike the Rio with the Screw Attack. If I hit it just right, it's possible to defeat the Rio in a single blow.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Attack Missed Rio 2">><<else>><<include "Screw Attack Hits Rio">><</if>>
 
 
@@ -842,7 +843,7 @@ Continue
 My Missile attack is successful. The Missile draws a twisted parabola towards the Sidehopper, and a surprisingly large explosion opens at the moment of impact.
 
 Yes...the power of this small Missile must have exceeded its normal strength by tenfold! The Sidehopper disappears without a trace as it leaps into the air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Nothing">><<elseif $random == 1>><<include "Missile">><<elseif $random == 5>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -1070,14 +1071,14 @@ Screw Attack  <<linkreplace "Screw Attack  ">>Attack<hr ><<include "Screw Attack
 
 :: Screw Attack Geruda {"position":"100,3100","size":"100,100"}
 I Screw Attack the Geruda. The Screw Attack is 100% effective against this opponent. However, its success rate is 50%.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Screw Attack Hits Geruda">><<else>><<include "Screw Attack Misses Geruda">><</if>>
 
 
 
 :: Screw Attack Hits Geruda {"position":"225,3100","size":"100,100"}
 <img src="assets/images/GerudaScrewAttack.webp">The Screw Attack is a success. The surge of the Screw Attack meets the Geruda in mid-air in no time flat, dragging it into its rotation and tearing it to bits. The Geruda emits a final cry like a frog being crushed and annihilated.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 5>><<include "Nothing">><<elseif $random == 1>><<include "Missile">><<elseif $random == 3>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -1120,7 +1121,7 @@ Continue with the attack? Or else run?<<include "Fight Geruda">><</if>>
 
 :: Beam Hits Geruda {"position":"975,3100","size":"100,100"}
 My beam catches the Geruda. The creature's body instantly scatters to bits.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Nothing">><<elseif $random == 2>><<include "Missile">><<elseif $random == 5>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -1143,14 +1144,14 @@ The Normal Beam's aim is off. Simultaneously, the Geruda's enormous talons swoop
 
 :: Normal Beam Hits Geruda {"position":"100,3225","size":"100,100"}
 Though the attack is difficult, I somehow manage to succeed. I time my shots with the Geruda's mid-air turn, and it takes a hit from the Normal Beam. When about 10 shots strike, the Geruda's seems to dissolve, and its body crumbles.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Medium Energy Ball">><<else>><<include "Nothing">><</if>>
 
 
 
 :: Normal Beam Geruda {"position":"225,3225","size":"100,100"}
 I parry the Geruda with the Normal Beam. Will it succeed?
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Normal Beam Hits Geruda">><<else>><<include "Normal Beam Misses Geruda">><</if>>
 
 
@@ -1159,28 +1160,28 @@ I parry the Geruda with the Normal Beam. Will it succeed?
 I attack the Geruda with a Missile. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 
 Missiles are 100% effective against the Geruda. However, they have only 50% accuracy.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missile Hits Geruda">><<else>><<include "Missile Misses Geruda">><</if>>
 
 
 
 :: Wave Beam Geruda {"position":"475,3225","size":"100,100"}
 I rapidly fire the Wave Beam at the Geruda. Will I beat it?!
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Wave Beam Misses Geruda">><<else>><<include "Beam Hits Geruda">><</if>>
 
 
 
 :: Ice Beam Geruda {"position":"600,3225","size":"100,100"}
 The Ice Beam flies towards the Geruda. Now if I can skillfully take it down...
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Beam Hits Geruda">><<else>><<include "Ice Beam Misses Geruda">><</if>>
 
 
 
 :: Missile Hits Geruda {"position":"725,3225","size":"100,100"}
 My Missile hits! Although the Missile fired from my arm is small, the destructive power hidden inside it is large. The Geruda is easily blown to pieces.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 5>><<include "Nothing">><<elseif $random == 3>><<include "Medium Energy Ball">><<elseif $random == 6>><<include "Medium Energy Ball">><<else>><<include "Missile">><</if>>
 
 
@@ -1204,7 +1205,7 @@ Run  <<linkreplace "Run  ">>Run<hr ><<include "Run from Holtz">><</linkreplace>>
 
 :: Weak Beam Holtz {"position":"1100,3225","size":"100,100"}
 I commence my attack against the Holtz. I quickly aim my beam at the enemy.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Weak Beam Hits Holtz">><<else>><<include "Weak Beam Misses Holtz">><</if>>
 
 
@@ -1238,7 +1239,7 @@ Missiles  <<linkreplace "Missiles  ">>Missiles<hr ><<include "Missiles Holtz">><
 I successfully defeat the Holtz, but also take the full brunt of its attack. I take damage. <<if $items.includes("Varia ")>><span style="color:red">(-2 Energy)</span><<set $energy = $energy - 2>><<else>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 Still, I managed to successfully defeat the Holtz. 
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Medium Energy Ball">><<else>><<include "Nothing">><</if>>
 <</if>>
 
@@ -1253,7 +1254,7 @@ Should I keep fighting or run?<<include "Fight Holtz">><</if>>
 
 :: Run from Holtz {"position":"850,3350","size":"100,100"}
 <<if $items.includes("Ice Beam ")>>My current beam weapon is the Ice Beam. If I use it skilfully, I can easily run from the Holtz.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Escape Holtz Fails">><<else>><<include "Escape Holtz">><</if>>
 <<else>><<include "Run from Holtz No Ice">><</if>>
 
@@ -1288,14 +1289,14 @@ The Ice Beam's flash absorbs the Holtz, and I escape with a sigh of relief. Now 
 
 :: Screw Attack Holtz {"position":"100,3475","size":"100,100"}
 I fly at the Holtz with the Screw Attack.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Big Attack Misses Holtz">><<else>><<include "Big Attack Hits Holtz">><</if>>
 
 
 
 :: Wave Beam Holtz {"position":"225,3475","size":"100,100"}
 I use the Wave Beam on the Holtz. A large wave fired from my beam flies towards the the creature...
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Big Attack Misses Holtz">><<else>><<include "Big Attack Hits Holtz">><</if>>
 
 
@@ -1304,7 +1305,7 @@ I use the Wave Beam on the Holtz. A large wave fired from my beam flies towards 
 I attack the Holtz with a Missile. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 
 The Holtz flies about in mid-air without indicating where it will attack. The Missile's accuracy rate is roughly 50%.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Big Attack Hits Holtz">><<else>><<include "Missile Misses Holtz">><</if>>
 
 
@@ -1320,7 +1321,7 @@ However, even though it's an evolution of the Geruda, its level and damage are d
 The Holtz is defeated. However, in a final act of defiance, it shoots a single spike at me. The pointed spike makes a direct hit to my shoulder. I take damage. <<if $items.includes("Varia ")>><span style="color:red">(-2 Energy)</span><<set $energy = $energy - 2>><<else>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 At any rate, the Holtz is defeated. It is mercilessly blown to bits in my attack.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 1>><<include "Nothing">><<elseif $random == 2>><<include "Missile">><<elseif $random == 3>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 <</if>>
 
@@ -1328,7 +1329,7 @@ At any rate, the Holtz is defeated. It is mercilessly blown to bits in my attack
 
 :: Big Attack Hits Holtz {"position":"725,3475","size":"100,100"}
 The Holtz is destroyed when it absorbs the attack. One hit is enough. The creature doesn't stand a chance and is splattered through the air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Nothing">><<elseif $random == 4>><<include "Missile">><<elseif $random == 5>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -1360,21 +1361,21 @@ Run  <<linkreplace "Run  ">>Run<hr ><<include "Run from Multiviola">><</linkrepl
 
 :: Multiviola Weapon Screw Attack {"position":"1225,3475","size":"100,100"}
 Screw Attack  <<linkreplace "Screw Attack  ">>Attack<hr >{
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Screw Attack Hits Multiviola">><</if>>
 
 
 
 :: Multiviola Beam Wave {"position":"100,3600","size":"100,100"}
 Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >{
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Wave Beam Hits Multiviola">><</if>>
 
 
 
 :: Multiviola Weapon Missiles {"position":"225,3600","size":"100,100"}
 Missiles  <<linkreplace "Missiles  ">>Missiles<hr >I fire a Missile at the Multiviola. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Strong Attack Misses Multiviola">><<else>><<include "Missile Hits Multiviola">><</if>>
 
 
@@ -1398,7 +1399,7 @@ Should I keep fighting, or is it better to run?<<set $random = 7>><<include "Fig
 
 :: Ice Beam Multiviola {"position":"725,3600","size":"100,100"}
 I attack the Multiviola with the Ice Beam! However, the Ice Beam is not very effective when my opponent is moving at such high speeds.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Ice Beam Hits Multiviola">><<else>><<include "Ice Beam Misses Multiviola">><</if>>
 
 
@@ -1407,7 +1408,7 @@ I attack the Multiviola with the Ice Beam! However, the Ice Beam is not very eff
 I have a very hard time defeating the Multiviola. What's more, I am showered by its searing spray, and take damage. <<if $items.includes("Varia ")>><span style="color:red">(-2 Energy)</span><<set $energy = $energy - 2>><<else>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 In any event, I somehow defeat the Multiviola with the Ice Beam.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Multiviola Nothing">><<elseif $random == 4>><<include "Multiviola Missiles">><<elseif $random == 5>><<include "Multiviola Missiles">><<else>><<include "Multiviola Energy">><</if>>
 <</if>>
 
@@ -1484,14 +1485,14 @@ Well, what should I do?<<set $random = 7>><<include "Fight Multiviola">>
 I attack the Multiviola.
 
 I explode forward with the Screw Attack. The Multiviola can't withstand the blast and disintegrates in mid-air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 4>><<include "Multiviola Nothing">><<elseif $random == 1>><<include "Multiviola Missiles">><<elseif $random == 2>><<include "Multiviola Missiles">><<else>><<include "Multiviola Energy">><</if>>
 
 
 
 :: Wave Beam Hits Multiviola {"position":"975,3725","size":"100,100"}
 I attack the Multiviola with the Wave Beam! It's a little difficult since I have to hit the Multiviola flying around at very high speeds with consecutive beam shots. Still, I successfully defeat the Multiviola while avoiding its attacks. In comparison with the Normal Beam and Ice Beam, the Wave Beam is a weapon with incredible power.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 5>><<include "Multiviola Nothing">><<elseif $random == 1>><<include "Multiviola Missiles">><<elseif $random == 3>><<include "Multiviola Missiles">><<else>><<include "Multiviola Energy">><</if>>
 
 
@@ -1500,7 +1501,7 @@ I attack the Multiviola with the Wave Beam! It's a little difficult since I have
 I instantly calculate the angle of reflection when the Multiviola uses the walls to rebound. I again calculate the relative speeds of it and the Missile, which explodes at the point I predicted.
 
 My calculations are correct. The Multiviola strikes the wall and changes course, floating up. Then the Missile hits dead-on. A large <i >BOOM </i >echoes through the room, and the Multiviola is blown to smithereens.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Multiviola Nothing">><<elseif $random == 2>><<include "Multiviola Energy">><<elseif $random == 4>><<include "Multiviola Energy">><<else>><<include "Multiviola Missiles">><</if>>
 
 
@@ -1514,14 +1515,14 @@ The creature rushes at me faster than I can ready myself.
 
 :: Dessgeega Beam Wave {"position":"100,3850","size":"100,100"}
 Wave Beam  <<linkreplace "Wave Beam  ">>Beam<hr >I attack the Dessgeega with the Wave Beam!
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Wave Beam Hits Dessgeega">><<else>><<include "Wave Beam Misses Dessgeega">><</if>>
 
 
 
 :: Dessgeega Beam Ice {"position":"225,3850","size":"100,100"}
 Ice Beam  <<linkreplace "Ice Beam  ">>Beam<hr >I promptly fire the Ice Beam at the Dessgeega. There is no time to select another weapon.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Ice Beam Misses Dessgeega">><<else>><<include "Ice Beam Hits Dessgeega">><</if>>
 
 
@@ -1537,14 +1538,14 @@ It just so happens that the only beam weapon I currently possess is the Normal B
 
 :: Wave Beam Hits Dessgeega {"position":"475,3850","size":"100,100"}
 The Wave Beam strikes the stubborn Dessgeega, preventing it from getting close to me. The creature finally dies in an explosion. It is a triumph of the Wave Beam's power and my athletic abilities and reflexes.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 4>><<include "Nothing">><<elseif $random == 2>><<include "Missile">><<elseif $random == 6>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
 
 :: Wave Beam Misses Dessgeega {"position":"600,3850","size":"100,100"}
 The Wave Beam attack is a little soft on the Dessgeega. However, I am somehow able to defeat it. But at the same time, I also take a blow from the creature's enormous talons. <<if $items.includes("Varia ")>><span style="color:red">(-3 Energy)</span><<set $energy = $energy - 3>><<else>><span style="color:red">(-4 Energy)</span><<set $energy = $energy - 4>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 1>><<include "Nothing">><<elseif $random == 3>><<include "Missile">><<elseif $random == 5>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 <</if>>
 
@@ -1588,14 +1589,14 @@ Screw Attack  <<linkreplace "Screw Attack  ">>Attack<hr ><<include "Screw Attack
 <img src="assets/images/DessgeegaMissileDestroy.webp">It is easy to destroy a frozen and immobile enemy with a Missile. <span style="color:red">(-1 Missile)</span><<set $missiles = $missiles - 1>>
 
 The Dessgeega gives a strange, shrill cry and perishes.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 1>><<include "Nothing">><<elseif $random == 3>><<include "Energy Ball">><<elseif $random == 5>><<include "Energy Ball">><<else>><<include "Missile">><</if>>
 
 
 
 :: Screw Attack Frozen Dessgeega {"position":"225,3975","size":"100,100"}
 I have no trouble defeating a frozen enemy with the Screw Attack. The Dessgeega is destroyed.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 4>><<include "Nothing">><<elseif $random == 2>><<include "Missile">><<elseif $random == 6>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
 
 
@@ -1621,14 +1622,14 @@ Should I continue to fight with the Ice Beam? <<include "Fight Frozen Dessgeega"
 
 :: Attack Frozen Dessgeega with Ice Beam {"position":"725,3975","size":"100,100"}
 I attack again with the Ice Beam.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Ice Beam Misses Frozen Dessgeega">><<else>><<include "Ice Beam Hits Frozen Dessgeega">><</if>>
 
 
 
 :: Ice Beam Hits Frozen Dessgeega {"position":"850,3975","size":"100,100"}
 Nonetheless, I succeed in beating the Dessgeega with just the Ice Beam. I press on with the attack while being careful not to thaw it.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Dessgeega Energy Ball">><<else>><<include "Dessgeega Nothing">><</if>>
 
 
@@ -1701,7 +1702,7 @@ GAME OVER <<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>>
 
 :: Fire Missiles at Ridley 1 {"position":"100,4225","size":"100,100"}
 I fire Missiles at Ridley. The 2 Missiles fly towards him as if each has a will of its own. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 4>><<include "Missiles Miss Ridley 1">><<else>><<include "Missiles Hit Ridley 1">><</if>>
 
 
@@ -1727,7 +1728,7 @@ GAME OVER <<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>>
 
 :: Ridley Wave Beam 1 {"position":"475,4225","size":"100,100"}
 I attack Ridley again with the Wave Beam. He flinches from it a little.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Wave Beam Misses Ridley 1">><<else>><<include "Wave Beam Hits Ridley 1">><</if>>
 
 
@@ -1749,14 +1750,14 @@ Run  <<linkreplace "Run  ">><hr ><<include "Escape Ridley Check">><</linkreplace
 I attack Ridley again. 2 Missiles fly at him as if each has a will of its own. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>>
 
 Ridley breathes fire to try and avoid them...
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missiles Hit Ridley 2">><<else>><<include "Missiles Miss Ridley 2">><</if>>
 
 
 
 :: Ridley Wave Beam 2 {"position":"850,4225","size":"100,100"}
 I attack Ridley with the Wave Beam. He cries out and moves to avoid it.
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Wave Beam Hits Ridley 2">><<else>><<include "Wave Beam Misses Ridley 2">><</if>>
 
 
@@ -1792,14 +1793,14 @@ Wave Beam  <<linkreplace "Wave Beam  ">>Wave Beam<hr ><<include "Ridley Wave Bea
 
 :: Fire Missiles at Ridley 3 {"position":"100,4350","size":"100,100"}
 I launch another attack against Ridley. 2 Missiles fly towards him. His eyes fill with dread at the sight of them. He breathes fire to try and avoid them. <span style="color:red">(-2 Missiles)</span><<set $missiles = $missiles - 2>>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missiles Miss Ridley 3">><<else>><<include "Ridley Destroyed Missiles">><</if>>
 
 
 
 :: Ridley Wave Beam 3 {"position":"225,4350","size":"100,100"}
 I attack Ridley with the Wave Beam.
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Wave Beam Hits Ridley 3">><<else>><<include "Wave Beam Misses Ridley 3">><</if>>
 
 
@@ -1883,7 +1884,7 @@ My Wave Beam attack fails. Ridley's attack is more powerful than I expect. Again
 
 :: Ridley Wave Beam 4 {"position":"350,4475","size":"100,100"}
 Ridley has already become thoroughly weak. I attack him with the Wave Beam.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Ridley Destroyed Wave Beam">><<else>><<include "Wave Beam Misses Ridley 4">><</if>>
 
 
@@ -1902,7 +1903,7 @@ The Wave Beam attack fails. I shrink back from Ridley's flame attack. Again, his
 
 :: Escape Multiviola Ice Beam {"position":"725,4475","size":"100,100"}
 I'll be fine if I can freeze the Multiviola with the Ice Beam, but...
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Escape Multiviola Ice">><<else>><<include "Escape Frozen Multiviola">><</if>>
 
 
@@ -1919,7 +1920,7 @@ I'll try again later after replenishing my Missiles and Energy. [[Go back North.
 
 :: Metroid {"position":"1225,4725","size":"100,100"}
 <<set $displayMap = 0>>A Metroid attack! This Metroid seems to have been reproduced from the capsule the Pirates captured. There is hardly any way to defeat it'but one method does exist.
-	<<if $items.includes("Ice Beam ")>>Fire Ice Beam<<linkreplace "Fire Ice Beam ">>Beam<hr ><<set $random = random( 1,3)>>
+	<<if $items.includes("Ice Beam ")>>Fire Ice Beam<<linkreplace "Fire Ice Beam ">>Beam<hr ><<set $random = setup.roll( 1,3)>>
 			<<if $random == 2>><<include "Ice Beam Misses Metroid">><<else>><<include "Ice Beam Hits Metroid">><</if>><</linkreplace>><<elseif $missiles >3>>I don't have the right equipment. I try to escape. 
 		<<linkreplace "I try to escape.">><hr ><<include "Metroid No Ice Beam">><</linkreplace>><<else>>I need more Missiles to escape the Metroid.  
 		<<linkreplace "I need more Missiles to escape the Metroid.">><hr ><<include "Metroid Lunch">><</linkreplace>><</if>>
@@ -1928,7 +1929,7 @@ I'll try again later after replenishing my Missiles and Energy. [[Go back North.
 
 :: Rinka {"position":"100,4850","size":"100,100"}
 <<set $displayMap = 0>>It's a Rinka. As inorganic attack matter, it only targets and flies at me. Its attack power isn't that great, either. However, it's best to avoid them.<<linkreplace "However, it's best to avoid them.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Freeze Rinka">><<else>><<include "Miss Rinka">><</if>>
 
 
@@ -1937,7 +1938,7 @@ I'll try again later after replenishing my Missiles and Energy. [[Go back North.
 <<set $displayMap = 0>>A Metroid attack! It swoops down on me without warning. 
 
 I fire the Ice Beam without a moment's hesitation.<<linkreplace "I fire the Ice Beam without a moment's hesitation.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Ice Beam Misses Metroid">><<else>><<include "Ice Beam Hits Metroid">><</if>>
 
 
@@ -1961,7 +1962,7 @@ It is Mother Brain's attack.
 
 Dodge  <<linkreplace "Dodge  ">>Dodge<hr >{
 	<<if $items.includes("Screw Attack ")>><<include "Screw Attack Mother Brain">><<else>>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 3>><<include "Freeze Guns">><<else>><<include "Hit by Guns">><</if>><</if>>
 <</linkreplace>><</if>>
 
@@ -1971,7 +1972,7 @@ Dodge  <<linkreplace "Dodge  ">>Dodge<hr >{
 I need the Ice Beam to defeat a Metroid. It grabs hold of me and sucks my Energy. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 If I can't escape...  <<linkreplace "If I can't escape...  ">>...<hr >{
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<include "Escape to Elevator">><<else>><<include "Metroid No Ice Fails 1">><</if>>
 <</linkreplace>><</if>>
 
@@ -1979,7 +1980,7 @@ If I can't escape...  <<linkreplace "If I can't escape...  ">>...<hr >{
 
 :: Ice Beam Misses Metroid {"position":"725,4850","size":"100,100"}
 <img src="assets/images/MetroidTrapped.webp">The Ice Beam fails. I miss. In the next moment, the Metroid envelops me. It has latched on. It extends its freakish tentacles and starts sucking away my energy. The damage is great. If I can't escape... <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr ><<include "Metroid Lunch">><<else>>
-	Blast my way out.<<linkreplace "Blast my way out.">>out.<hr ><<set $random = random( 1,2)>>
+	Blast my way out.<<linkreplace "Blast my way out.">>out.<hr ><<set $random = setup.roll( 1,2)>>
 		<<if $random == 1>><<include "Escape Metroid Grip">><<else>><<include "Metroid Escape Fails 1">><</if>><</linkreplace>>
 <</if>>
 
@@ -1996,7 +1997,7 @@ Since I know how to destroy Metroids, I can blast it with 4 Missiles.
 
 :: Metroid Destroyed {"position":"975,4850","size":"100,100"}
 I fire a series of Missiles into the still-frozen Metroid. Ordinarily, Metroids have the ability to instantly recover from attacks from Missiles and other weapons, but they don't have this ability while frozen. I finish it off with 4 Missiles. <span style="color:red">(-4 Missiles)</span><<set $missiles = $missiles - 4>>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Metroid Energy">><<else>><<include "Metroid Missiles">><</if>>
 
 
@@ -2037,7 +2038,7 @@ I know how to destroy Metroids, but I'll need at least 4 Missiles...
 My Bombs miss their mark, and I fail to escape. Again my energy is sucked away. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr ><<include "Metroid Lunch">><<else>>
 
 I struggle to escape again...  <<linkreplace "I struggle to escape again...  ">>...<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Metroid Escape Fails 2">><<else>><<include "Escape Metroid Grip">><</if>>
 <</linkreplace>><</if>>
 
@@ -2047,7 +2048,7 @@ I struggle to escape again...  <<linkreplace "I struggle to escape again...  ">>
 My Bombs miss their mark. Once again I fail to escape. Again my energy is sucked away. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr ><<include "Metroid Lunch">><<else>>
 
 I struggle to escape again...  <<linkreplace "I struggle to escape again...  ">>...<hr >{
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<include "Metroid Escape Fails 1">><<else>><<include "Escape Metroid Grip">><</if>>
 <</linkreplace>><</if>>
 
@@ -2080,7 +2081,7 @@ I fire a Missile at the Zebetite. <span style="color:red">(-1 Missile)</span><<s
 The guns installed about the room fire all at once. Can I avoid them?!
 
 Dodge Guns  <<linkreplace "Dodge Guns  ">>Guns<hr >{
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<include "Missed Zebetite 1">><<else>><<include "Missile Zebetite 2">><</if>>
 
 
@@ -2101,7 +2102,7 @@ I avoid the attack and fire a Missile at the Zebetite, damaging it a second time
 The guns fire again.
 
 Dodge Guns  <<linkreplace "Dodge Guns  ">>Guns<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Zebetite Destroyed">><<else>><<include "Missed Zebetite 2">><</if>>
 
 
@@ -2128,7 +2129,7 @@ Pull back  <<linkreplace "Pull back  ">><hr ><<include "Escape Zebetite">><</lin
 
 :: Screw Attack Mother Brain {"position":"475,5100","size":"100,100"}
 The Screw Attack has an ability similar to the Varia. Can I avoid Mother Brain's attack? 
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Hit by Guns">><<else>><<include "Freeze Guns">><</if>>
 
 
@@ -2204,7 +2205,7 @@ I immediately roll on the floor to avoid the Metroid Mutant's attack. Simultaneo
 
 :: Finish off the Metroid Mutant next {"position":"475,5475","size":"100,100"}
 The Metroid Mutant is still here. The thing is trying to escape to somewhere. It seems this creature also knows the ship is going to explode. I attack it with the Missiles I resupplied after returning to the ship.<<linkreplace "I attack it with the Missiles I resupplied after returning to the ship.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "Metroid Mutant Defeated?">><<else>><<goto "Missiles Fail">><</if>>
 
 
@@ -2265,7 +2266,7 @@ GAME OVER <<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>>
 
 :: Metroid Mutant Defeated? {"position":"100,5725","size":"100,100"}
 I fire a continuous stream of Missiles. I refilled my Missiles after returning to the ship, and now fire every last one. Not even the Metroid Mutant is invincible. That thing could not have taken so many Missile blasts and lived. I have defeated the Metroid Mutant.<<linkreplace "I have defeated the Metroid Mutant.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "Failed to Escape - Game Over">><<else>><<goto "Escaped - Bad Ending">><</if>>
 
 
@@ -2320,7 +2321,7 @@ I stop when my back crashes into the wall. If the Metroid Mutant could express e
 
 :: Fight the Mutant Now {"position":"475,5850","size":"100,100"}
 Suddenly, I am spurred by the impulse to end this with the Metroid Mutant. Even though this impulse is reckless if left unchecked, I fire a Missile at the creature.<<linkreplace "I fire a Missile at the creature.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<goto "Rocket Jump Fail">><<else>><<goto "Pirates Investigate">><</if>>
 
 
@@ -2387,7 +2388,7 @@ The moment I equip the Ice Beam, a loud bang suddenly fills the room. The Metroi
 On the other side of the open door is...the Metroid Mutant.
 
 Instantly, flashes burst from the Pirates' laser guns.<<linkreplace "Instantly, flashes burst from the Pirates' laser guns.">>
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<goto "Metroid Massacre">><<else>><<goto "Blast the Mutant">><</if>>
 
 
@@ -2486,7 +2487,7 @@ I hurry to the docking bay, deciding to escape the ship and then [[destroy it wi
 I fail to escape. Again my energy is sucked away. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 I struggle to escape again...  <<linkreplace "I struggle to escape again...  ">>...<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Metroid No Ice Fails 2">><<else>><<include "Escape to Elevator">><</if>>
 <</linkreplace>><</if>>
 
@@ -2496,7 +2497,7 @@ I struggle to escape again...  <<linkreplace "I struggle to escape again...  ">>
 My escape fails again. My energy is draining steadily. <<if $items.includes("Varia ")>><span style="color:red">(-6 Energy)</span><<set $energy = $energy - 6>><<else>><span style="color:red">(-10 Energy)</span><<set $energy = $energy - 10>><</if>><<if $energy <1>><<set $energy = 0>><hr >GAME OVER<<linkreplace "GAME OVER ">><<goto "GAME OVER">><</linkreplace>><<else>>
 
 I struggle to escape again.  <<linkreplace "I struggle to escape again.  ">>again.<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 2>><<include "Metroid No Ice Fails 1">><<else>><<include "Escape to Elevator">><</if>>
 <</linkreplace>><</if>>
 
@@ -2507,7 +2508,7 @@ I take a tremendous amount of damage. <<if $items.includes("Varia ")>><span styl
 
 Without a chance to select another weapon, my only hope is to escape.
 Run  <<linkreplace "Run  ">>Run<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Escape Dessgeega">><<else>><<include "Escape Dessgeega Fails">><</if>>
 <</linkreplace>><</if>>
 
@@ -2525,7 +2526,7 @@ My attempt to escape the Dessgeega fails. I try to fake a move to the left, and 
 
 Without a chance to select another weapon, my only hope is to escape.
 Run  <<linkreplace "Run  ">>Run<hr >{
-	<<set $random = random( 1,3)>>
+	<<set $random = setup.roll( 1,3)>>
 	<<if $random == 1>><<include "Escape Dessgeega">><<else>><<include "Escape Dessgeega Fails">><</if>>
 <</linkreplace>><</if>>
 
@@ -2533,5 +2534,6 @@ Run  <<linkreplace "Run  ">>Run<hr >{
 
 :: Wave Beam Hits Sidehopper {"position":"600,6475","size":"100,100"}
 Attack successful! The enemy's movements are quick, and although it gives you some trouble, you are somehow able to beat it. The creature screams a single shriek through the air.
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 2>><<include "Nothing">><<elseif $random == 1>><<include "Missile">><<elseif $random == 3>><<include "Missile">><<else>><<include "Medium Energy Ball">><</if>>
+

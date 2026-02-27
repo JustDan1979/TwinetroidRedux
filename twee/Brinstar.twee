@@ -53,7 +53,7 @@ This room is part of the same chamber as <b >Room A-4 </b >, and is a corridor s
 This room is just a passageway connecting the corridors to the South and North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<goto "Zeb">><<elseif $random == 2>><<goto "Rio">><<elseif $random == 4>><<goto "Rio">><<else>><<goto "Geemer">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>
 The battle is over.
@@ -325,7 +325,7 @@ In this room, there is a long corridor running all the way to the East and a Blu
 This room has only a Blue Door to the South.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<goto "Zeb">><<elseif $random == 2>><<goto "Rio">><<elseif $random == 4>><<goto "Rio">><<else>><<goto "Geemer">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>However, Radar picks up passages to hidden rooms to the North and East.   The hidden rooms are <b >A-28 </b >and <b >A-27 </b >.      There is something odd about the rock formation on the North wall. <span class="revealsText ">I take a closer look. <<linkreplace "I take a closer look.">>There's something odd about the rock formation here. When I move to the side, the answer is finally revealed: there is a carefully hidden passage disguised as an optical illusion! [[I proceed North to Room A-28.->28]]<</linkreplace>> </span ><<linkreplace ".     ">>After carefully searching the East wall, I discover a flaw in its surface. Shooting it reveals the hidden passage to <b >[[Room A-27 </b >. I go forward, and rubble fills the passageway behind me.->27]]<</linkreplace>>
 
@@ -351,7 +351,7 @@ The moment I come through the Blue Door, I start floating. I quickly grab the ed
 Aside from that, there is only the Blue Door to the South and the corridor with the vaulted pit to the East leading from this room. However, when I scan this room with my Radar, I find a secret door continuing North to a hidden room. However, I can't easily grope my way along the North wall due to the force of the magnetic pull. 
 
 <<if hasVisited("99")>>I've already entered the Hidden Room to the North.<<else>>Attempt to reach the hidden room.<<linkreplace "Attempt to reach the hidden room.">>
-	<<set $random = random( 1,2)>>
+	<<set $random = setup.roll( 1,2)>>
 	<<if $random == 1>><<goto "99">><<else>><<goto "Poor Timing!">><</if>>
 <</linkreplace>><</if>>
 [[Fly East through the magnetic field (2 rooms distance) to Room <b >A-36 </b >.->36]]
@@ -398,7 +398,7 @@ It looks like there's nothing else in the room. What's more, there aren't any hi
 To the West is a hidden passage looping back to <b >Room A-32 </b >. To the South is <<if hasVisited("34")>>an open<<else>>a locked<</if>> Red Door.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 5>><<goto "Sidehopper">><<elseif $random == 4>><<goto "Geemer">><<elseif $random == 6>><<goto "Geemer">><<else>><<goto "Rio">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>
 
@@ -451,4 +451,5 @@ The plate also shows a map of Brinstar. (Brinstar Map acquired. I can now view t
 The statue cradles a Missile Pod in its hands. (<span style="color:red">Missile Pod (2)</span> acquired.<<run setup.grantMissilePod("2 ", 2)>> Maximum Missiles increased to $maxMissiles.) 
 
 I store the above information in my computer. There are no hidden rooms here. [[I retrace my steps.->37]]
+
 

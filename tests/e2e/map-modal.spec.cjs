@@ -3,7 +3,7 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 async function openStory(page) {
-  const fileUrl = pathToFileURL(path.resolve(__dirname, '../../Twinetroid.html')).href;
+  const fileUrl = pathToFileURL(path.resolve(__dirname, '../../index.html')).href;
   await page.goto(fileUrl);
   await page.waitForSelector('#story');
   await page.waitForFunction(() => window.SugarCube && window.SugarCube.Engine && window.SugarCube.State);
@@ -27,9 +27,9 @@ test('Map modal view (headed)', async ({ page }) => {
     }
   });
 
-  const viewMap = page.getByRole('link', { name: /view map/i });
-  await expect(viewMap).toBeVisible();
-  await viewMap.click();
+  const mapFrame = page.locator('#samus-map .map-frame');
+  await expect(mapFrame).toBeVisible();
+  await mapFrame.click();
 
   const modal = page.locator('#map-modal');
   await expect(modal).toHaveClass(/open/);

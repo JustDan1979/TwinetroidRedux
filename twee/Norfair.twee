@@ -88,7 +88,7 @@ Since there are no more hidden rooms, [[go back South.->59]]<</if>>
 East is a passageway to <b >Hidden Room B-46 </b >. This chamber also continues West, and there is also a Blue Door to the North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<goto "Multiviola">><<elseif $random == 1>><<goto "Geruda">><<elseif $random == 4>><<goto "Geruda">><<else>><<goto "Geemer">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>[[Go North->58]]
 [[Go East->46]]
@@ -127,7 +127,7 @@ North is a passage to a hidden chamber. South is a Blue Door, and there is a cor
 <<set $enemyFrozen = 0>><<if $items.includes("RidleyStone ")>>Ridley has been defeated. The door to the North has deactivated for good.<<else>>There is a Blue Door to the North, and the room continues East.<</if>>
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 3>><<goto "Multiviola">><<elseif $random == 2>><<goto "Holtz">><<elseif $random == 6>><<goto "Holtz">><<else>><<goto "Dessgeega">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>><<if !($items.includes("RidleyStone "))>>[[Go North->65]]<</if>>
 [[Go East->61]]<</if>>
@@ -153,7 +153,7 @@ My Command Computer chimes.
 <<set $enemyFrozen = 0>>To the South is the hidden passageway to <b >Room B-67 </b >. Aside from that, there is a Blue Door to the North.
 
 <<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 1>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 4>><<goto "Holtz">><<else>><<goto "Dessgeega">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>
 [[Go North->67]]
@@ -209,7 +209,7 @@ Aside from the pedestal, this chamber is just a dead end. [[I have to go back to
 West is the hidden passage to <b >Room B-67 </b >. Apart from that, there is a Red Door facing North.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 1>><<goto "Holtz">><<else>><<goto "Geruda">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>><<if hasVisited("72")>>I've already opened the Red Door, so the next room is empty. [[I go back West to Room B-67.->67]]<<else>><<if $missiles >1>>[[Blast open the Red Door->72]]<<else>>I need at least 2 Missiles to open the Red Door. [[I must go back West to Room B-67.->67]]<</if>><</if>><</if>>
 
@@ -238,7 +238,7 @@ After collecting it, there is nothing else in this room. [[I go back to the prev
 :: 47 [Secret-Passage] {"position":"100,2725","size":"100,100"}
 !!! Room B-47
 There is a hidden passage to <b >Room B-44 </b >facing West. A Blue Door faces North. There is a hidden room to the East. <span class="reveals "><<if $combat == 0>><<if $items.includes("Bombs ")>>  .<<else>>  .<</if>><</if>></span ><<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 5>><<goto "Rio">><<elseif $random == 3>><<goto "Geruda">><<elseif $random == 1>><<goto "Geruda">><<else>><<goto "Geemer">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>The room appears to end in a rock wall.<<if $items.includes("Bombs ")>><<linkreplace ".">> Careful inspection reveals a hole on the floor that looks weak to explosives. I lay a bomb to blast open a hole to [[Room B-49.->49]]<</linkreplace>><</if>>
 
@@ -297,7 +297,7 @@ At first glance, the room only continues East, but there is a passage to a hidde
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">><<goto "Holtz">><</linkreplace>><<else>><<set $combat = 1>><<if $missilePods.includes("14 ")>>An empty pedastal sits in the center of the room.<<else>>A pedestal sits in the center of the room. I grab the Missile Pod sitting atop it. <<linkreplace "Missile Pod ">>(<span style="color:red">Missile Pod (14)</span> acquired.<<run setup.grantMissilePod("14 ", 2)>> Maximum Missiles increased to $maxMissiles.) <</linkreplace>><</if>>
 
-<<set $random = 7>>I decide to move about the room. The way East is open. However, there is a hidden chamber to the North, but it is at the top of a very high ledge. It is <b >Room B-75 </b >. However, the wall looks weak in spots. Perhaps I could blast them open to make handholds...<span class="hides "><<link ".  ">><<set $random = random( 1,10)>><<if $random == 6>>[[Go North.->75]]<<else>>.  <</if>><</link>></span >[[Go East->73]]<</if>>
+<<set $random = 7>>I decide to move about the room. The way East is open. However, there is a hidden chamber to the North, but it is at the top of a very high ledge. It is <b >Room B-75 </b >. However, the wall looks weak in spots. Perhaps I could blast them open to make handholds...<span class="hides "><<link ".  ">><<set $random = setup.roll( 1,10)>><<if $random == 6>>[[Go North.->75]]<<else>>.  <</if>><</link>></span >[[Go East->73]]<</if>>
 
 
 
@@ -306,7 +306,7 @@ At first glance, the room only continues East, but there is a passage to a hidde
 There are only hidden tunnels leading from this chamber. North<<if $combat == 0>><<linkreplace ",">> which upon closer inspection is revealed as [[a fake wall->78]],<</linkreplace>><<else>>,<</if>> South, and East: all are hidden passages.
 
 <<if $combat == 1>>Fight  <<linkreplace "Fight  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 6>><<goto "Multiviola">><<elseif $random == 3>><<goto "Holtz">><<elseif $random == 5>><<goto "Holtz">><<else>><<goto "Geruda">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>I already know about the passageway facing South, since that's the way I came in came in. However, if I can't discover the other two hidden rooms, I can only go South.
 
@@ -374,7 +374,7 @@ Since I've taken the Energy Tank, there's nothing else in this room. [[I can onl
 From this room, there is a hidden passageway to the West leading to <b >Room B-47 </b >, and there is a Blue Door facing North.
 
 <<if $combat == 1>>Fight.  <<linkreplace "Fight.  ">>
-	<<set $random = random( 1,6)>>
+	<<set $random = setup.roll( 1,6)>>
 	<<if $random == 4>><<goto "Multiviola">><<elseif $random == 3>><<goto "Geemer">><<elseif $random == 6>><<goto "Geemer">><<else>><<goto "Holtz">><</if>>
 <</linkreplace>><<else>><<set $combat = 1>>[[Go North->51]]
 [[Go West->47]]<</if>>
@@ -445,3 +445,4 @@ In the center of the room stands the figure of a strange creature fashioned from
 <b >Room B-74:</b >The wall is too weak for a ladder, so create your own.</i >I store this information into my computer.
 
 Beyond this, there is nothing else in the room. [[I go back South to Room B-58.->58]]
+

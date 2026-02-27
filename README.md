@@ -29,3 +29,4 @@ npm run test:e2e
 
 ## Disclaimer
 This is a fan project and is not affiliated with Nintendo, Futabasha, or Metroid Database.
+

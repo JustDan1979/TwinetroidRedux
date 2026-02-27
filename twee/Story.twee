@@ -1,6 +1,5 @@
 ﻿:: StoryTitle
-Twinetroid
-
+TwinetroidRedux
 
 
 :: Story Stylesheet [stylesheet]
@@ -899,13 +898,229 @@ body[data-screen="title"]::after {
     align-items: center;
   }
 }
+.hud-build {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
 
+.passage .combat-actions button.combat-action,
+.passage .combat-actions .combat-action {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #3b3b3b;
+  background: #151515;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 
+.passage .combat-actions button.combat-action:hover,
+.passage .combat-actions .combat-action:hover {
+  background: #202020;
+  border-color: #5a5a5a;
+}
+
+.passage .combat-dice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid #2a2a2a;
+  background: #101010;
+  border-radius: 0.85rem;
+  margin: 0 auto;
+  width: min(640px, 100%);
+}
+
+.passage .combat-dice .dice-meta {
+  font-size: 0.85rem;
+  color: #d0d0d0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.combat-die {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 2px solid #4a4a4a;
+  background: #161616;
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.55), 0 6px 12px rgba(0,0,0,0.45);
+}
+
+.combat-die-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #eee;
+}
+
+.combat-die .pip {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f0f0f0;
+}
+
+.pip-top-left { top: 8px; left: 8px; }
+.pip-top-right { top: 8px; right: 8px; }
+.pip-mid-left { top: 50%; left: 8px; transform: translateY(-50%); }
+.pip-mid-right { top: 50%; right: 8px; transform: translateY(-50%); }
+.pip-mid-center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.pip-bottom-left { bottom: 8px; left: 8px; }
+.pip-bottom-right { bottom: 8px; right: 8px; }
+
+.passage .combat-dice.is-rolling + .combat-panels,
+.passage .combat-dice.is-rolling ~ .combat-panels,
+.passage .combat-dice.is-hold + .combat-panels,
+.passage .combat-dice.is-hold ~ .combat-panels {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: none !important;
+}
+
+body.combat-rolling .combat-panels,
+.passage.combat-rolling .combat-panels,
+.combat-panels-hidden {
+  display: none !important;
+}
+.combat-die-roll {
+  width: 90px;
+  height: 90px;
+  perspective: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.combat-die-roll.die-win .combat-die-cube {
+  box-shadow: 0 0 14px rgba(53, 208, 127, 0.5);
+}
+
+.combat-die-roll.die-loss .combat-die-cube {
+  box-shadow: 0 0 14px rgba(208, 91, 91, 0.45);
+}
+
+.combat-die-cube {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  transform: rotateX(var(--die-rot-x)) rotateY(var(--die-rot-y));
+}
+
+.die-face {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  border: 2px solid #3b3b3b;
+  background: #171717;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+.die-face.win {
+  border-color: #35d07f;
+  background: rgba(53, 208, 127, 0.18);
+}
+
+.die-face.loss {
+  border-color: #d05b5b;
+  background: rgba(208, 91, 91, 0.18);
+}
+
+.die-face.win .pip { background: #e9fff1; }
+.die-face.loss .pip { background: #ffeaea; }
+
+.face-1 { transform: translateZ(28px); }
+.face-2 { transform: rotateY(90deg) translateZ(28px); }
+.face-3 { transform: rotateX(90deg) translateZ(28px); }
+.face-4 { transform: rotateX(-90deg) translateZ(28px); }
+.face-5 { transform: rotateY(-90deg) translateZ(28px); }
+.face-6 { transform: rotateY(180deg) translateZ(28px); }
+
+.dice-odds {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.dice-odds-face {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #3b3b3b;
+  background: #141414;
+  position: relative;
+}
+
+.dice-odds-face.win {
+  border-color: #35d07f;
+  background: rgba(53, 208, 127, 0.15);
+}
+
+.dice-odds-face.loss {
+  border-color: #d05b5b;
+  background: rgba(208, 91, 91, 0.15);
+}
+
+.dice-odds-face .pip {
+  width: 4px;
+  height: 4px;
+  background: #f0f0f0;
+}
+
+.dice-odds-label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+.combat-dice.is-rolling .combat-die-cube {
+  animation: dice-spin 0.9s ease-in-out infinite;
+}
+
+@keyframes dice-spin {
+  0% {
+    transform: rotateX(var(--die-rot-x)) rotateY(var(--die-rot-y));
+  }
+  50% {
+    transform: rotateX(calc(var(--die-rot-x) + 360deg)) rotateY(calc(var(--die-rot-y) + 180deg));
+  }
+  100% {
+    transform: rotateX(calc(var(--die-rot-x) + 720deg)) rotateY(calc(var(--die-rot-y) + 360deg));
+  }
+}
+.die-face .pip,
+.dice-odds-face .pip {
+  position: absolute;
+}
+.die-face .pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #f0f0f0;
+}
 
 :: Story JavaScript [script]
 Config.history.controls = false;
 Config.ui.stowBarInitially = true;
-
+window.__twDisable3DDice = true;
 setup.assetPath = "assets/images/";
 
 setup.getPassageTitle = function () {
@@ -949,6 +1164,8 @@ setup.itemDefs = [
   { key: "Screw Attack ", label: "Screw Attack" },
   { key: "Varia ", label: "Varia" }
 ];
+
+setup.buildTimestamp = "2026-02-26T19:18";
 
 setup.musicMode = "tracks";
 setup.musicThemes = {
@@ -1057,8 +1274,8 @@ setup.findEnemyInText = function (text) {
       new RegExp("\\b" + keyPattern + "\\b\\s+rushes", "i"),
       new RegExp("\\b" + keyPattern + "\\b\\s+draws near", "i"),
       new RegExp("\\bIt(?:'s| is)\\s+(?:an?\\s+)?" + keyPattern + "\\b", "i"),
-      new RegExp("\\b" + keyPattern + "\\b[^\\n\\.]{0,40}(?:Combat|Command)\\s+Level", "i"),
-      new RegExp("\\b(?:Combat|Command)\\s+Level[^\\n\\.]{0,40}\\b" + keyPattern + "\\b", "i")
+      new RegExp("\\b" + keyPattern + "\\b[^\\n.]{0,40}(?:Combat|Command)\\s+Level", "i"),
+      new RegExp("\\b(?:Combat|Command)\\s+Level[^\\n.]{0,40}\\b" + keyPattern + "\\b", "i")
     ];
     for (var p = 0; p < patterns.length; p++) {
       if (patterns[p].test(hay)) {
@@ -1099,7 +1316,8 @@ setup.getEnemy = function () {
   return null;
 };
 
-setup.hasVisited = function (title) {
+setup.hasVisited
+ = function (title) {
   if (!title) {
     return false;
   }
@@ -1120,13 +1338,284 @@ setup.previous = function () {
 };
 window.previous = setup.previous;
 
+setup.escapeHtml = function (value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+};
+
+setup.recordDiceRoll = function (min, max, value) {
+  if (typeof State === "undefined" || !State.variables) {
+    return;
+  }
+  var low = Number(min);
+  var high = Number(max);
+  var rolled = Number(value);
+  if (!Number.isFinite(low) || !Number.isFinite(high) || !Number.isFinite(rolled)) {
+    return;
+  }
+  var normalized = Math.round(rolled);
+  if (!Number.isFinite(normalized)) {
+    return;
+  }
+  var minBound = Math.min(low, high);
+  var maxBound = Math.max(low, high);
+  if (normalized < minBound) {
+    normalized = minBound;
+  } else if (normalized > maxBound) {
+    normalized = maxBound;
+  }
+  var v = State.variables;
+  var context = Number(v.combat) === 1 ? "combat" : "general";
+  var sides = Math.max(1, Math.abs(high - low) + 1);
+  var entry = {
+    min: low,
+    max: high,
+    value: normalized,
+    context: context,
+    ts: Date.now(),
+    sides: sides
+  };
+  v._diceRevealAt = Date.now() + 650;
+  v._diceHoldUntil = v._diceRevealAt + 1000;
+  v._diceRollingFace = Math.floor(Math.random() * 6) + 1;
+  v._diceLast = entry;
+  if (setup && typeof setup.dispatchDiceRoll3D === "function") {
+    setup.dispatchDiceRoll3D(entry);
+  }
+  if (!Array.isArray(v._diceHistory)) {
+    v._diceHistory = [];
+  }
+  v._diceHistory.push(entry);
+  if (v._diceHistory.length > 12) {
+    v._diceHistory.splice(0, v._diceHistory.length - 12);
+  }
+  if (context == "combat" && setup && typeof setup.enhanceCombat == "function") {
+    setTimeout(function () { setup.enhanceCombat(); }, 0);
+  }
+};
+
+setup.roll = function (min, max) {
+  var low = Number(min);
+  var high = Number(max);
+  if (!Number.isFinite(low) || !Number.isFinite(high)) {
+    return 0;
+  }
+  var roll = Math.floor(Math.random() * (high - low + 1)) + low;
+  if (setup && typeof setup.recordDiceRoll === "function") {
+    setup.recordDiceRoll(low, high, roll);
+  }
+  return roll;
+};
+
+setup.setDiceTarget = function (text) {
+  if (typeof State === "undefined" || !State.variables) {
+    return;
+  }
+  var v = State.variables;
+  v._diceTarget = String(text || "").trim();
+  v._diceTargetAt = Date.now();
+};
+
+setup.clearDiceTarget = function () {
+  if (typeof State === "undefined" || !State.variables) {
+    return;
+  }
+  var v = State.variables;
+  delete v._diceTarget;
+  delete v._diceTargetAt;
+};
+
+setup.renderDieFace = function (value, odds) {
+  var face = Math.round(Number(value));
+  var map = {
+    1: ["pip-mid-center"],
+    2: ["pip-top-left", "pip-bottom-right"],
+    3: ["pip-top-left", "pip-mid-center", "pip-bottom-right"],
+    4: ["pip-top-left", "pip-top-right", "pip-bottom-left", "pip-bottom-right"],
+    5: ["pip-top-left", "pip-top-right", "pip-mid-center", "pip-bottom-left", "pip-bottom-right"],
+    6: ["pip-top-left", "pip-mid-left", "pip-bottom-left", "pip-top-right", "pip-mid-right", "pip-bottom-right"]
+  };
+  var rot = {
+    1: { x: 0, y: 0 },
+    2: { x: 0, y: -90 },
+    3: { x: -90, y: 0 },
+    4: { x: 90, y: 0 },
+    5: { x: 0, y: 90 },
+    6: { x: 0, y: 180 }
+  };
+  var rotation = rot[face] || { x: 0, y: 0 };
+  var winFrom = odds && Number.isFinite(Number(odds.winFrom)) ? Number(odds.winFrom) : null;
+  var winTo = odds && Number.isFinite(Number(odds.winTo)) ? Number(odds.winTo) : null;
+  var hasWinRange = Number.isFinite(winFrom) && Number.isFinite(winTo) && winTo >= winFrom;
+  var faces = [];
+  for (var i = 1; i <= 6; i++) {
+    var pips = (map[i] || []).map(function (cls) {
+      return '<span class="pip ' + cls + '"></span>';
+    }).join('');
+    var faceClass = 'die-face face-' + i;
+    if (hasWinRange) {
+      faceClass += (i >= winFrom && i <= winTo ? ' win' : ' loss');
+    }
+    faces.push('<div class="' + faceClass + '">' + pips + '</div>');
+  }
+  var outcomeClass = '';
+  if (hasWinRange) {
+    outcomeClass = (face >= winFrom && face <= winTo) ? ' die-win' : ' die-loss';
+  }
+  return '<div class="combat-die-roll' + outcomeClass + '"><div class="combat-die-cube" style="--die-rot-x:' + rotation.x + 'deg; --die-rot-y:' + rotation.y + 'deg;" data-face="' + face + '">' + faces.join('') + '</div></div>';
+};
+
+setup.computeOddsFaces = function (min, max) {
+  var low = Number(min);
+  var high = Number(max);
+  if (!Number.isFinite(low) || !Number.isFinite(high)) {
+    return { success: 0, total: 6, sides: 6, winFrom: 1, winTo: 0 };
+  }
+  var sides = Math.max(1, Math.abs(high - low) + 1);
+  var chance = 1 / sides;
+  var success = Math.round(6 * chance);
+  success = Math.max(1, Math.min(6, success));
+  var winFrom = 1;
+  var winTo = success;
+  return { success: success, total: 6, sides: sides, winFrom: winFrom, winTo: winTo };
+};
+
+setup.renderMiniDieFace = function (face, win) {
+  var map = {
+    1: ["pip-mid-center"],
+    2: ["pip-top-left", "pip-bottom-right"],
+    3: ["pip-top-left", "pip-mid-center", "pip-bottom-right"],
+    4: ["pip-top-left", "pip-top-right", "pip-bottom-left", "pip-bottom-right"],
+    5: ["pip-top-left", "pip-top-right", "pip-mid-center", "pip-bottom-left", "pip-bottom-right"],
+    6: ["pip-top-left", "pip-mid-left", "pip-bottom-left", "pip-top-right", "pip-mid-right", "pip-bottom-right"]
+  };
+  var pips = map[face] || [];
+  var cls = win ? 'win' : 'loss';
+  var inner = pips.map(function (pip) {
+    return '<span class=\"pip ' + pip + '\"></span>';
+  }).join('');
+  return '<span class=\"dice-odds-face ' + cls + '\">' + inner + '</span>';
+};
+
+setup.renderOddsD6 = function (min, max) {
+  var odds = setup.computeOddsFaces(min, max);
+  var cells = [];
+  for (var i = 1; i <= 6; i++) {
+    var win = i <= odds.winTo;
+    cells.push(setup.renderMiniDieFace(i, win));
+  }
+  var label = odds.sides <= 1 ? 'Certain' : ('Chance: 1 in ' + odds.sides + ' (win on 1-' + odds.winTo + ')');
+  return '<div class="dice-odds">' + cells.join('') + '</div><div class="dice-odds-label">' + setup.escapeHtml(label) + '</div>';
+};
+
+setup.renderDiceTray = function () {
+  if (typeof State === "undefined" || !State.variables) {
+    return "";
+  }
+  var v = State.variables;
+  var combatActive = Number(v.combat) === 1 || v._combatActive;
+  var last = v._diceLast;
+  var now = Date.now();
+  var revealAt = Number(v._diceRevealAt || 0);
+  var holdUntil = Number(v._diceHoldUntil || 0);
+  if (!holdUntil && revealAt) {
+    holdUntil = revealAt + 1000;
+  }
+  var rolling = revealAt ? (now < revealAt) : ((now - Number((last && last.ts) || 0)) < 1100);
+  var holding = holdUntil ? (now < holdUntil) : false;
+  var rollingFace = Number(v._diceRollingFace);
+
+  var displayValue = (last && last.context === "combat" && rolling)
+    ? (Number.isFinite(rollingFace) && rollingFace >= 1 ? rollingFace : last.value)
+    : (last ? last.value : "?");
+  var odds = last ? setup.computeOddsFaces(last.min, last.max) : null;
+  var fallback = last && last.context === "combat"
+    ? setup.renderDieFace(displayValue, odds)
+    : '<div class="combat-die combat-die-text">?</div>';
+  var diceSlot = fallback;
+  if (!last || last.context !== "combat") {
+    if (!combatActive) {
+      return "";
+    }
+    return '<div class="combat-dice">' + diceSlot + '<div class="dice-meta"><div>Awaiting roll</div><div>Target: --</div></div></div>';
+  }
+  var rangeLabel = (Number(last.min) === 1) ? ("d" + last.max) : (last.min + "-" + last.max);
+  var action = v._diceAction ? setup.escapeHtml(v._diceAction) : "";
+  var target = v._diceTarget ? setup.escapeHtml(v._diceTarget) : "";
+  var meta = [];
+  if (action) {
+    meta.push('<div>Action: ' + action + '</div>');
+  }
+  
+  
+  if (setup.renderOddsD6) {
+    meta.push('<div class="dice-odds-wrap">' + setup.renderOddsD6(last.min, last.max) + '</div>');
+  }
+  return '<div class="combat-dice' + (rolling ? ' is-rolling' : '') + (holding ? ' is-hold' : '') + '">' + diceSlot + '<div class="dice-meta">' + meta.join("") + '</div></div>';
+};
+
+
+setup.hookDiceRandom = function () {
+  if (setup._diceHooked) {
+    return;
+  }
+  setup._diceHooked = true;
+  if (!(window.SugarCube && SugarCube.Util && typeof SugarCube.Util.random === "function")) {
+    return;
+  }
+  try {
+    var desc = Object.getOwnPropertyDescriptor(SugarCube.Util, "random");
+    if (desc && desc.writable === false) {
+      return;
+    }
+    if (SugarCube.Util.random._diceWrapped) {
+      return;
+    }
+    var baseRandom = SugarCube.Util.random;
+    SugarCube.Util.random = function (min, max) {
+      var roll = baseRandom(min, max);
+      if (setup && typeof setup.recordDiceRoll === "function") {
+        setup.recordDiceRoll(min, max, roll);
+      }
+      return roll;
+    };
+    SugarCube.Util.random._diceWrapped = true;
+  } catch (err) {
+    return;
+  }
+};
+
+if (typeof Macro !== "undefined" && Macro.add) {
+  Macro.add("dicetarget", {
+    handler: function () {
+      var text = this.args.join(" ");
+      setup.setDiceTarget(text);
+    }
+  });
+  Macro.add("cleardicetarget", {
+    handler: function () {
+      setup.clearDiceTarget();
+    }
+  });
+}
 window.random = function (min, max) {
   var low = Number(min);
   var high = Number(max);
   if (!Number.isFinite(low) || !Number.isFinite(high)) {
     return 0;
   }
-  return Math.floor(Math.random() * (high - low + 1)) + low;
+  if (window.SugarCube && SugarCube.Util && typeof SugarCube.Util.random === "function") {
+    return SugarCube.Util.random(low, high);
+  }
+  var roll = Math.floor(Math.random() * (high - low + 1)) + low;
+  if (setup && typeof setup.recordDiceRoll === "function") {
+    setup.recordDiceRoll(low, high, roll);
+  }
+  return roll;
 };
 
 setup.mapDefs = {
@@ -1213,8 +1702,8 @@ setup.ensureInit = function () {
     v.missiles = Number.isFinite(Number(v.maxMissiles)) ? v.maxMissiles : 0;
   }
   v.items = setup.normalizeItems(v.items);
-  v.missilePods = setup.normalizeIdTokens(v.missilePods, /\d+/g, ["0 "]);
-  v.energyPacks = setup.normalizeIdTokens(v.energyPacks, /[A-Z]|\d+/g, ["0 "]);
+  v.missilePods = setup.normalizeIdTokens(v.missilePods, /d+/g, ["0 "]);
+  v.energyPacks = setup.normalizeIdTokens(v.energyPacks, /[A-Z]|d+/g, ["0 "]);
   v.visitedRooms = setup.normalizeRoomArray(v.visitedRooms);
   v.mapMarkers = setup.normalizeMarkers(v.mapMarkers);
   if (!Number.isFinite(Number(v.musicEnabled))) {
@@ -1388,7 +1877,7 @@ setup.normalizeRoomArray = function (value) {
     return value;
   }
   if (typeof value === "string") {
-    var matches = value.match(/\d+/g) || [];
+    var matches = value.match(/d+/g) || [];
     var rooms = [];
     matches.forEach(function (match) {
       var trimmed = String(match).trim();
@@ -1482,7 +1971,7 @@ setup.refillEnergy = function () {
 
 setup.grantEnergyPack = function (id) {
   var v = State.variables;
-  v.energyPacks = setup.normalizeIdTokens(v.energyPacks, /[A-Z]|\d+/g, ["0 "]);
+  v.energyPacks = setup.normalizeIdTokens(v.energyPacks, /[A-Z]|d+/g, ["0 "]);
   var token = String(id || "").trim();
   if (!token) {
     return false;
@@ -1500,7 +1989,7 @@ setup.grantEnergyPack = function (id) {
 
 setup.grantMissilePod = function (id, amount) {
   var v = State.variables;
-  v.missilePods = setup.normalizeIdTokens(v.missilePods, /\d+/g, ["0 "]);
+  v.missilePods = setup.normalizeIdTokens(v.missilePods, /d+/g, ["0 "]);
   var token = String(id || "").trim();
   if (!token) {
     return false;
@@ -1554,7 +2043,7 @@ setup.normalizeMarkers = function (value) {
     return markers;
   }
   if (typeof value === "string") {
-    var matches = value.match(/\d+/g) || [];
+    var matches = value.match(/d+/g) || [];
     matches.forEach(function (match) {
       normalizeEntry(match, null);
     });
@@ -1584,7 +2073,7 @@ setup.getMusicKey = function () {
   if (!key) {
     return "Default";
   }
-  var normalized = key.replace(/\s+/g, "").toLowerCase();
+  var normalized = key.replace(/s+/g, "").toLowerCase();
   var keys = Object.keys(setup.musicThemes || {});
   for (var i = 0; i < keys.length; i++) {
     if (keys[i].toLowerCase() === normalized) {
@@ -2129,7 +2618,7 @@ setup.updateMapMarkersHud = function () {
       return'<span class="marker-item marker-color-' + colorIndex + '">' + roomId + '<a href="#" class="map-marker-remove" data-marker="' + roomId + '">x</a></span>';
     });
     if (extra > 0) {
-      parts.push("<span class=\"marker-item\">+" + extra + " more</span>");
+      parts.push('<span class="marker-item">+' + extra + ' more</span>');
     }
     $list.html("Marked: " + parts.join(" "));
   }
@@ -2226,7 +2715,7 @@ setup.enhanceRoomLayout = function () {
     return;
   }
 
-  var directionRe = /\b(north|south|east|west|up|down|back|return|retrace|leave|exit|head|go)\b/i;
+  var directionRe = /b(north|south|east|west|up|down|back|return|retrace|leave|exit|head|go)b/i;
   var shouldWrap = false;
   $root.find("a").each(function () {
     var $link = jQuery(this);
@@ -2234,7 +2723,7 @@ setup.enhanceRoomLayout = function () {
     if (!label) {
       return;
     }
-    if (/^fight\b/i.test(label)) {
+    if (/^fightb/i.test(label)) {
       shouldWrap = true;
       return false;
     }
@@ -2263,7 +2752,7 @@ setup.enhanceRoomLayout = function () {
     if (!label) {
       return;
     }
-    if (/^fight\b/i.test(label)) {
+    if (/^fightb/i.test(label)) {
       navLinks.push($link);
       return;
     }
@@ -2369,7 +2858,7 @@ setup.updateMusic = function () {
     $track.text(trackLabel);
   }
   if ($toggle.length) {
-    $toggle.text(Number(v.musicEnabled) === 1 ? "♪" : "♪×");
+    $toggle.text(Number(v.musicEnabled) === 1 ? "?" : "?Ã—");
     $toggle.toggleClass("off", Number(v.musicEnabled) !== 1);
     var titleLabel = "Soundtrack";
     var toggleTrack = setup.getTrackForKey(key);
@@ -2566,6 +3055,122 @@ setup.hasBattleOverLink = function ($source) {
   }).length > 0;
 };
 
+setup.activateCombatLink = function (targetEl, label, fallbackEl) {
+  function callHandlers(el, type) {
+    if (!el || !jQuery._data) {
+      return false;
+    }
+    var events = jQuery._data(el, "events");
+    if (!events || !events[type] || !events[type].length) {
+      return false;
+    }
+    events[type].forEach(function (evtWrap) {
+      if (!evtWrap || typeof evtWrap.handler !== "function") {
+        return;
+      }
+      var evt = jQuery.Event(type);
+      evt.target = el;
+      evt.currentTarget = el;
+      evt.delegateTarget = el;
+      evt.handleObj = evtWrap;
+      evt.isTrigger = true;
+      if (evtWrap.data !== undefined) {
+        evt.data = evtWrap.data;
+      }
+      if (type === "click") {
+        evt.which = 1;
+        evt.button = 0;
+      } else if (type === "keypress") {
+        evt.which = 13;
+        evt.keyCode = 13;
+        evt.key = "Enter";
+      }
+      try {
+        evtWrap.handler.call(el, evt, evtWrap.data);
+      } catch (err) {}
+    });
+    return true;
+  }
+
+  function refreshCombat() {
+    if (setup && typeof setup.handleCombatState === "function") {
+      setup.handleCombatState();
+      return;
+    }
+    if (setup && typeof setup.enhanceCombat === "function") {
+      setup.enhanceCombat();
+    }
+  }
+
+  function trigger(el) {
+    if (!el) {
+      return false;
+    }
+    var $el = jQuery(el);
+    var data = $el.data() || {};
+    var ariaHandler = data.ariaClick || data.ariaClickHandler || data.ariaClickImpl || el.ariaClick || el.ariaClickHandler || el.ariaClickImpl;
+    if (typeof ariaHandler === "function") {
+      try {
+        var evt = jQuery.Event("click");
+        evt.target = el;
+        evt.currentTarget = el;
+        evt.delegateTarget = el;
+        evt.which = 1;
+        evt.button = 0;
+        ariaHandler.call(el, evt);
+        return true;
+      } catch (err) {}
+    }
+    if (typeof data.rawEvent === "function") {
+      try {
+        data.rawEvent.call(el, jQuery.Event("click"));
+        return true;
+      } catch (err) {}
+    }
+    if (typeof data.clickEvent === "function") {
+      try {
+        data.clickEvent.call(el, jQuery.Event("click"));
+        return true;
+      } catch (err) {}
+    }
+    try {
+      if (callHandlers(el, "click")) {
+        return true;
+      }
+      if (callHandlers(el, "keypress")) {
+        return true;
+      }
+    } catch (err) {}
+
+    var passage = $el.attr("data-passage");
+    if (passage && window.SugarCube && SugarCube.Engine && typeof SugarCube.Engine.play === "function") {
+      SugarCube.Engine.play(passage);
+      return true;
+    }
+
+    try { $el.triggerHandler("click"); } catch (err) {}
+    try { $el.trigger("click"); } catch (err) {}
+    try { el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window })); } catch (err) {}
+    try { if (typeof el.click === "function") { el.click(); } } catch (err) {}
+    return true;
+  }
+
+  if (trigger(targetEl)) {
+    setTimeout(refreshCombat, 0);
+    setTimeout(refreshCombat, 80);
+    setTimeout(refreshCombat, 200);
+    return true;
+  }
+  if (fallbackEl && fallbackEl !== targetEl) {
+    if (trigger(fallbackEl)) {
+      setTimeout(refreshCombat, 0);
+      setTimeout(refreshCombat, 80);
+      setTimeout(refreshCombat, 200);
+      return true;
+    }
+  }
+  return false;
+};
 setup.enhanceCombat = function () {
   var $root = jQuery("#passage");
   if ($root.length === 0) {
@@ -2606,6 +3211,7 @@ setup.enhanceCombat = function () {
     }
     return;
   }
+
   if ($source.length === 0) {
     $source = jQuery('<div class="combat-source" aria-hidden="true"></div>');
     $source.append($root.contents());
@@ -2644,22 +3250,41 @@ setup.enhanceCombat = function () {
   var actionLabels = [];
   var actionByKey = new Map();
   var actionIndex = 0;
-  $source.find("a").each(function () {
-    var $link = jQuery(this);
-    var label = $link.text().trim();
+  var $linkCandidates = $source.find("a, button, .link-internal, .macro-link, [data-passage], [data-click-event]")
+    .not(".combat-action")
+    .not(".combat-scene *");
+  if ($linkCandidates.length === 0) {
+    $linkCandidates = $root.find("a, button, .link-internal, .macro-link, [data-passage], [data-click-event]")
+      .not(".combat-action")
+      .not(".combat-scene *");
+  }
+  $linkCandidates.each(function () {
+    var $el = jQuery(this);
+    if (!$el.is("a, button") && $el.find("a, button").length) {
+      return;
+    }
+    if ($el.closest(".combat-scene").length) {
+      return;
+    }
+    var label = $el.text().trim();
+    if (!label) {
+      label = String($el.attr("data-passage") || "").trim();
+    }
     if (!label) {
       return;
     }
     var key = label.toLowerCase();
 
-    var $container = $link;
-    var $parent = $link.parent();
-    if ($parent.length && $parent.data("clickEvent")) {
-      $container = $parent;
-    }
+    var $parent = $el.parent();
+    var linkData = $el.data() || {};
+    var parentData = $parent.length ? ($parent.data() || {}) : {};
+    var linkHasData = Object.keys(linkData).length > 0 || !!$el.attr("data-passage") || !!$el.attr("data-click-event");
+    var parentHasData = Object.keys(parentData).length > 0 || ($parent.length && ($parent.attr("data-passage") || $parent.attr("data-click-event")));
+    var $container = linkHasData ? $el : (parentHasData ? $parent : $el);
+
     actionByKey.set(key, {
       label: label,
-      link: $link,
+      link: $el,
       container: $container,
       index: actionIndex++
     });
@@ -2758,7 +3383,7 @@ setup.enhanceCombat = function () {
   var logEntries = [];
   var currentCounts = {};
   lines.forEach(function (line) {
-    var side = /(?:-\\d+\\s*Energy|take damage|I take|I suffer|I am hit|my aim|misses|I fail|my attack fails|my attack misses|escape fails|I can\\'t)/i.test(line)
+    var side = /(?:-\d+\s*Energy|take damage|I take|I suffer|I am hit|my aim|misses|I fail|my attack fails|my attack misses|escape fails|I can't)/i.test(line)
       ? "samus"
       : "enemy";
     var key = side + "|" + line;
@@ -2799,12 +3424,12 @@ setup.enhanceCombat = function () {
 
   function renderLog(arr) {
     if (!arr || arr.length === 0) {
-      return'<div class="log-entry log-old">...</div>';
+      return '<div class="log-entry log-old">...</div>';
     }
     return arr.map(function (entry, idx) {
       var isOld = idx < arr.length - 1;
       var cls = 'log-entry' + (isOld ? ' log-old' : '') + (entry.side ? ' log-' + entry.side : '');
-      return'<div class="' + cls + '">' + entry.text + '</div>';
+      return '<div class="' + cls + '">' + entry.text + '</div>';
     }).join("");
   }
 
@@ -2825,6 +3450,8 @@ setup.enhanceCombat = function () {
 
   $top.append($samusCard).append($vs).append($enemyCard);
 
+  var $dice = jQuery(setup.renderDiceTray());
+
   var $panels = jQuery('<div class="combat-panels"></div>');
   var $logPanel = jQuery('<div class="combat-panel combat-panel-log"><div class="combat-panel-title">Combat Log</div><div class="combat-log combat-log-combined">' + renderLog(v._combatLog) + '</div></div>');
   var $actions = jQuery('<div class="combat-actions"></div>');
@@ -2837,28 +3464,61 @@ setup.enhanceCombat = function () {
       return;
     }
     actionSeen.add(key);
+
+    var targetEl = null;
+    if (item.link && item.link.length) {
+      targetEl = item.link[0];
+    } else if (item.container && item.container.length) {
+      targetEl = item.container[0];
+    }
+
+    if (targetEl) {
+      var $button = jQuery('<button type="button" class="combat-action"></button>').text(label);
+      $button.on("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        v._combatExitOnOver = isRunLabel(label);
+        v._diceAction = label;
+        setup.activateCombatLink(targetEl, label);
+      });
+      $actions.append($button);
+      return;
+    }
+
     var $proxy = jQuery('<a href="#" class="combat-action"></a>').text(label);
     $proxy.on("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
       v._combatExitOnOver = isRunLabel(label);
-      var target = (item.link && item.link.length) ? item.link[0] : (item.container && item.container.length ? item.container[0] : null);
-      if (target) {
-        try {
-          target.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
-        } catch (err) {
-          if (typeof target.click === "function") {
-            target.click();
-          }
-        }
-      }
+      v._diceAction = label;
     });
     $actions.append($proxy);
   });
   $logPanel.append($actions);
 
   $panels.append($logPanel);
-  $scene.append($top).append($panels);
+  $scene.append($top);
+  if ($dice.length) {
+    $scene.append($dice);
+    if (setup.dispatchDiceRoll3D) {
+      setup.dispatchDiceRoll3D();
+    }
+  }
+  $scene.append($panels);
+  if ($dice.length) {
+    if ($dice.hasClass("is-rolling")) {
+      setTimeout(function () {
+        $dice.removeClass("is-rolling");
+      }, 650);
+    }
+    if ($dice.hasClass("is-hold")) {
+      var holdUntil = Number(State.variables._diceHoldUntil || 0);
+      var delay = holdUntil ? Math.max(0, holdUntil - Date.now()) : 1000;
+      setTimeout(function () {
+        jQuery(".combat-dice.is-hold").removeClass("is-hold");
+      }, delay);
+    }
+  }
 
   $root.find(".combat-scene").remove();
   $root.prepend($scene);
@@ -2923,12 +3583,10 @@ setup.handleCombatState = function () {
     State.variables._combatLogEnemy = [];
     State.variables._combatLogCounts = {};
   }
-
   if (setup.updateHud) {
     setup.updateHud();
   }
 };
-
 setup.ensureCombatObserver = function () {
   var target = document.querySelector(".passage .combat-source");
   if (!target) {
@@ -2971,6 +3629,10 @@ setup.updateHud = function () {
 
   setup.ensureInit();
 
+  if (setup.hookDiceRandom) {
+    setup.hookDiceRandom();
+  }
+
   setup.ensureMusicUI();
 
   if (State.variables && State.variables.uiBarOpenOnStart) {
@@ -3002,6 +3664,10 @@ setup.updateHud = function () {
   setup.bindMusicControls();
   setup.bindMapMarkerControls();
   setup.bindMapModalControls();
+
+  if (setup.buildTimestamp) {
+    jQuery("#hud-build").text("Build: " + setup.buildTimestamp);
+  }
 
   var energy = Number(State.variables.energy || 0);
   var maxEnergy = Number(State.variables.maxEnergy || 0);
@@ -3082,7 +3748,7 @@ setup.dedupeLinks = function () {
         return this.nodeType === 3 && String(this.textContent).trim().toLowerCase() === label.toLowerCase();
       }).remove();
     }
-    if (/^fight\b/i.test(label)) {
+    if (/^fightb/i.test(label)) {
       $link.addClass("story-action");
     }
   });
@@ -3143,10 +3809,18 @@ setup.dedupeLinks = function () {
 if (!setup._hudBound) {
   jQuery(document).on(":passageend", function () {
     setup.updateHud();
-  });
+    if (setup.handleCombatState) {
+      setup.handleCombatState();
+    } else if (setup.enhanceCombat) {
+      setup.enhanceCombat();
+    }  });
   jQuery(document).on(":storyready", function () {
     setup.updateHud();
-  });
+    if (setup.handleCombatState) {
+      setup.handleCombatState();
+    } else if (setup.enhanceCombat) {
+      setup.enhanceCombat();
+    }  });
   setup._hudBound = true;
 }
 
@@ -3160,7 +3834,6 @@ postdisplay.hud = function () {
     setup.enhanceCombat();
   }
 };
-
 
 
 :: StoryInit {"position":"100,100","size":"100,100"}
@@ -3199,7 +3872,7 @@ postdisplay.hud = function () {
     <div class="hud-row">Energy: <span id="samus-energy">0/0</span></div>
     <div class="hud-row" id="samus-missiles-row">Missiles: <span id="samus-missiles">0/0</span></div>
     <div class="hud-label">Items</div>
-    <div id="samus-items">'</div>
+    <div id="samus-items">-</div>
   </div>
   <div class="hud-section" id="hud-map">
     <div class="hud-label" id="samus-map-label">Map</div>
@@ -3208,11 +3881,115 @@ postdisplay.hud = function () {
       <a href="#" id="map-marker-toggle">Mark Room</a>
     </div>
     <div class="hud-row" id="map-marker-list"></div>
-  </div>
+    <div class="hud-section hud-build" id="hud-build">Build: (loading)</div>
 </div>
 <div id="music-ui">
-  <a href="#" id="music-toggle" title="Soundtrack">♪</a>
+  <a href="#" id="music-toggle" title="Soundtrack">?</a>
   <a href="#" id="music-next" title="Next track">Next</a>
   <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.4" aria-label="Music volume">
   <div id="music-toast" aria-live="polite"></div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

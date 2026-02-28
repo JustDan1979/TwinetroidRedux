@@ -673,6 +673,26 @@ body[data-screen="title"]::after {
   pointer-events: auto;
 }
 
+#music-source {
+  height: 2.25rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #3b3b3b;
+  background: rgba(20, 20, 20, 0.85);
+  color: #e6e6e6;
+  font-size: 0.78rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: auto;
+}
+
+#music-source:focus {
+  outline: none;
+  border-color: #5a5a5a;
+}
+
 @media (max-width: 900px) {
   .passage .combat-top {
     flex-direction: column;
@@ -1364,7 +1384,7 @@ setup.itemDefs = [
   { key: "Varia ", label: "Varia" }
 ];
 
-setup.buildTimestamp = "2026-02-28T15:29";
+setup.buildTimestamp = "2026-02-28T16:00";
 
 setup.musicMode = "tracks";
 setup.musicThemes = {
@@ -1455,6 +1475,154 @@ setup.musicTracks = {
     { title: "Arid Stone", file: "assets/audio/ogg LOOPING/05 - Arid Stone.ogg" },
     { title: "Underground Beach", file: "assets/audio/ogg LOOPING/04 - Underground Beach.ogg" }
   ]
+};
+
+// NES-style Metroid music themes
+// Note format: [semitones_from_C4, 16th_note_ticks]  (-99 = rest)
+// Noise format: flat array of 0/1 per 16th note tick
+// All channels share 64 ticks (4 bars) so they loop in sync
+setup.nesThemes = {
+  Brinstar: {
+    bpm: 130,
+    pu1: [
+      // Bar 1: A descent  A4 G4 F4 E4 D4 rest E4 F4
+      [9,2],[7,1],[5,1],[4,2],[2,2],[-99,2],[4,3],[5,3],
+      // Bar 2: settle     E4 rest D4 C4 B3 C4
+      [4,4],[-99,2],[2,2],[0,2],[-1,2],[0,4],
+      // Bar 3: rise       C4 D4 E4 F4 G4 A4 rest A4
+      [0,2],[2,2],[4,2],[5,2],[7,2],[9,2],[-99,2],[9,2],
+      // Bar 4: cadence    B4 A4 G4 F4 E4 rest
+      [11,2],[9,2],[7,2],[5,2],[4,4],[-99,4]
+    ],
+    pu2: [
+      // Bar 1: F4 E4 D4 C4 B3 rest C4 D4
+      [5,2],[4,1],[2,1],[0,2],[-1,2],[-99,2],[0,3],[2,3],
+      // Bar 2: C4 rest B3 A3 Ab3 A3
+      [0,4],[-99,2],[-1,2],[-3,2],[-4,2],[-3,4],
+      // Bar 3: A3 B3 C4 D4 E4 F4 rest F4
+      [-3,2],[-1,2],[0,2],[2,2],[4,2],[5,2],[-99,2],[5,2],
+      // Bar 4: G4 F4 E4 D4 C4 rest
+      [7,2],[5,2],[4,2],[2,2],[0,4],[-99,4]
+    ],
+    tri: [
+      // Bass: A2=-15  E3=-8  D3=-10  F3=-7
+      [-15,4],[-15,4],[-8,4],[-15,4],
+      [-10,4],[-15,4],[-8,4],[-15,4],
+      [-7,4],[-7,4],[-15,4],[-7,4],
+      [-15,4],[-8,4],[-15,8]
+    ],
+    noise: [
+      1,0,0,0, 1,0,1,0, 0,0,1,0, 1,0,0,0,
+      1,0,0,0, 1,0,1,0, 0,0,1,0, 1,0,0,0,
+      1,0,0,0, 1,0,1,0, 0,0,1,0, 1,0,0,0,
+      1,0,0,0, 1,0,1,0, 0,0,1,0, 1,0,1,1
+    ]
+  },
+  Norfair: {
+    bpm: 155,
+    pu1: [
+      // Bar 1: fast D-minor 16th run  D4 E4 F4 G4 A4 Bb4 C5 Bb4 A4 G4 F4 E4 D4 E4 F4 G4
+      [2,1],[4,1],[5,1],[7,1],[9,1],[10,1],[12,1],[10,1],[9,1],[7,1],[5,1],[4,1],[2,1],[4,1],[5,1],[7,1],
+      // Bar 2: phrase  A4 Bb4 C5 rest Bb4 A4 G4
+      [9,2],[10,2],[12,4],[-99,2],[10,2],[9,2],[7,2],
+      // Bar 3: repeat run
+      [2,1],[4,1],[5,1],[7,1],[9,1],[10,1],[12,1],[10,1],[9,1],[7,1],[5,1],[4,1],[2,1],[4,1],[5,1],[7,1],
+      // Bar 4: descent  C5 Bb4 A4 G4 F4 rest
+      [12,4],[10,2],[9,2],[7,2],[5,2],[-99,4]
+    ],
+    pu2: [
+      // Bar 1: harmony a third up  F4 G4 A4 Bb4 C5 D5 E5 D5 C5 Bb4 A4 G4 F4 G4 A4 Bb4
+      [5,1],[7,1],[9,1],[10,1],[12,1],[14,1],[16,1],[14,1],[12,1],[10,1],[9,1],[7,1],[5,1],[7,1],[9,1],[10,1],
+      // Bar 2: C5 D5 E5 rest D5 C5 Bb4
+      [12,2],[14,2],[16,4],[-99,2],[14,2],[12,2],[10,2],
+      // Bar 3: repeat
+      [5,1],[7,1],[9,1],[10,1],[12,1],[14,1],[16,1],[14,1],[12,1],[10,1],[9,1],[7,1],[5,1],[7,1],[9,1],[10,1],
+      // Bar 4: E5 D5 C5 Bb4 A4 rest
+      [16,4],[14,2],[12,2],[10,2],[9,2],[-99,4]
+    ],
+    tri: [
+      // D3=-10  A2=-15  F3=-7  C3=-12
+      [-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],
+      [-10,4],[-15,4],[-10,4],[-15,4],
+      [-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],[-10,2],
+      [-7,4],[-12,4],[-10,4],[-15,4]
+    ],
+    noise: [
+      1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0,
+      1,1,0,0, 1,1,0,0, 1,0,0,0, 1,0,1,0,
+      1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0,
+      1,1,0,0, 1,1,0,0, 1,0,0,0, 1,1,1,0
+    ]
+  },
+  Tourian: {
+    bpm: 145,
+    pu1: [
+      // Bar 1: B-minor arpeggio  B4=11  D5=14  F#5=18
+      [11,1],[14,1],[18,1],[11,1],[14,1],[18,1],[11,1],[14,1],[18,1],[11,1],[14,1],[18,1],[11,1],[14,1],[18,1],[11,1],
+      // Bar 2: G major   G4=7  B4=11  D5=14
+      [7,1],[11,1],[14,1],[7,1],[11,1],[14,1],[7,1],[11,1],[14,1],[7,1],[11,1],[14,1],[7,1],[11,1],[14,1],[7,1],
+      // Bar 3: A dominant  A4=9  C#5=13  E5=16
+      [9,1],[13,1],[16,1],[9,1],[13,1],[16,1],[9,1],[13,1],[16,1],[9,1],[13,1],[16,1],[9,1],[13,1],[16,1],[9,1],
+      // Bar 4: resolve  B4 D5 B4 A4 rest B4
+      [11,4],[14,2],[11,2],[9,2],[-99,2],[11,4]
+    ],
+    pu2: [
+      // Slow melody over arpeggios
+      [11,4],[14,4],[18,4],[21,4],
+      [7,4],[11,4],[14,4],[19,4],
+      [9,4],[13,4],[16,4],[19,4],
+      [11,8],[-99,4],[9,4]
+    ],
+    tri: [
+      // B2=-13  G2=-17  A2=-15
+      [-13,4],[-13,4],[-13,4],[-13,4],
+      [-17,4],[-17,4],[-17,4],[-17,4],
+      [-15,4],[-15,4],[-15,4],[-15,4],
+      [-13,8],[-13,8]
+    ],
+    noise: [
+      1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0,
+      1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0,
+      1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0,
+      1,0,1,0, 1,0,1,0, 1,0,1,1, 1,0,0,0
+    ]
+  },
+  Default: {
+    bpm: 85,
+    pu1: [
+      // Kraid-style chromatic descent  F4=5  E4=4  Eb4=3
+      [5,4],[4,4],[3,4],[-99,4],
+      // D4 Db4 C4 rest
+      [2,4],[1,4],[0,4],[-99,4],
+      // B3 Bb3 A3 rest
+      [-1,4],[-2,4],[-3,4],[-99,4],
+      // F4 rest F4
+      [5,8],[-99,4],[5,4]
+    ],
+    pu2: [
+      // C4 B3 A3 rest
+      [0,4],[-1,4],[-3,4],[-99,4],
+      // A3 Ab3 G3 rest
+      [-3,4],[-4,4],[-5,4],[-99,4],
+      // G3 Gb3 F3 rest
+      [-5,4],[-6,4],[-7,4],[-99,4],
+      // C4 rest C4
+      [0,8],[-99,4],[0,4]
+    ],
+    tri: [
+      // F2=-19  E2=-20  Ab2=-16  C3=-12
+      [-19,8],[-20,8],
+      [-16,8],[-12,8],
+      [-19,8],[-20,8],
+      [-19,16]
+    ],
+    noise: [
+      1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0,
+      1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0,
+      1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0,
+      1,0,0,0, 0,0,0,0, 0,0,0,0, 1,0,0,0
+    ]
+  }
 };
 
 setup.findEnemyInText = function (text) {
@@ -2690,6 +2858,16 @@ setup.toggleMusic = function () {
 };
 
 setup.nextMusicTrack = function () {
+  if (setup.musicMode === "nes") {
+    var nesKeys = Object.keys(setup.nesThemes || {});
+    if (!nesKeys.length) return;
+    var cur = setup._nesEngine ? setup._nesEngine.themeKey : nesKeys[0];
+    var ci  = nesKeys.indexOf(cur);
+    var next = nesKeys[(ci + 1) % nesKeys.length];
+    setup.startNESMusic(next);
+    setup.showMusicToast("NES: " + next);
+    return;
+  }
   var key = setup.getMusicKey();
   var list = setup.getTrackList(key);
   if (!list.length) {
@@ -2976,6 +3154,139 @@ setup.startProceduralMusic = function (themeKey) {
   return true;
 };
 
+setup.stopNESMusic = function () {
+  var engine = setup._nesEngine;
+  if (!engine) return;
+  engine.active = false;
+  engine.timers.forEach(function (tid) { clearTimeout(tid); });
+  engine.timers = [];
+  engine.nodes.forEach(function (node) {
+    try { if (node.stop) node.stop(); } catch (e) {}
+    try { node.disconnect(); } catch (e) {}
+  });
+  engine.nodes = [];
+  engine.channels = {};
+  setup._nesEngine = null;
+};
+
+setup.startNESMusic = function (themeKey) {
+  var ctx = setup.ensureAudioContext();
+  if (!ctx) return false;
+
+  if (setup._nesEngine && setup._nesEngine.active && setup._nesEngine.themeKey === themeKey) {
+    return true;
+  }
+  setup.stopNESMusic();
+
+  var theme = setup.nesThemes[themeKey] || setup.nesThemes.Brinstar;
+  var bpm = theme.bpm || 130;
+  var tickDur = (60 / bpm) / 4; // 16th note in seconds
+  var v = State.variables;
+  var masterVol = Math.min(0.6, Math.max(0, Number(v.musicVolume) || 0.4));
+
+  var engine = { active: true, themeKey: themeKey, timers: [], nodes: [], channels: {} };
+  setup._nesEngine = engine;
+
+  var master = ctx.createGain();
+  master.gain.value = masterVol;
+  master.connect(ctx.destination);
+  engine.master = master;
+  engine.nodes.push(master);
+
+  var chanVols = { pu1: 0.5, pu2: 0.32, tri: 0.6, noise: 0.18 };
+  var LOOKAHEAD = 0.25;
+  var INTERVAL  = 80;
+
+  function setupMelodyCh(name, oscType) {
+    var seq = theme[name];
+    if (!seq || !seq.length) return;
+    var chanGain = ctx.createGain();
+    chanGain.gain.value = 0;
+    chanGain.connect(master);
+    engine.nodes.push(chanGain);
+    var osc = ctx.createOscillator();
+    osc.type = oscType;
+    osc.frequency.value = 261.626;
+    osc.connect(chanGain);
+    osc.start();
+    engine.nodes.push(osc);
+    var vol = chanVols[name] || 0.4;
+    var idx = 0;
+    var nextTime = ctx.currentTime + 0.05;
+    function schedule() {
+      while (nextTime < ctx.currentTime + LOOKAHEAD) {
+        var note  = seq[idx];
+        var semi  = note[0];
+        var ticks = note[1];
+        var dur   = ticks * tickDur;
+        if (semi === -99) {
+          chanGain.gain.setValueAtTime(0, nextTime);
+        } else {
+          var freq = 261.626 * Math.pow(2, semi / 12);
+          osc.frequency.setValueAtTime(freq, nextTime);
+          chanGain.gain.setValueAtTime(0.001, nextTime);
+          chanGain.gain.linearRampToValueAtTime(vol, nextTime + Math.min(0.008, dur * 0.1));
+          chanGain.gain.setValueAtTime(vol, nextTime + dur * 0.78);
+          chanGain.gain.linearRampToValueAtTime(0.001, nextTime + dur * 0.93);
+          chanGain.gain.setValueAtTime(0, nextTime + dur);
+        }
+        nextTime += dur;
+        idx = (idx + 1) % seq.length;
+      }
+    }
+    engine.channels[name] = schedule;
+  }
+
+  function setupNoiseCh() {
+    var seq = theme.noise;
+    if (!seq || !seq.length) return;
+    var bufLen = ctx.sampleRate;
+    var buf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
+    var data = buf.getChannelData(0);
+    for (var i = 0; i < bufLen; i++) data[i] = Math.random() * 2 - 1;
+    var src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.loop = true;
+    var filt = ctx.createBiquadFilter();
+    filt.type = "highpass";
+    filt.frequency.value = 1200;
+    var chanGain = ctx.createGain();
+    chanGain.gain.value = 0;
+    src.connect(filt).connect(chanGain).connect(master);
+    src.start();
+    engine.nodes.push(src, filt, chanGain);
+    var vol = chanVols.noise;
+    var idx = 0;
+    var nextTime = ctx.currentTime + 0.05;
+    function schedule() {
+      while (nextTime < ctx.currentTime + LOOKAHEAD) {
+        if (seq[idx]) {
+          chanGain.gain.setValueAtTime(vol, nextTime);
+          chanGain.gain.setValueAtTime(0, nextTime + tickDur * 0.45);
+        } else {
+          chanGain.gain.setValueAtTime(0, nextTime);
+        }
+        nextTime += tickDur;
+        idx = (idx + 1) % seq.length;
+      }
+    }
+    engine.channels.noise = schedule;
+  }
+
+  setupMelodyCh("pu1", "square");
+  setupMelodyCh("pu2", "square");
+  setupMelodyCh("tri", "triangle");
+  setupNoiseCh();
+
+  function tick() {
+    if (!engine.active) return;
+    Object.keys(engine.channels).forEach(function (name) { engine.channels[name](); });
+    engine.timers.push(setTimeout(tick, INTERVAL));
+  }
+  tick();
+  return true;
+};
+
 setup.updateBackground = function () {
   var title = setup.getPassageTitle();
   if (/^Title Screen$/i.test(title.trim())) {
@@ -3104,6 +3415,13 @@ setup.bindMusicControls = function () {
     }
     State.variables.musicVolume = Math.min(1, Math.max(0, value));
     setup.updateMusic();
+  });
+  jQuery(document).on("change", "#music-source", function () {
+    var val = this.value;
+    if (val === "tracks" || val === "nes" || val === "procedural") {
+      setup.musicMode = val;
+      setup.updateMusic();
+    }
   });
   setup._musicBound = true;
 };
@@ -3357,19 +3675,35 @@ setup.updateMusic = function () {
     v.musicTrackKey = key;
     v.musicTrackIndex = 0;
   }
-  var useProcedural = setup.musicMode === "procedural";
-  var canProcedural = !!(window.AudioContext || window.webkitAudioContext);
-  if (useProcedural && canProcedural) {
-    var ctx = setup.ensureAudioContext();
-    if (ctx && ctx.state === "suspended") {
-      ctx.resume().catch(function () {});
+  var mode = setup.musicMode || "tracks";
+  var canAudio = !!(window.AudioContext || window.webkitAudioContext);
+  if (mode === "nes" && canAudio) {
+    setup.stopProceduralMusic();
+    var bgmEl = document.getElementById("bgm");
+    if (bgmEl) { bgmEl.pause(); bgmEl.muted = true; }
+    var nesCtx = setup.ensureAudioContext();
+    if (nesCtx && nesCtx.state === "suspended") nesCtx.resume().catch(function () {});
+    if (Number(v.musicEnabled) === 1) {
+      setup.startNESMusic(key);
+      if (setup._nesEngine && setup._nesEngine.master) {
+        setup._nesEngine.master.gain.value = Math.min(0.6, Math.max(0, Number(v.musicVolume) || 0.4));
+      }
+    } else {
+      setup.stopNESMusic();
     }
+  } else if (mode === "procedural" && canAudio) {
+    setup.stopNESMusic();
+    var bgmEl2 = document.getElementById("bgm");
+    if (bgmEl2) { bgmEl2.pause(); bgmEl2.muted = true; }
+    var pCtx = setup.ensureAudioContext();
+    if (pCtx && pCtx.state === "suspended") pCtx.resume().catch(function () {});
     if (Number(v.musicEnabled) === 1) {
       setup.startProceduralMusic(key);
     } else {
       setup.stopProceduralMusic();
     }
   } else {
+    setup.stopNESMusic();
     setup.stopProceduralMusic();
     var track = setup.getTrackForKey(key);
     var audio = setup.ensureMusic();
@@ -3386,6 +3720,7 @@ setup.updateMusic = function () {
       audio.volume = Math.min(1, Math.max(0, Number(v.musicVolume) || 0.4));
     }
     if (Number(v.musicEnabled) === 1) {
+      audio.muted = false;
       var playPromise = audio.play();
       if (playPromise && playPromise.catch) {
         playPromise.catch(function () {
@@ -3400,8 +3735,8 @@ setup.updateMusic = function () {
       }
     } else {
       audio.pause();
+      audio.muted = true;
     }
-    audio.muted = Number(v.musicEnabled) !== 1;
   }
 
   var $status = jQuery("#music-status");
@@ -3420,14 +3755,22 @@ setup.updateMusic = function () {
     $track.text(trackLabel);
   }
   if ($toggle.length) {
-    $toggle.text(Number(v.musicEnabled) === 1 ? "?" : "?Ã—");
+    $toggle.html(Number(v.musicEnabled) === 1 ? "&#9834;" : "&#9834;&times;");
     $toggle.toggleClass("off", Number(v.musicEnabled) !== 1);
-    var titleLabel = "Soundtrack";
-    var toggleTrack = setup.getTrackForKey(key);
-    if (toggleTrack && toggleTrack.title) {
-      titleLabel = toggleTrack.title;
+    var titleLabel = "Music";
+    if (setup.musicMode === "nes") {
+      titleLabel = "NES";
+    } else if (setup.musicMode === "procedural") {
+      titleLabel = "Ambient";
+    } else {
+      var toggleTrack = setup.getTrackForKey(key);
+      if (toggleTrack && toggleTrack.title) titleLabel = toggleTrack.title;
     }
     $toggle.attr("title", titleLabel + (Number(v.musicEnabled) === 1 ? " (On)" : " (Off)"));
+  }
+  var $source = jQuery("#music-source");
+  if ($source.length) {
+    $source.val(setup.musicMode || "tracks");
   }
   if ($volume.length) {
     $volume.val(Math.min(1, Math.max(0, Number(v.musicVolume) || 0.4)));
@@ -6782,7 +7125,12 @@ The space suit Samus uses has the ability to absorb an enemy&#39;s power - howev
     &lt;div class=&quot;hud-section hud-build&quot; id=&quot;hud-build&quot;&gt;Build: (loading)&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&quot;music-ui&quot;&gt;
-  &lt;a href=&quot;#&quot; id=&quot;music-toggle&quot; title=&quot;Soundtrack&quot;&gt;?&lt;/a&gt;
+  &lt;a href=&quot;#&quot; id=&quot;music-toggle&quot; title=&quot;Music (On)&quot;&gt;&amp;#9834;&lt;/a&gt;
+  &lt;select id=&quot;music-source&quot; title=&quot;Music source&quot; aria-label=&quot;Music source&quot;&gt;
+    &lt;option value=&quot;tracks&quot;&gt;Soundtrack&lt;/option&gt;
+    &lt;option value=&quot;nes&quot;&gt;NES&lt;/option&gt;
+    &lt;option value=&quot;procedural&quot;&gt;Ambient&lt;/option&gt;
+  &lt;/select&gt;
   &lt;a href=&quot;#&quot; id=&quot;music-next&quot; title=&quot;Next track&quot;&gt;Next&lt;/a&gt;
   &lt;input id=&quot;music-volume&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.01&quot; value=&quot;0.4&quot; aria-label=&quot;Music volume&quot;&gt;
   &lt;div id=&quot;music-toast&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;

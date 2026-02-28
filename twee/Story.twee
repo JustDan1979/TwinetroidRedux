@@ -942,6 +942,18 @@ body[data-screen="title"]::after {
   flex-direction: column;
   gap: 0.2rem;
 }
+.passage .combat-dice .dice-preview-label {
+  font-size: 0.78rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.passage .combat-dice .dice-debug {
+  font-size: 0.72rem;
+  opacity: 0.78;
+  color: #bdbdbd;
+  line-height: 1.2;
+}
 
 .combat-die {
   position: relative;
@@ -1019,6 +1031,7 @@ body.combat-rolling .combat-panels,
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
   transform: rotateX(var(--die-rot-x)) rotateY(var(--die-rot-y));
+  box-shadow: 0 10px 16px rgba(0,0,0,0.5);
 }
 
 .die-face {
@@ -1026,27 +1039,22 @@ body.combat-rolling .combat-panels,
   position: absolute;
   width: 56px;
   height: 56px;
-  border-radius: 10px;
-  border: 2px solid #3b3b3b;
-  background: #171717;
+  border-radius: 12px;
+  border: 1px solid #b9b9b9;
+  --dice-tint: none;
+  background:
+    var(--dice-tint),
+    linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.25) 45%, rgba(0,0,0,0.12) 100%),
+    radial-gradient(circle at 30% 25%, #f5f5f5 0%, #e3e3e3 55%, #c9c9c9 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.65),
+    inset 0 -5px 8px rgba(0,0,0,0.28),
+    0 2px 3px rgba(0,0,0,0.35);
 }
 
-.die-face.win {
-  border-color: #35d07f;
-  background: rgba(53, 208, 127, 0.18);
-}
-
-.die-face.loss {
-  border-color: #d05b5b;
-  background: rgba(208, 91, 91, 0.18);
-}
-
-.die-face.win .pip { background: #e9fff1; }
-.die-face.loss .pip { background: #ffeaea; }
 
 .face-1 { transform: translateZ(28px); }
 .face-2 { transform: rotateY(90deg) translateZ(28px); }
@@ -1065,46 +1073,69 @@ body.combat-rolling .combat-panels,
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  border: 1px solid #3b3b3b;
-  background: #141414;
+  border: 1px solid #a2a2a2;
+  --dice-odds-tint: none;
+  background:
+    var(--dice-odds-tint),
+    linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 55%, rgba(0,0,0,0.1) 100%),
+    radial-gradient(circle at 30% 25%, #f2f2f2 0%, #dcdcdc 60%, #c4c4c4 100%);
   position: relative;
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.55),
+    inset 0 -3px 4px rgba(0,0,0,0.22);
 }
 
 .dice-odds-face.win {
-  border-color: #35d07f;
-  background: rgba(53, 208, 127, 0.15);
+  border-color: #2fbf77;
+  background: linear-gradient(145deg, #1e5e38 0%, #163f27 100%) !important;
+  box-shadow: 0 0 5px rgba(47, 191, 119, 0.5);
 }
 
 .dice-odds-face.loss {
-  border-color: #d05b5b;
-  background: rgba(208, 91, 91, 0.15);
+  border-color: #c05050;
+  background: linear-gradient(145deg, #5e1e1e 0%, #3f1313 100%) !important;
+  box-shadow: 0 0 5px rgba(208, 91, 91, 0.5);
 }
 
 .dice-odds-face .pip {
   width: 4px;
   height: 4px;
-  background: #f0f0f0;
+  border-radius: 999px;
+  background: #1f1f1f;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.2);
 }
+
+.dice-odds-face.win .pip { background: #7fffb8; }
+.dice-odds-face.loss .pip { background: #ff8a8a; }
 
 .dice-odds-label {
   font-size: 0.85rem;
   opacity: 0.85;
   margin-top: 0.2rem;
 }
+.combat-dice.is-rolling .combat-die-roll {
+  animation: dice-drop 0.55s ease-out forwards;
+}
+
 .combat-dice.is-rolling .combat-die-cube {
-  animation: dice-spin 0.9s ease-in-out infinite;
+  animation: dice-spin 0.7s linear infinite;
+}
+
+@keyframes dice-drop {
+  0%   { transform: translateY(-60px) scale(0.75); opacity: 0; }
+  38%  { transform: translateY(6px)   scale(1.08); opacity: 1; }
+  57%  { transform: translateY(-11px) scale(0.97); }
+  73%  { transform: translateY(3px)   scale(1.02); }
+  87%  { transform: translateY(-2px)  scale(1.0);  }
+  100% { transform: translateY(0)     scale(1.0);  }
 }
 
 @keyframes dice-spin {
-  0% {
-    transform: rotateX(var(--die-rot-x)) rotateY(var(--die-rot-y));
-  }
-  50% {
-    transform: rotateX(calc(var(--die-rot-x) + 360deg)) rotateY(calc(var(--die-rot-y) + 180deg));
-  }
-  100% {
-    transform: rotateX(calc(var(--die-rot-x) + 720deg)) rotateY(calc(var(--die-rot-y) + 360deg));
-  }
+  0%   { transform: rotateX(var(--die-rot-x)) rotateY(var(--die-rot-y)) rotateZ(0deg); }
+  20%  { transform: rotateX(calc(var(--die-rot-x) + 144deg)) rotateY(calc(var(--die-rot-y) +  72deg)) rotateZ(-22deg); }
+  50%  { transform: rotateX(calc(var(--die-rot-x) + 360deg)) rotateY(calc(var(--die-rot-y) + 180deg)) rotateZ(15deg); }
+  80%  { transform: rotateX(calc(var(--die-rot-x) + 576deg)) rotateY(calc(var(--die-rot-y) + 288deg)) rotateZ(-8deg); }
+  100% { transform: rotateX(calc(var(--die-rot-x) + 720deg)) rotateY(calc(var(--die-rot-y) + 360deg)) rotateZ(0deg); }
 }
 .die-face .pip,
 .dice-odds-face .pip {
@@ -1114,7 +1145,83 @@ body.combat-rolling .combat-panels,
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: #f0f0f0;
+  background: #1f1f1f;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.dice-legend {
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.dice-legend-win {
+  color: #35d07f;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.dice-legend-loss {
+  color: #d05b5b;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.dice-continue-btn {
+  display: block;
+  margin: 0.85rem auto 0;
+  padding: 0.45rem 1.4rem;
+  background: #181818;
+  border: 1px solid #4a4a4a;
+  color: #d8d8d8;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.dice-continue-btn:hover {
+  background: #252525;
+  border-color: #7a7a7a;
+  color: #ffffff;
+}
+
+.dice-result-banner {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  margin: 0.5rem 0 0.1rem;
+  transform-origin: center;
+  animation: result-pop 0.4s cubic-bezier(0.2, 1.7, 0.5, 1) forwards;
+}
+
+.dice-result-banner.hit  { color: #2ecc71; text-shadow: 0 0 20px rgba(46,204,113,0.9), 0 0 6px rgba(46,204,113,0.5); }
+.dice-result-banner.miss { color: #e74c3c; text-shadow: 0 0 20px rgba(231,76,60,0.9),  0 0 6px rgba(231,76,60,0.5);  }
+
+@keyframes result-pop {
+  0%   { transform: scale(0.2) rotate(-8deg); opacity: 0; }
+  75%  { transform: scale(1.15) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1.0)  rotate(0deg); opacity: 1; }
+}
+
+.combat-result-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  animation: result-flash 0.7s ease-out forwards;
+}
+
+.combat-result-flash.hit  { background: rgba(46,204,113,0.22); }
+.combat-result-flash.miss { background: rgba(231,76,60,0.22);  }
+
+@keyframes result-flash {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 :: Story JavaScript [script]
@@ -1165,7 +1272,7 @@ setup.itemDefs = [
   { key: "Varia ", label: "Varia" }
 ];
 
-setup.buildTimestamp = "2026-02-26T19:18";
+setup.buildTimestamp = "2026-02-28T15:29";
 
 setup.musicMode = "tracks";
 setup.musicThemes = {
@@ -1377,14 +1484,46 @@ setup.recordDiceRoll = function (min, max, value) {
     value: normalized,
     context: context,
     ts: Date.now(),
-    sides: sides
+    sides: sides,
+    outcome: null,
+    usedForTray: true,
+    winValues: null,
+    winFrom: null,
+    winTo: null
   };
-  v._diceRevealAt = Date.now() + 650;
-  v._diceHoldUntil = v._diceRevealAt + 1000;
-  v._diceRollingFace = Math.floor(Math.random() * 6) + 1;
-  v._diceLast = entry;
-  if (setup && typeof setup.dispatchDiceRoll3D === "function") {
-    setup.dispatchDiceRoll3D(entry);
+  if (context === "combat" && setup && typeof setup.inferDiceWinInfo === "function") {
+    var winInfo = setup.inferDiceWinInfo(setup.getPassageTitle ? setup.getPassageTitle() : "", low, high);
+    if (winInfo && Array.isArray(winInfo.winValues) && winInfo.winValues.length) {
+      entry.winValues = winInfo.winValues;
+      entry.winFrom = winInfo.winFrom;
+      entry.winTo = winInfo.winTo;
+      entry.outcome = entry.winValues.indexOf(normalized) >= 0 ? "win" : "loss";
+    }
+  }
+  var useForTray = true;
+  if (context === "combat") {
+    if (v._dicePrimaryPending) {
+      v._dicePrimaryPending = false;
+      useForTray = true;
+    } else {
+      var last = v._diceLast;
+      var lastTs = last && Number.isFinite(Number(last.ts)) ? Number(last.ts) : 0;
+      if (last && last.context === "combat" && (Date.now() - lastTs) < 1500) {
+        useForTray = false;
+      }
+    }
+  }
+  entry.usedForTray = useForTray;
+  if (useForTray) {
+    v._diceRevealAt = Date.now() + 650;
+    v._diceHoldUntil = v._diceRevealAt + 1500;
+    v._diceRollingFace = Math.floor(Math.random() * 6) + 1;
+    v._diceLast = entry;
+    if (setup && typeof setup.dispatchDiceRoll3D === "function") {
+      setup.dispatchDiceRoll3D(entry);
+    }
+  } else {
+    v._diceLastIgnored = entry;
   }
   if (!Array.isArray(v._diceHistory)) {
     v._diceHistory = [];
@@ -1429,7 +1568,7 @@ setup.clearDiceTarget = function () {
   delete v._diceTargetAt;
 };
 
-setup.renderDieFace = function (value, odds) {
+setup.renderDieFace = function (value, odds, outcome) {
   var face = Math.round(Number(value));
   var map = {
     1: ["pip-mid-center"],
@@ -1450,20 +1589,31 @@ setup.renderDieFace = function (value, odds) {
   var rotation = rot[face] || { x: 0, y: 0 };
   var winFrom = odds && Number.isFinite(Number(odds.winFrom)) ? Number(odds.winFrom) : null;
   var winTo = odds && Number.isFinite(Number(odds.winTo)) ? Number(odds.winTo) : null;
+  var winValues = odds && Array.isArray(odds.winValues) && odds.winValues.length ? odds.winValues : null;
   var hasWinRange = Number.isFinite(winFrom) && Number.isFinite(winTo) && winTo >= winFrom;
+  var forcedOutcome = outcome === "win" || outcome === "loss";
+  var forcedClass = forcedOutcome ? (outcome === "win" ? " win" : " loss") : "";
   var faces = [];
   for (var i = 1; i <= 6; i++) {
     var pips = (map[i] || []).map(function (cls) {
       return '<span class="pip ' + cls + '"></span>';
     }).join('');
     var faceClass = 'die-face face-' + i;
-    if (hasWinRange) {
+    if (forcedOutcome) {
+      faceClass += forcedClass;
+    } else if (winValues) {
+      faceClass += (winValues.indexOf(i) >= 0 ? ' win' : ' loss');
+    } else if (hasWinRange) {
       faceClass += (i >= winFrom && i <= winTo ? ' win' : ' loss');
     }
     faces.push('<div class="' + faceClass + '">' + pips + '</div>');
   }
   var outcomeClass = '';
-  if (hasWinRange) {
+  if (forcedOutcome) {
+    outcomeClass = outcome === "win" ? ' die-win' : ' die-loss';
+  } else if (winValues) {
+    outcomeClass = (winValues.indexOf(face) >= 0) ? ' die-win' : ' die-loss';
+  } else if (hasWinRange) {
     outcomeClass = (face >= winFrom && face <= winTo) ? ' die-win' : ' die-loss';
   }
   return '<div class="combat-die-roll' + outcomeClass + '"><div class="combat-die-cube" style="--die-rot-x:' + rotation.x + 'deg; --die-rot-y:' + rotation.y + 'deg;" data-face="' + face + '">' + faces.join('') + '</div></div>';
@@ -1473,15 +1623,187 @@ setup.computeOddsFaces = function (min, max) {
   var low = Number(min);
   var high = Number(max);
   if (!Number.isFinite(low) || !Number.isFinite(high)) {
-    return { success: 0, total: 6, sides: 6, winFrom: 1, winTo: 0 };
+    return { success: null, total: 6, sides: 6, winFrom: null, winTo: null };
   }
   var sides = Math.max(1, Math.abs(high - low) + 1);
-  var chance = 1 / sides;
-  var success = Math.round(6 * chance);
-  success = Math.max(1, Math.min(6, success));
-  var winFrom = 1;
-  var winTo = success;
-  return { success: success, total: 6, sides: sides, winFrom: winFrom, winTo: winTo };
+  return { success: null, total: 6, sides: sides, winFrom: null, winTo: null };
+};
+
+setup.inferDiceWinInfo = function (title, min, max) {
+  if (!window.Story || typeof Story.get !== "function" || !title) {
+    return null;
+  }
+  var passage = Story.get(title);
+  if (!passage || typeof passage.text !== "string") {
+    return null;
+  }
+  var src = passage.text;
+  var rollIdx = src.indexOf("setup.roll");
+  if (rollIdx < 0) {
+    // This passage has no roll — try passages it <<include>>s or <<goto>>s
+    // (handles <<linkreplace>> wrappers that include the real roll passage).
+    var linkRe = /<<\s*(?:include|goto)\s+"([^"]+)"/g;
+    var linkMatch;
+    while ((linkMatch = linkRe.exec(src))) {
+      var linked = Story.get(linkMatch[1]);
+      if (linked && typeof linked.text === "string" &&
+          linked.text.indexOf("setup.roll") >= 0) {
+        var sub = setup.inferDiceWinInfo(linkMatch[1], min, max);
+        if (sub) return sub;
+      }
+    }
+    return null;
+  }
+  var ifIdx = src.indexOf("<<if", rollIdx);
+  if (ifIdx < 0) {
+    return null;
+  }
+  var endIdx = src.indexOf("<</if>>", ifIdx);
+  if (endIdx < 0) {
+    return null;
+  }
+  var block = src.slice(ifIdx, endIdx + 7);
+
+  var branchRe = /<<(if|elseif)\s+([^>]+)>>([\s\S]*?)(?=<<(?:elseif|else|\/if)\b)/gi;
+  var elseRe = /<<else>>(.*?)(?=<<\/if>>)/i;
+  var branches = [];
+  var match;
+  while ((match = branchRe.exec(block))) {
+    branches.push({ cond: match[2] || "", body: match[3] || "" });
+  }
+  var elseMatch = elseRe.exec(block);
+  var elseBody = elseMatch ? (elseMatch[1] || "") : "";
+
+  function classifyBranch(body) {
+    if (!body) {
+      return null;
+    }
+    var names = [];
+    var nameRe = /<<\s*(?:include|goto)\s+\"([^\"]+)\"/gi;
+    var nm;
+    while ((nm = nameRe.exec(body))) {
+      names.push(nm[1]);
+    }
+    var winName = /(destroy|defeat|hit|success|escaped|escape|victory)/i;
+    var lossName = /(miss|fail|death|game over|roast|dodge|damag|lose|defeat\?)/i;
+    if (names.length) {
+      var hasWin = names.some(function (n) { return winName.test(n); });
+      var hasLoss = names.some(function (n) { return lossName.test(n); });
+      if (hasWin && !hasLoss) {
+        return "win";
+      }
+      if (hasLoss && !hasWin) {
+        return "loss";
+      }
+    }
+    var winText = /(attack successful|enemy is destroyed|is destroyed|destroyed|defeat|defeated|blown to bits|explodes|vanishes|i defeat|i destroy|i beat|victory|success)/i;
+    var lossText = /(attack fails|misses|missed|dodges|i take damage|i suffer|i am hit|i take a blow|i fail|game over)/i;
+    if (winText.test(body) && !lossText.test(body)) {
+      return "win";
+    }
+    if (lossText.test(body) && !winText.test(body)) {
+      return "loss";
+    }
+    return null;
+  }
+
+  function valuesFromCond(cond, lo, hi) {
+    var expr = String(cond || "").replace(/\s+/g, " ").trim();
+    if (!/\$random\b/i.test(expr)) {
+      return null;
+    }
+    var m = expr.match(/\$random\s*([=!<>]=?|is)\s*(\d+)/i);
+    if (!m) {
+      return null;
+    }
+    var op = m[1];
+    var val = Number(m[2]);
+    if (!Number.isFinite(val)) {
+      return null;
+    }
+    var vals = [];
+    var start = Math.min(lo, hi);
+    var end = Math.max(lo, hi);
+    for (var i = start; i <= end; i++) {
+      var ok = false;
+      if (op === "==" || op === "=" || op.toLowerCase() === "is") {
+        ok = (i === val);
+      } else if (op === "!=") {
+        ok = (i !== val);
+      } else if (op === "<") {
+        ok = (i < val);
+      } else if (op === "<=") {
+        ok = (i <= val);
+      } else if (op === ">") {
+        ok = (i > val);
+      } else if (op === ">=") {
+        ok = (i >= val);
+      }
+      if (ok) {
+        vals.push(i);
+      }
+    }
+    return vals;
+  }
+
+  var lo = Number(min);
+  var hi = Number(max);
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) {
+    return null;
+  }
+  var allValues = [];
+  var minBound = Math.min(lo, hi);
+  var maxBound = Math.max(lo, hi);
+  for (var v = minBound; v <= maxBound; v++) {
+    allValues.push(v);
+  }
+
+  var assigned = {};
+  var winValues = {};
+  branches.forEach(function (b) {
+    var vals = valuesFromCond(b.cond, minBound, maxBound);
+    if (!vals || !vals.length) {
+      return;
+    }
+    var cls = classifyBranch(b.body);
+    if (!cls) {
+      return;
+    }
+    vals.forEach(function (v) {
+      assigned[v] = true;
+      if (cls === "win") {
+        winValues[v] = true;
+      }
+    });
+  });
+
+  if (elseBody) {
+    var elseCls = classifyBranch(elseBody);
+    if (elseCls) {
+      allValues.forEach(function (v) {
+        if (!assigned[v]) {
+          if (elseCls === "win") {
+            winValues[v] = true;
+          }
+        }
+      });
+    }
+  }
+
+  var winList = Object.keys(winValues).map(function (k) { return Number(k); }).filter(Number.isFinite).sort(function (a, b) { return a - b; });
+  if (!winList.length) {
+    return null;
+  }
+  var contiguous = true;
+  for (var wi = 1; wi < winList.length; wi++) {
+    if (winList[wi] !== winList[wi - 1] + 1) {
+      contiguous = false;
+      break;
+    }
+  }
+  var winFrom = contiguous ? winList[0] : null;
+  var winTo = contiguous ? winList[winList.length - 1] : null;
+  return { winValues: winList, winFrom: winFrom, winTo: winTo };
 };
 
 setup.renderMiniDieFace = function (face, win) {
@@ -1494,22 +1816,133 @@ setup.renderMiniDieFace = function (face, win) {
     6: ["pip-top-left", "pip-mid-left", "pip-bottom-left", "pip-top-right", "pip-mid-right", "pip-bottom-right"]
   };
   var pips = map[face] || [];
-  var cls = win ? 'win' : 'loss';
+  var cls = (win === true) ? 'win' : (win === false ? 'loss' : '');
   var inner = pips.map(function (pip) {
     return '<span class=\"pip ' + pip + '\"></span>';
   }).join('');
-  return '<span class=\"dice-odds-face ' + cls + '\">' + inner + '</span>';
+  return '<span class=\"dice-odds-face' + (cls ? (' ' + cls) : '') + '\">' + inner + '</span>';
 };
 
-setup.renderOddsD6 = function (min, max) {
-  var odds = setup.computeOddsFaces(min, max);
+setup.renderOddsD6 = function (min, max, result, outcome, preOdds) {
+  var odds = preOdds || setup.computeOddsFaces(min, max);
   var cells = [];
+  var resultFace = Number(result);
+  var hasResult = Number.isFinite(resultFace);
+  var hasWinValues = odds && Array.isArray(odds.winValues) && odds.winValues.length > 0;
+  var diceSides = (odds && Number.isFinite(odds.sides) && odds.sides > 0) ? odds.sides : 6;
+  var winFaceCount = 0;
+  if (hasWinValues && diceSides !== 6) {
+    winFaceCount = Math.round((odds.winValues.length / diceSides) * 6);
+  }
   for (var i = 1; i <= 6; i++) {
-    var win = i <= odds.winTo;
+    var win = null;
+    if (hasWinValues) {
+      if (diceSides === 6) {
+        win = odds.winValues.indexOf(i) >= 0;
+      } else {
+        win = i <= winFaceCount;
+      }
+    } else if (hasResult && i === resultFace && (outcome === "win" || outcome === "loss")) {
+      win = outcome === "win";
+    }
     cells.push(setup.renderMiniDieFace(i, win));
   }
-  var label = odds.sides <= 1 ? 'Certain' : ('Chance: 1 in ' + odds.sides + ' (win on 1-' + odds.winTo + ')');
-  return '<div class="dice-odds">' + cells.join('') + '</div><div class="dice-odds-label">' + setup.escapeHtml(label) + '</div>';
+  var rangeLabel = odds.sides <= 1 ? 'Certain' : ('Roll: ' + (Number(min) === 1 ? ('d' + max) : (min + '-' + max)));
+  var winLabel = "";
+  var legendHtml = "";
+  if (odds && Array.isArray(odds.winValues) && odds.winValues.length) {
+    if (odds.winFrom != null && odds.winTo != null) {
+      winLabel = 'Win on ' + odds.winFrom + '-' + odds.winTo;
+    } else {
+      winLabel = 'Win on ' + odds.winValues.join(',');
+    }
+    legendHtml = '<div class="dice-legend"><span class="dice-legend-win">&#9632; HIT</span><span class="dice-legend-loss">&#9632; MISS</span></div>';
+  }
+  var resultLabel = hasResult ? ('Result: ' + resultFace + (outcome ? (' (' + outcome + ')') : '')) : '';
+  var label = [rangeLabel, winLabel, resultLabel].filter(Boolean).join(' \u00b7 ');
+  return legendHtml + '<div class="dice-odds">' + cells.join('') + '</div><div class="dice-odds-label">' + setup.escapeHtml(label) + '</div>';
+};
+
+setup.inferDiceOutcome = function (entries) {
+  if (!entries || !entries.length) {
+    return null;
+  }
+  var winRe = /(attack successful|attack succeeds|attack is successful|enemy is destroyed|is destroyed|destroyed|defeat|defeated|blown to bits|blown to pieces|destroy|explodes|vanishes|vaporized|freezes|scatters|crumbles|i defeat|i destroy|i beat|victory|success)/i;
+  var lossRe = /(attack fails|attack missed|misses|missed|dodges|i take damage|i suffer|i am hit|i take a blow|i fail|game over|avoids my attack|i take a blow)/i;
+  for (var i = entries.length - 1; i >= 0; i--) {
+    var text = String(entries[i].text || "");
+    if (!text) {
+      continue;
+    }
+    if (/\?\s*$/.test(text)) {
+      continue;
+    }
+    if (/^\s*(should|if)\b/i.test(text)) {
+      continue;
+    }
+    if (/battle is over/i.test(text)) {
+      continue;
+    }
+    if (winRe.test(text)) {
+      return "win";
+    }
+    if (lossRe.test(text)) {
+      return "loss";
+    }
+  }
+  return null;
+};
+
+setup.inferFightOdds = function (title) {
+  if (!window.Story || typeof Story.get !== "function" || !title) return null;
+  var v = State.variables;
+  var items = Array.isArray(v.items) ? v.items : [];
+  function hasItem(keyword) {
+    return items.some(function (it) {
+      return it.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
+    });
+  }
+  function weaponOk(name) {
+    var checks = [
+      { re: /ice\s*beam/i,    item: "Ice Beam" },
+      { re: /wave\s*beam/i,   item: "Wave Beam" },
+      { re: /screw\s*attack/i,item: "Screw Attack" },
+      { re: /missile/i,       item: "Missiles" },
+      { re: /plasma/i,        item: "Plasma Beam" }
+    ];
+    for (var i = 0; i < checks.length; i++) {
+      if (checks[i].re.test(name) && !hasItem(checks[i].item)) return false;
+    }
+    return true;
+  }
+  var rollRe = /setup\.roll\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)/;
+  var seen = {};
+  var queue = [title];
+  seen[title] = true;
+  var limit = 40;
+  while (queue.length && limit-- > 0) {
+    var name = queue.shift();
+    if (!weaponOk(name)) continue;
+    var p = Story.get(name);
+    if (!p) continue;
+    var src = p.text;
+    var rm = rollRe.exec(src);
+    if (rm) {
+      var min = Number(rm[1]);
+      var max = Number(rm[2]);
+      var info = setup.inferDiceWinInfo(name, min, max);
+      if (info && Array.isArray(info.winValues) && info.winValues.length) {
+        return { min: min, max: max, winValues: info.winValues, winFrom: info.winFrom, winTo: info.winTo };
+      }
+    }
+    var linkRe = /<<\s*(?:link|linkreplace|choice)\s+"[^"]*"\s*"([^"]+)"|<<\s*(?:include|goto)\s+"([^"]+)"/g;
+    var lm;
+    while ((lm = linkRe.exec(src))) {
+      var linked = lm[1] || lm[2];
+      if (linked && !seen[linked]) { seen[linked] = true; queue.push(linked); }
+    }
+  }
+  return null;
 };
 
 setup.renderDiceTray = function () {
@@ -1527,19 +1960,41 @@ setup.renderDiceTray = function () {
   }
   var rolling = revealAt ? (now < revealAt) : ((now - Number((last && last.ts) || 0)) < 1100);
   var holding = holdUntil ? (now < holdUntil) : false;
-  var rollingFace = Number(v._diceRollingFace);
-
-  var displayValue = (last && last.context === "combat" && rolling)
-    ? (Number.isFinite(rollingFace) && rollingFace >= 1 ? rollingFace : last.value)
-    : (last ? last.value : "?");
+  var displayValue = last ? (last.displayValue != null ? last.displayValue : last.value) : "?";
   var odds = last ? setup.computeOddsFaces(last.min, last.max) : null;
+  if (odds && last) {
+    if (Array.isArray(last.winValues)) {
+      odds.winValues = last.winValues;
+    }
+    if (last.winFrom != null) {
+      odds.winFrom = last.winFrom;
+    }
+    if (last.winTo != null) {
+      odds.winTo = last.winTo;
+    }
+  }
+  var outcome = last && last.outcome ? last.outcome : null;
   var fallback = last && last.context === "combat"
-    ? setup.renderDieFace(displayValue, odds)
+    ? setup.renderDieFace(displayValue, odds, outcome)
     : '<div class="combat-die combat-die-text">?</div>';
   var diceSlot = fallback;
   if (!last || last.context !== "combat") {
     if (!combatActive) {
       return "";
+    }
+    if (setup.inferFightOdds && setup.renderOddsD6) {
+      var passageTitle = setup.getPassageTitle ? setup.getPassageTitle() : (typeof State !== "undefined" ? State.passage : "");
+      var preview = setup.inferFightOdds(passageTitle);
+      if (preview) {
+        var previewOdds = setup.computeOddsFaces(preview.min, preview.max);
+        if (previewOdds) {
+          previewOdds.winValues = preview.winValues;
+          previewOdds.winFrom   = preview.winFrom;
+          previewOdds.winTo     = preview.winTo;
+        }
+        var previewLegend = setup.renderOddsD6(preview.min, preview.max, null, null, previewOdds);
+        return '<div class="combat-dice"><div class="dice-meta"><div class="dice-preview-label">Fight odds</div><div class="dice-odds-wrap">' + previewLegend + '</div></div></div>';
+      }
     }
     return '<div class="combat-dice">' + diceSlot + '<div class="dice-meta"><div>Awaiting roll</div><div>Target: --</div></div></div>';
   }
@@ -1550,10 +2005,25 @@ setup.renderDiceTray = function () {
   if (action) {
     meta.push('<div>Action: ' + action + '</div>');
   }
-  
-  
+  if (target) {
+    meta.push('<div>Target: ' + target + '</div>');
+  }
   if (setup.renderOddsD6) {
-    meta.push('<div class="dice-odds-wrap">' + setup.renderOddsD6(last.min, last.max) + '</div>');
+    meta.push('<div class="dice-odds-wrap">' + setup.renderOddsD6(last.min, last.max, displayValue, outcome, odds) + '</div>');
+  }
+  var debugEnabled = !!(v._diceDebug || v.diceDebug);
+  if (debugEnabled && last) {
+    var debugParts = [];
+    debugParts.push('roll=' + last.value + ' (' + last.min + '-' + last.max + ')');
+    debugParts.push('display=' + displayValue);
+    debugParts.push('rolling=' + (rolling ? 'yes' : 'no'));
+    debugParts.push('outcome=' + (last.outcome || 'unknown'));
+    debugParts.push('used=' + (last.usedForTray ? 'yes' : 'no'));
+    var ignored = v._diceLastIgnored;
+    if (ignored && ignored !== last) {
+      debugParts.push('ignored=' + ignored.value + ' (' + ignored.min + '-' + ignored.max + ')');
+    }
+    meta.push('<div class="dice-debug">Debug: ' + setup.escapeHtml(debugParts.join(' | ')) + '</div>');
   }
   return '<div class="combat-dice' + (rolling ? ' is-rolling' : '') + (holding ? ' is-hold' : '') + '">' + diceSlot + '<div class="dice-meta">' + meta.join("") + '</div></div>';
 };
@@ -3383,7 +3853,7 @@ setup.enhanceCombat = function () {
   var logEntries = [];
   var currentCounts = {};
   lines.forEach(function (line) {
-    var side = /(?:-\d+\s*Energy|take damage|I take|I suffer|I am hit|my aim|misses|I fail|my attack fails|my attack misses|escape fails|I can't)/i.test(line)
+    var side = /(?:-\d+\s*Energy|take damage|I take|I suffer|I am hit|my aim|misses|missed|\bdodge\b|\bdodges\b|I fail|my attack fails|my attack misses|escape fails|I can't)/i.test(line)
       ? "samus"
       : "enemy";
     var key = side + "|" + line;
@@ -3421,6 +3891,66 @@ setup.enhanceCombat = function () {
   }
 
   logEntries.forEach(function (entry) { pushLog(v._combatLog, entry); });
+
+  if (v._diceLast && v._diceLast.context === "combat" && !v._diceLast.outcome && logEntries.length) {
+    var lastTs = Number(v._diceLast.ts || 0);
+    if (lastTs && (Date.now() - lastTs) < 6000) {
+      var inferred = setup.inferDiceOutcome ? setup.inferDiceOutcome(logEntries) : null;
+      if (inferred) {
+        v._diceLast.outcome = inferred;
+      }
+    }
+  }
+
+  // When passage-source win-condition lookup failed (e.g. roll inside <<include>>),
+  // back-calculate winValues from known outcome + result.
+  // d2 can be determined exactly; d3 can be estimated from the known half.
+  if (v._diceLast && v._diceLast.context === "combat" && !v._diceLast.winValues && v._diceLast.outcome) {
+    var _sides = Number(v._diceLast.sides);
+    var _val   = Number(v._diceLast.value);
+    var _isWin = v._diceLast.outcome === "win";
+    if (Number.isFinite(_sides) && _sides >= 2 && Number.isFinite(_val)) {
+      if (_sides === 2) {
+        // Exactly one value is a win on a d2 — derive it from result + outcome.
+        var _wv = _isWin ? _val : (_val === 1 ? 2 : 1);
+        v._diceLast.winValues = [_wv];
+        v._diceLast.winFrom   = _wv;
+        v._diceLast.winTo     = _wv;
+      } else if (_sides === 3) {
+        // d3: assume one win value — the result if win, or whichever of the
+        // remaining two values is most likely (approximate as the lower one).
+        if (_isWin) {
+          v._diceLast.winValues = [_val];
+          v._diceLast.winFrom   = _val;
+          v._diceLast.winTo     = _val;
+        } else {
+          var _wv3 = (_val === 1) ? 2 : 1;
+          v._diceLast.winValues = [_wv3];
+          v._diceLast.winFrom   = _wv3;
+          v._diceLast.winTo     = _wv3;
+        }
+      }
+    }
+  }
+
+  // Compute proportional display face for non-d6 dice so legend and big die agree.
+  // Win maps to the middle of the green zone (faces 1..winFaceCount),
+  // loss maps to the middle of the red zone (faces winFaceCount+1..6).
+  if (v._diceLast && v._diceLast.context === "combat" && v._diceLast.displayValue == null) {
+    var _dSides = Number(v._diceLast.sides);
+    var _dWinValues = v._diceLast.winValues;
+    var _dOutcome = v._diceLast.outcome;
+    if (_dSides && _dSides !== 6 && Array.isArray(_dWinValues) && _dOutcome) {
+      var _dWinFaceCount = Math.round((_dWinValues.length / _dSides) * 6);
+      if (_dWinFaceCount < 1) _dWinFaceCount = 1;
+      if (_dWinFaceCount > 5) _dWinFaceCount = 5;
+      if (_dOutcome === "win") {
+        v._diceLast.displayValue = Math.ceil(_dWinFaceCount / 2);
+      } else {
+        v._diceLast.displayValue = _dWinFaceCount + Math.ceil((6 - _dWinFaceCount) / 2);
+      }
+    }
+  }
 
   function renderLog(arr) {
     if (!arr || arr.length === 0) {
@@ -3479,6 +4009,8 @@ setup.enhanceCombat = function () {
         event.stopPropagation();
         v._combatExitOnOver = isRunLabel(label);
         v._diceAction = label;
+        v._dicePrimaryPending = true;
+        v._diceActionAt = Date.now();
         setup.activateCombatLink(targetEl, label);
       });
       $actions.append($button);
@@ -3491,6 +4023,8 @@ setup.enhanceCombat = function () {
       event.stopPropagation();
       v._combatExitOnOver = isRunLabel(label);
       v._diceAction = label;
+      v._dicePrimaryPending = true;
+      v._diceActionAt = Date.now();
     });
     $actions.append($proxy);
   });
@@ -3506,17 +4040,59 @@ setup.enhanceCombat = function () {
   }
   $scene.append($panels);
   if ($dice.length) {
+    function addContinueBtn($el) {
+      if (!$el.length) return;
+      var outcome = State.variables._diceLast && State.variables._diceLast.outcome;
+      // Show banner + flash whenever outcome is known and not already shown.
+      if ((outcome === "win" || outcome === "loss") && !$el.find(".dice-result-banner").length) {
+        var cls   = outcome === "win" ? "hit"  : "miss";
+        var label = outcome === "win" ? "HIT!" : "MISS!";
+        $el.append(jQuery('<div class="dice-result-banner ' + cls + '">' + label + '</div>'));
+        jQuery('<div class="combat-result-flash ' + cls + '"></div>').appendTo("body");
+        setTimeout(function () { jQuery(".combat-result-flash").remove(); }, 750);
+      }
+      // Continue button only needed while panels are hidden by is-hold.
+      if ($el.hasClass("is-hold") && !$el.find(".dice-continue-btn").length) {
+        var $btn = jQuery('<button class="dice-continue-btn">Continue \u25b6</button>');
+        $btn.on("click", function () {
+          var $d = jQuery(".combat-dice");
+          var $panels = $d.siblings(".combat-panels");
+          $d.removeClass("is-hold");
+          $d.find(".dice-result-banner").remove();
+          $btn.remove();
+          $panels.hide().fadeIn(300);
+        });
+        $el.append($btn);
+      }
+    }
+
     if ($dice.hasClass("is-rolling")) {
       setTimeout(function () {
-        $dice.removeClass("is-rolling");
+        var $activeDice = jQuery(".combat-dice.is-rolling");
+        if ($activeDice.length) {
+          $activeDice.removeClass("is-rolling");
+          addContinueBtn($activeDice);
+        } else {
+          // Scene was replaced while we waited — look for any settled hold dice.
+          addContinueBtn(jQuery(".combat-dice.is-hold"));
+        }
       }, 650);
+    } else if ($dice.hasClass("is-hold")) {
+      addContinueBtn($dice);
     }
+
     if ($dice.hasClass("is-hold")) {
       var holdUntil = Number(State.variables._diceHoldUntil || 0);
-      var delay = holdUntil ? Math.max(0, holdUntil - Date.now()) : 1000;
+      var autoDelay = holdUntil ? Math.max(7000, holdUntil - Date.now() + 6000) : 7000;
       setTimeout(function () {
-        jQuery(".combat-dice.is-hold").removeClass("is-hold");
-      }, delay);
+        var $holdDice = jQuery(".combat-dice.is-hold");
+        if ($holdDice.length) {
+          $holdDice.find(".dice-continue-btn, .dice-result-banner").remove();
+          var $panels = $holdDice.siblings(".combat-panels");
+          $holdDice.removeClass("is-hold");
+          $panels.hide().fadeIn(300);
+        }
+      }, autoDelay);
     }
   }
 
@@ -3889,6 +4465,31 @@ postdisplay.hud = function () {
   <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.4" aria-label="Music volume">
   <div id="music-toast" aria-live="polite"></div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
